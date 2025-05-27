@@ -1,20 +1,20 @@
-from agents.patient import BasicPatient, PatientPsi
+from agents.client import BasicClient, PatientPsi
 from agents.therapist import BasicTherapist
 
 
-def get_patient(agent_type):
+def get_client(agent_type, model):
     if agent_type == "basic":
-        return BasicPatient
+        return BasicClient(model)
     if agent_type == "patient-psi":
-        return PatientPsi
+        return PatientPsi(model)
     else:
         print("Invalid agent type. ")
         return None
 
 
-def get_therapist(agent_type):
+def get_therapist(agent_type, model):
     if agent_type == "basic":
-        return BasicTherapist
+        return BasicTherapist(model)
     else:
         print("Invalid agent type. ")
         return None

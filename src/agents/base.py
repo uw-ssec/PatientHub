@@ -2,9 +2,9 @@ from abc import ABC, abstractmethod
 
 
 class BaseAgent(ABC):
-    def __init__(self, role: str, client):
+    def __init__(self, role: str, model):
         self.role = role
-        self.client = client
+        self.model = model
         self.messages = []
         self.memory = []
 
@@ -22,7 +22,17 @@ class BaseAgent(ABC):
         if idx < len(self.messages):
             self.messages[idx] = msg
 
-    # @abstractmethod
-    # def reset(self):
-    #     """Reset the agent's state."""
-    #     pass
+    @abstractmethod
+    def set_prompt(self, prompt):
+        """Set the system prompt for the agent."""
+        pass
+
+    @abstractmethod
+    def receive_message(self, msg: str, role: str = "user"):
+        """Receive a message from the user."""
+        pass
+
+    @abstractmethod
+    def generate_response(self):
+        """Generate a response based on the current state."""
+        pass

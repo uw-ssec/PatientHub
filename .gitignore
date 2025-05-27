@@ -178,3 +178,4 @@ cython_debug/
 .env
 data/
 docs/
+crawler

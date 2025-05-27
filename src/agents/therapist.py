@@ -1,34 +1,65 @@
 from .base import BaseAgent
 from pydantic import BaseModel, Field
+from prompts import get_prompt
+from utils import parse_json_response, to_bullet_list
 from langchain_core.output_parsers import PydanticOutputParser
+from typing import Dict, List, Any
+
+
+class MentalState(BaseModel):
+    Emotion: str = Field(
+        description="Client's current emotion based on Ekman's 8 emotions (label only)",
+        default="Unknown",
+    )
+    Beliefs: str = Field(
+        description="Client's current beliefs (1-2 sentences)", default="Unknown"
+    )
+    Desires: str = Field(
+        description="Client's current desires (1-2 sentences)", default="Unknown"
+    )
+    Intents: str = Field(
+        description="Client's current intentions (1-2) sentences", default="Unknown"
+    )
+    Trust_Level: int = Field(
+        description="Client's current level of trust towards you (0-100)",
+        default=0,
+    )
 
 
 class BaseTherapistResponse(BaseModel):
     reasoning: str = Field(
-        description="reason about the patients' thoughts and feelings in 1-2 sentences."
+        description="reason about your perspective about client's thoughts and feelings in 3-5 sentences."
     )
-    # patient_mental_state: Dict[str, MentalState] = Field(
-    #     description="Current mental state of the patient"
-    # )
-    content: str = Field(description="Your generated response based on your reasoning")
+    client_mental_state: Dict[str, MentalState] = Field(
+        description="Current mental state of the client"
+    )
+    response: str = Field(
+        description="Your generated response based on your reasoning and the client's mental state"
+    )
 
 
 class BasicTherapist(BaseAgent):
-    def __init__(self, client):
-        super().__init__(client)
+    def __init__(self, model, profile_data):
+        super().__init__(role="therapist", model=model)
         self.parser = PydanticOutputParser(pydantic_object=BaseTherapistResponse)
+        self.agent_name = "basic"
+        self.client_mental_state = {
+            "Emotion": "None",
+            "Beliefs": "None",
+            "Desires": "None",
+            "Intents": "None",
+            "Trust Level": 0,
+        }
+        self.profile_data = profile_data
+        self.set_prompt()
 
-    def set_prompt(self, prompt):
-        self.sys_prompt = prompt
-
-    def fill_prompt(self, profile):
-        demographics = profile["demographics"]
-        personality = profile["personality"]
-        self.sys_prompt = self.sys_prompt.format(
-            demographics=to_bullet_list(profile["demographics"]),
-            personality=to_bullet_list(profile["personality"]),
+    def set_prompt(self):
+        self.sys_prompt = get_prompt(self.role, self.agent_name).render(
+            data=self.profile_data,
+            response_format=self.parser.get_format_instructions(),
+            mode="conversation",
         )
-        self.sys_prompt += "\n # Output\n\n" + self.parser.get_format_instructions()
+
         self.messages = [{"role": "system", "content": self.sys_prompt}]
 
     def receive_message(self, msg):
@@ -44,6 +75,10 @@ class BasicTherapist(BaseAgent):
     def generate_response(self):
         res = self.model.invoke(self.messages)
         res = parse_json_response(res.content)
-        print(res)
+        self.client_mental_state = res["client_mental_state"]
+        self.messages.append({"role": "assistant", "content": res["response"]})
 
-        return f"[{res['reasoning']}] -> {res['content']}"
+        return (
+            f"([{res['reasoning']}] -> {res['response']}",
+            res["client_mental_state"],
+        )
