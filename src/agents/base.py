@@ -12,8 +12,8 @@ class BaseAgent(ABC):
     messages: List[Any]
 
     @abstractmethod
-    def create_agent(self, *args: Any, **kwargs: Any) -> Any:
-        r"""Performs a single step of the agent."""
+    def generate(self, messages: List[str], response_format: Any) -> Any:
+        r"""Processes the input messages and returns a response."""
         pass
 
     @abstractmethod

@@ -1,11 +1,11 @@
 from .base import BaseAgent
 from pydantic import BaseModel, Field
-from prompts import get_prompt
-from utils import parse_json_response, get_model_client
+from prompts import get_prompts
 from typing import Dict, List, Any
 from brain import MentalState
-from time import sleep
-from camel.agents import ChatAgent
+from langchain_core.language_models import BaseChatModel
+# from camel.agents import ChatAgent
+# from camel.models import BaseModelBackend
 
 
 class Agenda(BaseModel):
@@ -19,14 +19,14 @@ class Agenda(BaseModel):
 
 
 class BaseTherapistResponse(BaseModel):
-    # client_mental_state: Dict[str, MentalState] = Field(
-    #     description="The Client's current mental state"
-    # )
+    client_mental_state: Dict[str, MentalState] = Field(
+        description="The Client's current mental state"
+    )
     reasoning: str = Field(
         description="Your reasoning about the how you should approach the client in this turn (2-4 sentences)"
     )
-    response: str = Field(
-        description="Your generated response based on the client's mental state and your reasoning (1-2 sentences)"
+    content: str = Field(
+        description="The content of your generated response based on the client's mental state and your reasoning (1-2 sentences)"
     )
 
 
@@ -34,107 +34,78 @@ class SessionSummary(BaseModel):
     summary: str = Field(
         description="A summary of the session, including key points discussed and next steps (1-3 sentences)"
     )
-    next_steps: str = Field(
-        description="Next steps for the client, including any homework or follow-up actions (1-3 items)"
+    homework: str = Field(
+        description="Next steps for the client, including homework or follow-up actions (1-3 items)"
     )
 
 
 class BasicTherapist(BaseAgent):
-    def __init__(self, model_name: str, data: Dict[str, Any]):
+    def __init__(self, model_client: BaseChatModel, data: Dict[str, Any]):
         self.role = "therapist"
         self.agent_type = "basic"
+        self.model_client = model_client
         self.data = data
-        self.agenda = {}
-        self.messages = []
-        self.memory = []
-        self.client_mental_state = MentalState().model_dump(mode="json")
-        self.model_client = get_model_client(model_name)
-        self.agent = self.create_agent()
+        self.prompts = get_prompts(self.role)
+        self.client = None
+        self.client_mental_state = MentalState()
+        self.agenda = Agenda()
+        self.messages = [
+            {
+                "role": "system",
+                "content": self.prompts["profile"].render(data=self.data),
+            }
+        ]
 
-    def create_agent(self):
-        self.sys_prompt = get_prompt(self.role, self.agent_type).render(
-            data=self.data, client={"name": "John"}, agenda=self.agenda
+    def generate(self, messages: List[str], response_format: BaseModel):
+        model_client = self.model_client.with_structured_output(response_format)
+        res = model_client.invoke(messages)
+        return res
+
+    def set_client(self, client, prev_sessions: List[Dict[str, str] | None] = []):
+        self.client_data = client.data["demographics"]
+        self.messages[0]["content"] += "\n" + self.prompts["client"].render(
+            client=self.client, previous_sessions=prev_sessions
         )
-        return ChatAgent(model=self.model_client, system_message=self.sys_prompt)
 
-    def create_agenda(self):
-        #         agenda_pt = """Before the conversation, you should prepare an agenda for the current session.
-        # For instance, the agenda for the first session is usually to get to know the client, their background, and their current issues.
-        #         """
-        # res = self.agent.step(agenda_pt, response_format=Agenda)
-        # self.agenda = parse_json_response(res.msgs[0].content)
-        self.agenda = {
-            "goals": [
-                "Establish rapport with John",
-                "Understand John's current issues and concerns",
-                "Gather information about John's background and personal experiences",
-            ],
-            "topics": [
-                "John's recent situation and behavior",
-                "Personal background",
-                "Past experiences affecting current concerns",
-            ],
-        }
-        self.agent = self.create_agent()  # Recreate agent with updated agenda
+    def generate_agenda(self):
+        pt = self.prompts["agenda"].render()
+        agenda = self.generate(
+            messages=self.messages + [{"role": "user", "content": pt}],
+            response_format=Agenda,
+        )
+        # agenda = Agenda(
+        #     topics=[
+        #         "John's personal and professional background",
+        #         "Current challenges and reasons for seeking therapy",
+        #         "John's goals and expectations for therapy",
+        #     ],
+        #     goals=[
+        #         "Establish rapport with John Doe",
+        #         "Understand John's background and current issues",
+        #         "Identify initial areas of focus for therapy",
+        #     ],
+        # )
+        self.messages[0]["content"] += "\n" + self.prompts["conversation"].render(
+            data=self.data, agenda=agenda, client=self.client
+        )
+        return agenda.model_dump(mode="json")
 
     def generate_response(self, msg: str):
-        res = self.agent.step(msg, response_format=BaseTherapistResponse)
-        return parse_json_response(res.msgs[0].content)
+        self.messages.append({"role": "user", "content": msg})
+        res = self.generate(
+            messages=self.messages, response_format=BaseTherapistResponse
+        )
+        self.messages.append({"role": "assistant", "content": res.model_dump_json()})
 
-    def create_summary(self):
-        summary_pt = """Generate a summary of the session and next steps based on the conversation history."""
-        res = self.agent.step(summary_pt, response_format=BaseTherapistResponse)
-        return parse_json_response(res.msgs[0].content)
+        return res
+
+    def generate_summary(self):
+        pt = self.prompts["summary"].render()
+        summary = self.generate(
+            messages=self.messages + [{"role": "user", "content": pt}],
+            response_format=SessionSummary,
+        )
+        return summary
 
     def reset(self):
         self.agent.reset()
-
-    # def set_sys_prompt(self, mode: str):
-    #     self.sys_prompt = get_prompt(self.role, self.agent_name).render(
-    #         data=self.data,
-    #         response_format=self.parser.get_format_instructions(),
-    #         mode=mode,
-    #         client={"name": "John"},
-    #         agenda=self.agenda,
-    #     )
-
-    #     self.messages = [{"role": "system", "content": self.sys_prompt}]
-
-    # def generate(self, messages):
-    #     # Retry up to 3 times in case of failure
-    #     for i in range(3):
-    #         try:
-    #             res = self.model.invoke(messages)
-    #             res = parse_json_response(res.content)
-    #             print(res)
-    #             return res
-    #         except Exception as e:
-    #             print(f"Error generating response: {e}")
-    #             sleep(2)
-    #     return {}
-
-    # def generate_agenda(self):
-    #     self.parser = PydanticOutputParser(pydantic_object=Agenda)
-    #     self.set_sys_prompt(mode="agenda")
-    #     self.agenda = self.generate(self.messages)
-    #     return self.agenda
-
-    # def generate_response(self, chat_history):
-    #     self.parser = PydanticOutputParser(pydantic_object=BaseTherapistResponse)
-    #     self.set_sys_prompt(mode="conversation")
-    #     print("Generating Response", self.sys_prompt)
-
-    #     msg = f"Generate your response for the next turn:\n\n{chat_history}\n\n"
-    #     messages = self.messages + [{"role": "user", "content": msg}]
-
-    #     res = self.generate(messages)
-
-    #     self.client_mental_state = res["client_mental_state"]
-    #     response = res["response"]
-    #     reasoning = res["reasoning"]
-
-    #     return response
-
-    # def reset_agent(self):
-    #     self.__init__(self.model, self.data)
-    #     self.sys_prompt = ""

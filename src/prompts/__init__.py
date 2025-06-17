@@ -1,9 +1,12 @@
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Template
+import yaml
 
 
-def get_prompt(agent_type, agent_name):
-    try:
-        env = Environment(loader=FileSystemLoader(f"src/prompts/{agent_type}"))
-        return env.get_template(f"{agent_name}.j2")
-    except Exception as e:
-        print(f"Error while loading prompt: {e}")
+def get_prompts(agent_type):
+    prompts = {}
+    with open(f"src/prompts/{agent_type}.yaml", "r") as file:
+        prompts = yaml.safe_load(file)
+    for k, v in prompts.items():
+        if isinstance(v, str):
+            prompts[k] = Template(v)
+    return prompts

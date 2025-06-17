@@ -1,53 +1,137 @@
-from datetime import datetime
-from typing import Dict
-from camel.agents import BaseAgent
-from camel.messages import BaseMessage
-from camel.types import RoleType
+import json
+from agents import BaseAgent
+from agents.therapist import Agenda
+from utils import save_json
+from dotenv import load_dotenv
+from typing import TypedDict, List, Dict, Any, Optional
+from langgraph.graph import StateGraph, START, END
+
+load_dotenv(".env")
+
+
+class TherapySessionState(TypedDict):
+    agenda: Optional[Agenda]
+    messages: List[Dict[str, Any]]
+    summary: Optional[str]
+    homework: Optional[List[str]]
+    msg: str
 
 
 class TherapySession:
     def __init__(
-        self, characters: Dict[str, BaseAgent], max_turns=1, reminder_turn_num=2
+        self,
+        client: BaseAgent,
+        therapist: BaseAgent,
+        output_dir: str,
+        max_turns: int = 1,
+        reminder_turn_num: int = 2,
     ):
-        self.characters = characters
-        self.messages = []
-        self.num_turns = 0
+        self.client = client
+        self.therapist = therapist
+        self.output_dir = output_dir
         self.max_turns = max_turns
         self.reminder_turn_num = reminder_turn_num
+        self.num_turns = 0
+        self.graph = self.build_graph()
 
-    def get_message(self, role: str, content: str):
-        return BaseMessage(
-            role_name=role,
-            role_type=RoleType.USER,
-            content=content,
-            meta_dict={},
+    def build_graph(self):
+        # The session graph
+        graph = StateGraph(TherapySessionState)
+
+        # Nodes for the graph
+        graph.add_node("initiate_session", self.init_session)
+        graph.add_node("generate_therapist_response", self.generate_therapist_response)
+        graph.add_node("generate_client_response", self.generate_client_response)
+        graph.add_node("give_reminder", self.give_reminder)
+        graph.add_node("end_session", self.end_session)
+
+        # Edges for the graph
+        graph.add_edge(START, "initiate_session")
+        graph.add_edge("initiate_session", "generate_therapist_response")
+        graph.add_edge("generate_therapist_response", "generate_client_response")
+        graph.add_conditional_edges(
+            "generate_client_response",
+            self.check_session_end,
+            {
+                "END": "end_session",
+                "CONTINUE": "generate_therapist_response",
+                "REMIND": "give_reminder",
+            },
         )
+        graph.add_edge("give_reminder", "generate_therapist_response")
+        graph.add_edge("end_session", END)
 
-    def generate_response(self, role: str, msg: str):
-        res = self.characters[role].generate_response(msg)
-        self.messages.append({"role": role, "content": res.get("response")})
-        return self.get_message(role, f"{role}: {res.get('response')}")
+        return graph.compile()
 
-    def simulate(self):
-        self.characters["Therapist"].create_agenda()
-        self.characters["Client"].init_mental_state()
+    # Preparations before the interaction
+    def init_session(self, state: TherapySessionState):
+        # Introduce characters together
+        self.therapist.set_client(self.client)
+        self.client.set_therapist(self.therapist)
+        # Create an agenda for this session
+        agenda = self.therapist.generate_agenda()
+        # Initialize client's mental states before the session
+        self.client.init_mental_state()
 
-        msg = self.get_message("Moderator", "You may start the session now.")
+        return {"msg": "Moderator: You may start the session now.", "agenda": agenda}
 
-        for i in range(self.max_turns):
-            msg = self.generate_response("Therapist", msg)
-            print(msg.content)
-            msg = self.generate_response("Client", msg)
-            print(msg.content)
-            self.num_turns += 1
+    def generate_therapist_response(self, state: TherapySessionState):
+        res = self.therapist.generate_response(state["msg"])
+        print(f"Therapist: {res.content}")
+        return {
+            "msg": f"Therapist: {res.content}",
+            "messages": state["messages"]
+            + [{"role": "Therapist", "content": res.content}],
+        }
 
-            turns_left = self.max_turns - self.num_turns
-            if turns_left <= self.reminder_turn_num:
-                moderator_msg = f"\nModerator: the time for this session is coming to an end. You have {turns_left} turns left to wrap up this session."
-                msg.content += moderator_msg
-                print(moderator_msg)
+    def generate_client_response(self, state: TherapySessionState):
+        res = self.client.generate_response(state["msg"])
+        print(f"Client: {res.content}")
 
-        msg = self.get_message(
-            "Moderator",
-            "The session has concluded. Please generate a summary of this session and the next steps.",
-        )
+        return {
+            "msg": f"Client: {res.content}",
+            "messages": state["messages"]
+            + [{"role": "Client", "content": res.content}],
+        }
+
+    def give_reminder(self, state: TherapySessionState):
+        turns_left = self.max_turns - self.num_turns
+        print(f"Reminder: {turns_left} turns left in the session.")
+        return {
+            "msg": state["msg"]
+            + f"\nModerator: You have {turns_left} turns left in the session. Try to wrap up the conversation."
+        }
+
+    def check_session_end(self, state: TherapySessionState):
+        turns_left = self.max_turns - self.num_turns
+        if self.num_turns >= self.max_turns:
+            return "END"
+        elif turns_left <= self.reminder_turn_num:
+            return "REMIND"
+
+        return "CONTINUE"
+
+    def end_session(self, state: TherapySessionState):
+        summary = self.therapist.generate_summary()
+        print("> Generated summary")
+        feedback = self.client.generate_feedback()
+        print("> Generated feedback")
+        session_state = {
+            "messages": state["messages"],
+            "summary": summary.model_dump(mode="json"),
+            "num_turns": self.num_turns,
+            "agenda": self.therapist.agenda.model_dump(mode="json"),
+            "feedback": feedback.model_dump(mode="json"),
+        }
+        save_json(session_state, self.output_dir)
+
+        return {
+            "summary": summary.summary,
+            "msg": "Moderator: Session has ended.",
+        }
+
+    def reset(self):
+        self.messages = []
+        self.num_turns = 0
+        self.client.reset()
+        self.therapist.reset()

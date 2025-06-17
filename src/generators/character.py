@@ -1,21 +1,9 @@
-import os
 import json
 from typing import Literal
-from langchain_openai import ChatOpenAI
-from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 from src.prompts import get_prompt
-from langchain_core.output_parsers import PydanticOutputParser
-
-
-load_dotenv(".env")
-
-model = ChatOpenAI(
-    model=os.environ.get("MODEL_NAME"),
-    base_url=os.environ.get("BASE_URL"),
-    api_key=os.environ.get("API_KEY"),
-    temperature=0.6,
-)
+from src.utils import parse_json_response, get_model_client
+from camel.agents import ChatAgent
 
 
 class Demographics(BaseModel):
@@ -30,7 +18,7 @@ class Demographics(BaseModel):
     education: Literal["high_school", "undergraduate", "postgraduate", "other"] = Field(
         ..., description="Character's education level"
     )
-    occupation: Literal["student", "employed", "unemployed", "retired", "other"] = (
+    work_status: Literal["student", "employed", "unemployed", "retired", "other"] = (
         Field(..., description="Character's occupation status")
     )
     income: Literal["low", "medium", "high"] = Field(
@@ -110,42 +98,71 @@ class TherapistProfile(BaseModel):
     )
 
 
-def create_prompt(mode="client", data=[]):
-    profile = ClientProfile if mode == "client" else None
-    parser = PydanticOutputParser(pydantic_object=profile)
-    if mode in ["client", "therapist"]:
-        output_format = parser.get_format_instructions()
-        return get_prompt("generator", "character").render(
-            data=data, output_format=output_format, mode=mode
+class CriticFeedback(BaseModel):
+    realism: int = Field(
+        ...,
+        description="Realism score of the character on a scale from 1 to 10",
+    )
+    logical_consistency: int = Field(
+        ...,
+        description="Logical consistency within different aspects of the character profile on a scale from 1 to 10",
+    )
+    feedback: str = Field(
+        ...,
+        description="Feedback on the generated character, including strengths and areas for improvement",
+    )
+    suggestions: list[str] = Field(
+        ...,
+        description="Suggestions for improving the character profile, if necessary",
+    )
+
+
+class CharacterGenerator:
+    def __init__(self, model_name: str, api_type: str, data=None):
+        self.data = data
+        self.model_client = get_model_client(model_name, api_type)
+        self.generator = self.create_agent(mode="generator")
+        self.critic = self.create_agent(mode="critic")
+        self.characters = []
+
+    def create_agent(self, mode: str):
+        if mode == "generator":
+            self.sys_prompt = get_prompt(mode, "client").render(data=self.data)
+        elif mode == "critic":
+            self.sys_prompt = get_prompt(mode, "character").render(data=self.data)
+        return ChatAgent(system_message=self.sys_prompt, model=self.model_client)
+
+    def generate_character(self):
+        res = self.generator.step(
+            "Generate an output based on the required format",
+            response_format=ClientProfile,
         )
-    elif mode == "critic":
-        return get_prompt("critic", "character").render(data=data)
-    else:
-        return None
+        return parse_json_response(res.msgs[0].content)
 
+    def evaluate_character(self, character):
+        res = self.generator.step(
+            "Evaluate the character based on realism and logical consistency",
+            response_format=CriticFeedback,
+        )
+        return parse_json_response(res.msgs[0].content)
 
-def generate(prompt):
-    messages = [{"role": "system", "content": prompt}]
-    res = model.invoke(messages)
-    return res.content
+    def save_characters(self, file_path="characters.json"):
+        with open(file_path, "w") as f:
+            json.dump(self.characters, f, indent=4, ensure_ascii=False)
+        print(f"Character saved to {file_path}")
 
-
-def jsonify(data):
-    data = data.replace("```json", '"').replace("```", "")
-    return json.loads(data)
-
-
-def save_character(character_data, file_path="characters.json"):
-    with open(file_path, "w") as f:
-        json.dump(character_data, f, indent=4)
-    print(f"Character saved to {file_path}")
+    def create_characters(self):
+        # self.create_prompt()
+        # self.generate(prompt)
+        character = self.generate_character()
+        eval_res = self.evaluate_character(character)
+        character["critic_feedback"] = eval_res
+        self.characters.append(character)
+        self.save_characters()
 
 
 if __name__ == "__main__":
-    # print(prompt)
-    gen_prompt = create_prompt(mode="client", data=[])
-    character = generate(prompt=gen_prompt)
-    print(character)
-    eval_prompt = create_prompt(mode="critic", data=character)
-    evaluation = generate(prompt=eval_prompt)
-    print(evaluation)
+    api_type = "OR"
+    model_name = "qwen/qwen3-235b-a22b:free"
+    character_generator = CharacterGenerator(model_name=model_name, api_type=api_type)
+    character_generator.create_characters()

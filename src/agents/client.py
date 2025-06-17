@@ -1,153 +1,95 @@
 from .base import BaseAgent
 from pydantic import BaseModel, Field
-from prompts import get_prompt
-from utils import parse_json_response, get_model_client
-from typing import Dict, Any
+from prompts import get_prompts
+from typing import Dict, List, Any
 from brain import MentalState
-from camel.agents import ChatAgent
+from langchain_core.language_models import BaseChatModel
 
 
-class BasicClientResponse(BaseModel):
-    # mental_state: Dict[str, MentalState] = Field(
-    #     description="Your current mental state"
-    # )
-    response: str = Field(
-        description="Your generated response based on your profile and mental state"
+class ClientResponse(BaseModel):
+    mental_state: Dict[str, MentalState] = Field(
+        description="Your current mental state"
+    )
+    content: str = Field(
+        description="The content of your generated response based on your profile and mental state"
     )
 
 
+class SessionFeedback(BaseModel):
+    identification: int = Field(
+        "How well did the therapist identify your problems? (1-5)"
+    )
+    coherence: int = Field(
+        "How coherent were the therapist's responses to your messages? (1-5)"
+    )
+    empathy: int = Field("How empathetic was the therapist? (1-5)")
+    comforting: int = Field("How comforting were the therapist's responses? (1-5)")
+    suggestions: int = Field("How helpful were the therapist's suggestions? (1-5)")
+    overall: int = Field("Overall rating of the session (1-5)")
+
+
 class BasicClient(BaseAgent):
-    def __init__(self, model_name: str, data: Dict[str, Any]):
+    def __init__(self, model_client: BaseChatModel, data: Dict[str, Any]):
         self.role = "Client"
         self.agent_type = "basic"
-        self.model_client = get_model_client(model_name)
+        self.model_client = model_client
         self.data = data
-        self.agent = self.create_agent()
-        self.messages = []
-        self.mental_state = MentalState().model_dump(mode="json")
+        self.prompts = get_prompts(self.role)
+        self.mental_state = MentalState()
+        self.therapist = None
+        self.messages = [
+            {
+                "role": "system",
+                "content": self.prompts["profile"].render(data=self.data),
+            }
+        ]
 
-    def create_agent(self):
-        self.sys_prompt = get_prompt(self.role, self.agent_type).render(
-            data=self.data, therapist={"name": "Sarah", "specialization": "CBT"}
+    def generate(self, messages: List[str], response_format: BaseModel):
+        model_client = self.model_client.with_structured_output(response_format)
+        res = model_client.invoke(messages)
+        return res
+
+    def set_therapist(self, therapist, prev_sessions: List[Dict[str, str] | None] = []):
+        self.therapist_data = therapist.data["demographics"]
+        self.messages[0]["content"] += "\n" + self.prompts["therapy"].render(
+            therapist=self.therapist,
+            previous_sessions=prev_sessions,
         )
-        return ChatAgent(model=self.model_client, system_message=self.sys_prompt)
 
     def init_mental_state(self):
-        # ms_pt = """Based on your profile, generate your initial mental state."""
-        # res = self.agent.step(ms_pt, response_format=MentalState)
-        # self.mental_state = parse_json_response(res.msgs[0].content)
-        self.mental_state = {
-            "Beliefs": "I believe I'm constantly under pressure to perform well, and it's difficult to meet everyone's expectations.",
-            "Desires": "I want to manage my anxiety better and feel more at ease with my work responsibilities.",
-            "Emotion": "Anxiety",
-            "Intents": "I'm here to explore techniques that can help me cope and improve my situation.",
-            "Trust_Level": 0,
-        }
+        # pt = self.prompts["mental_state"].render()
+        # self.mental_state = self.generate(
+        #     messages=self.messages + [{"role": "user", "content": pt}],
+        #     response_format=MentalState,
+        # )
+        self.mental_state = MentalState(
+            Emotion="Anxious",
+            Beliefs="I need to meet everyone's expectations, but I'm not sure if I can handle it all.",
+            Desires="To find a way to manage my workload without feeling overwhelmed.",
+            Intents="Seeking strategies to balance work and personal life.",
+            Trust_Level=0,
+        )
 
     def generate_response(self, msg: str):
-        res = self.agent.step(msg, response_format=BasicClientResponse)
-        return parse_json_response(res.msgs[0].content)
+        if len(self.messages) == 1:
+            self.messages[0]["content"] += "\n" + self.prompts["conversation"].render(
+                data=self.data
+            )
+
+        self.messages.append({"role": "user", "content": msg})
+        res = self.generate(self.messages, response_format=ClientResponse)
+        self.messages.append({"role": "assistant", "content": res.model_dump_json()})
+
+        return res
+
+    def generate_feedback(self):
+        pt = self.prompts["feedback"].render()
+        feedback = self.generate(
+            messages=self.messages + [{"role": "user", "content": pt}],
+            response_format=SessionFeedback,
+        )
+
+        return feedback
 
     def reset(self):
         self.agent.reset()
-
-        # class BasicClient(BaseAgent):
-        #     def __init__(self, model, data):
-        #         super().__init__(role="client", model=model)
-        #         self.agent_name = "basic"
-        #         self.mental_state = {
-        #             "Emotion": "Unknown",
-        #             "Beliefs": "Unknown",
-        #             "Desires": "Unknown",
-        #             "Intents": "Unknown",
-        #             "Trust Level": 0,
-        #         }
-        #         self.data = data
-        #         self.sys_prompt = ""
-
-        #     def set_sys_prompt(self, mode: str):
-        #         self.sys_prompt = get_prompt(self.role, self.agent_name).render(
-        #             data=self.data,
-        #             response_format=self.parser.get_format_instructions(),
-        #             mode=mode,
-        #             therapist={"name": "Sarah", "specialization": "CBT"},
-        #         )
-        #         self.messages = [{"role": "system", "content": self.sys_prompt}]
-
-        #     def generate(self, messages):
-        #         # Retry up to 3 times in case of failure
-        #         for i in range(3):
-        #             try:
-        #                 res = self.model.invoke(messages)
-        #                 res = parse_json_response(res.content)
-        #                 return res
-        #             except Exception as e:
-        #                 print(f"Error generating response: {e}")
-        #                 sleep(2)
-        #         return {}
-
-        #     def init_mental_state(self, data):
-        #         #
-        #         # self.set_prompt(mode="mental_state")
-        #         # res = self.model.invoke(self.messages)
-        #         # self.mental_state = parse_json_response(res.content)
-        #         # print(res)
-        #         pass
-
-        #     def generate_response(self, chat_history):
-        #         self.parser = PydanticOutputParser(pydantic_object=BasicClientResponse)
-        #         self.set_sys_prompt(mode="conversation")
-
-        #         msg = f"Generate your response for the next turn:\n\n{chat_history}\n\n"
-        #         messages = self.messages + [{"role": "user", "content": msg}]
-
-        #         res = self.generate(messages)
-
-        #         self.mental_state = res["mental_state"]
-        #         response = res["response"]
-
-        #         return response
-
-        #     def reset_agent(self):
-        #         self.__init__(self.model, self.data)
-
-        # class PatientPsiResponse(BaseModel):
-        #     content: str = Field(description="Your generated response")
-
-        # class PatientPsi(BaseAgent):
-        #     r"""
-        #     Patient-{Psi} Agent
-        #     Based on the paper "PATIENT-Ψ: Using Large Language Models to Simulate Patients for Training Mental Health Professionals"
-        #     """
-
-        #     def __init__(self, client):
-        #         super().__init__(role="patient", client=client)
-        #         self.agent_name = "patient-psi"
-        #         self.sys_prompt = get_prompt(self.role, self.agent_name)
-        #         self.parser = PydanticOutputParser(pydantic_object=PatientPsiResponse)
-
-        #     def set_prompt(self, data):
-        #         sys_prompt = self.sys_prompt.render(
-        #             data=data,
-        #             patientTypeContent="You should try your best to act like a patient who talks a lot: 1) you may provide detailed responses to questions, even if directly relevant, 2) you may elaborate on personal experiences, thoughts, and feelings extensively, and 3) you may demonstrate difficulty in allowing the therapist to guide the conversation. But you must not exceed 8 sentences each turn. Attention: The most important thing is to be as natural as possible and you should be verbose in some turns and be concise in other turns. You could listen to the therapist more as the session goes when you feel more trust in the therapist.",
-        #         )
-        #         self.messages = [
-        #             {
-        #                 "role": "system",
-        #                 "content": sys_prompt,
-        #             }
-        #         ]
-
-        #     def receive_message(self, msg):
-        #         self.messages.append(
-        #             {
-        #                 "role": "user",
-        #                 "content": msg,
-        #             }
-        #         )
-        #         return self.generate_response()
-
-        #     def generate_response(self):
-        #         res = self.client.invoke(self.messages)
-        #         # res = parse_json_response(res.content)
-        # return res.content
