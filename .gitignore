@@ -178,3 +178,4 @@ cython_debug/
 .env
 docs
 crawler
+*.ipynb
