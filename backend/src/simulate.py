@@ -3,8 +3,8 @@ from components.events import TherapySession
 from utils import load_json_data, get_model_client
 from langfuse.langchain import CallbackHandler
 
-CLIENTS = load_json_data("../data/characters/clients.json")
-THERAPISTS = load_json_data("../data/characters/therapists.json")
+CLIENTS = load_json_data("data/characters/clients.json")
+THERAPISTS = load_json_data("data/characters/therapists.json")
 
 
 if __name__ == "__main__":
