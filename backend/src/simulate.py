@@ -1,32 +1,45 @@
-from agents import BasicClient, BasicTherapist, ElizaTherapist
+from argparse import ArgumentParser
+from agents.clients import get_client
+from agents.therapists import get_therapist
 from components.events import TherapySession
-from utils import load_json_data, get_model_client
+from utils import load_json, get_model_client
 from langfuse.langchain import CallbackHandler
 
-CLIENTS = load_json_data("data/characters/clients.json")
-THERAPISTS = load_json_data("data/characters/therapists.json")
+CLIENTS = load_json("data/characters/clients.json")
+CLIENTS = load_json("data/characters/Patient Psi CM Dataset.json")
+THERAPISTS = load_json("data/characters/therapists.json")
 
 
 if __name__ == "__main__":
-    api_type = "LAB"
-    model_name = "gpt-4o"
+    args = ArgumentParser()
+    args.add_argument("--client", type=str, default="patientPsi")
+    args.add_argument("--therapist", type=str, default="user")
+    args.add_argument("--max_turns", type=int, default=60)
+    args.add_argument("--reminder_turn_num", type=int, default=5)
+    args.add_argument("--api_type", type=str, default="LAB")
+    args.add_argument("--model_name", type=str, default="gpt-4o")
+    args = args.parse_args()
     # model_name = "deepseek/deepseek-r1"
     # api_type = "OR"
     # model_name = "qwen/qwen3-235b-a22b:free"
     # api_type = "OLLAMA"
     # model_name = "qwen3:14b"
 
-    model_client = get_model_client(model_name, api_type)
-    session_handler = CallbackHandler()
+    model_client = get_model_client(args.model_name, args.api_type)
+    # session_handler = CallbackHandler()
 
-    client = BasicClient(model_client=model_client, data=CLIENTS[0])
-    therapist = BasicTherapist(model_client=model_client, data=THERAPISTS[0])
-    # therapist = ElizaTherapist(model_client=model_client, data=THERAPISTS[0])
+    client = get_client(
+        agent_type=args.client, model_client=model_client, data=CLIENTS[0]
+    )
+    therapist = get_therapist(
+        agent_type=args.therapist, model_client=model_client, data=THERAPISTS[0]
+    )
+
     session = TherapySession(
         client=client,
         therapist=therapist,
-        max_turns=5,
-        reminder_turn_num=2,
+        max_turns=args.max_turns,
+        reminder_turn_num=args.reminder_turn_num,
         output_dir=f"data/sessions/{client.name}-{therapist.name}/session_1.json",
     )
 

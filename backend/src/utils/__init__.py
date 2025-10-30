@@ -1,16 +1,33 @@
 import os
 import json
+import yaml
+from jinja2 import Template
 from dotenv import load_dotenv
-
-# from camel.models import ModelFactory
-# from camel.types import ModelPlatformType
 from langchain.chat_models import init_chat_model
 
 load_dotenv(".env")
 
 
-def load_json_data(path: str):
+def load_json(path: str):
     return json.load(open(path, "r", encoding="utf-8"))
+
+
+def load_yaml(path: str):
+    try:
+        with open(path, "r") as file:
+            return yaml.safe_load(file)
+    except Exception as e:
+        print(f"Prompt loading error: {e}")
+        return {}
+
+
+def load_prompts(path: str):
+    prompts = {}
+    data = load_yaml(path)
+    for k, v in data.items():
+        if isinstance(v, str):
+            prompts[k] = Template(v)
+    return prompts
 
 
 def parse_json_response(res):

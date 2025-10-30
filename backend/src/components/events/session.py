@@ -1,5 +1,4 @@
 from agents import BaseAgent
-from agents.therapist import Agenda
 from utils import save_json
 from dotenv import load_dotenv
 from typing import TypedDict, List, Dict, Any, Optional
@@ -11,7 +10,6 @@ init(autoreset=True)
 
 
 class TherapySessionState(TypedDict):
-    agenda: Optional[Agenda]
     messages: List[Dict[str, Any]]
     summary: Optional[str]
     homework: Optional[List[str]]
@@ -67,8 +65,8 @@ class TherapySession:
     # Preparations before the interaction
     def init_session(self, state: TherapySessionState):
         # Introduce characters together
-        self.therapist.set_client(self.client)
-        self.client.set_therapist(self.therapist)
+        self.therapist.set_client({"name": self.client.name})
+        self.client.set_therapist({"name": self.therapist.name})
         # Create an agenda for this session
         # print("> Creating the agenda for this session...", end="", flush=True)
         # agenda = self.therapist.generate_agenda()
@@ -83,7 +81,7 @@ class TherapySession:
             "msg": f"[Moderator] You may start the session now, {self.therapist.name}.",
             "messages": [],
             # "agenda": agenda,
-            "agenda": None,
+            # "agenda": None,
         }
 
     def generate_therapist_response(self, state: TherapySessionState):
@@ -130,21 +128,21 @@ class TherapySession:
         return "CONTINUE"
 
     def end_session(self, state: TherapySessionState):
-        summary = self.therapist.generate_summary()
-        print("> Generated summary")
-        feedback = self.client.generate_feedback()
-        print("> Generated feedback")
+        # summary = self.therapist.generate_summary()
+        # print("> Generated summary")
+        # feedback = self.client.generate_feedback()
+        # print("> Generated feedback")
         session_state = {
             "messages": state["messages"],
-            "summary": summary.model_dump(mode="json"),
+            # "summary": summary.model_dump(mode="json"),
             "num_turns": self.num_turns,
-            "agenda": self.therapist.agenda.model_dump(mode="json"),
-            "feedback": feedback.model_dump(mode="json"),
+            # "agenda": self.therapist.agenda.model_dump(mode="json"),
+            # "feedback": feedback.model_dump(mode="json"),
         }
         save_json(session_state, self.output_dir)
 
         return {
-            "summary": summary.summary,
+            # "summary": summary.summary,
             "msg": "Moderator: Session has ended.",
         }
 

@@ -1,6 +1,6 @@
-from .base import BaseAgent
+from ..base import BaseAgent
 from pydantic import BaseModel, Field
-from prompts import get_prompts
+from utils import load_prompts
 from typing import Dict, List, Any
 from brain import MentalState
 from langchain_core.language_models import BaseChatModel
@@ -37,7 +37,7 @@ class BasicClient(BaseAgent):
         self.name = data["demographics"]["name"]
         self.model_client = model_client
         self.data = data
-        self.prompts = get_prompts(self.role)
+        self.prompts = load_prompts(f"data/prompts/clients/{self.agent_type}.yaml")
         self.mental_state = MentalState()
         self.messages = [
             SystemMessage(content=self.prompts["profile"].render(data=self.data))
