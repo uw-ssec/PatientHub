@@ -1,0 +1,46 @@
+{
+    "messages": [
+        {
+            "role": "Therapist",
+            "content": "你好 你最近怎么样"
+        },
+        {
+            "role": "Client",
+            "content": "嗯，我...我不知道该怎么说。上周发生了一些事情，我有点不太好。我的成绩没有达到预期，这让我感到非常沮丧和焦虑。"
+        }
+    ],
+    "num_turns": 1,
+    "feedback": {
+        "overall_score": 4,
+        "summary": "在这段对话中，治疗师以友好的问候开始，但在倾听和回应来访者的情感时，未能充分展示积极倾听的核心条件。",
+        "dimension_feedback": {
+            "empathic_understanding": {
+                "strengths": [
+                    "使用开放式问题开始对话，尝试了解来访者的状况。"
+                ],
+                "areas_for_improvement": [
+                    "未能通过言语或非言语方式传达对来访者情感的理解。",
+                    "缺乏对来访者情绪的具体回应，未能有效地反映来访者的内心状态。"
+                ]
+            },
+            "unconditional_positive_regard": {
+                "strengths": [
+                    "以友好的方式问候来访者，展示了基本的尊重。"
+                ],
+                "areas_for_improvement": [
+                    "未能通过语言表达对来访者无条件的积极关注。",
+                    "缺乏对来访者情感的支持性回应。"
+                ]
+            },
+            "congruence": {
+                "strengths": [
+                    "使用了简单的问候语，营造了一个开放的对话氛围。"
+                ],
+                "areas_for_improvement": [
+                    "需要更明确地表达对来访者情感的理解。",
+                    "应避免使用过于简单或表面的回应。"
+                ]
+            }
+        }
+    }
+}

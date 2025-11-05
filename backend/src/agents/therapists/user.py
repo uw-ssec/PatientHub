@@ -12,7 +12,7 @@ class UserTherapist(BaseAgent):
     def __init__(self, data: Dict[str, Any]):
         self.role = "therapist"
         self.agent_type = "user"
-        self.name = data["demographics"]["name"]
+        self.name = data["name"]
         self.data = data
         self.messages = []
 

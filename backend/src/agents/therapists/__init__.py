@@ -13,7 +13,8 @@ def get_therapist(
     elif agent_type == "eliza":
         return ElizaTherapist(data=data)
     elif agent_type == "user":
-        return UserTherapist(data=data)
+        # name = input("Enter your name: ")
+        return UserTherapist(data={"name": "Sam"})
     else:
         raise ValueError(f"Unknown therapist agent type: {agent_type}")
 

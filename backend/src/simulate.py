@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from agents.clients import get_client
 from agents.therapists import get_therapist
+from agents.evaluators import SkillEvaluator, GeneralEvaluator
 from components.events import TherapySession
 from utils import load_json, get_model_client
 from langfuse.langchain import CallbackHandler
@@ -13,6 +14,7 @@ THERAPISTS = load_json("data/characters/therapists.json")
 if __name__ == "__main__":
     args = ArgumentParser()
     args.add_argument("--client", type=str, default="patientPsi")
+    args.add_argument("--mode", type=str, default="skill")
     args.add_argument("--therapist", type=str, default="user")
     args.add_argument("--max_turns", type=int, default=60)
     args.add_argument("--reminder_turn_num", type=int, default=5)
@@ -34,10 +36,15 @@ if __name__ == "__main__":
     therapist = get_therapist(
         agent_type=args.therapist, model_client=model_client, data=THERAPISTS[0]
     )
+    if args.mode == "skill":
+        critic = SkillEvaluator(model_client=model_client)
+    elif args.mode == "cbt":
+        critic = GeneralEvaluator(model_client=model_client)
 
     session = TherapySession(
         client=client,
         therapist=therapist,
+        evaluator=critic,
         max_turns=args.max_turns,
         reminder_turn_num=args.reminder_turn_num,
         output_dir=f"data/sessions/{client.name}-{therapist.name}/session_1.json",

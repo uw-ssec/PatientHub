@@ -17,7 +17,7 @@ class PatientPsiClient(BaseAgent):
         self,
         model_client: BaseChatModel,
         data: Dict[str, Any],
-        patient_type: str = "upset",
+        patient_type: str = "upset",  # reserved
     ):
         self.role = "Client"
         self.agent_type = "patientPsi"

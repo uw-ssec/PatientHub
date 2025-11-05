@@ -1,4 +1,5 @@
 from agents import BaseAgent
+
 from utils import save_json
 from dotenv import load_dotenv
 from typing import TypedDict, List, Dict, Any, Optional
@@ -21,12 +22,14 @@ class TherapySession:
         self,
         client: BaseAgent,
         therapist: BaseAgent,
+        evaluator: BaseAgent,
         output_dir: str,
         max_turns: int = 1,
         reminder_turn_num: int = 2,
     ):
         self.client = client
         self.therapist = therapist
+        self.evaluator = evaluator
         self.output_dir = output_dir
         self.max_turns = max_turns
         self.reminder_turn_num = reminder_turn_num
@@ -87,9 +90,10 @@ class TherapySession:
     def generate_therapist_response(self, state: TherapySessionState):
         res = self.therapist.generate_response(state["msg"])
         print(f"--- Turn # {self.num_turns + 1}/{self.max_turns} ---")
-        print(
-            f"{Fore.CYAN}{Style.BRIGHT}{self.therapist.name}{Style.RESET_ALL}: {res.content}\n"
-        )
+        # print(
+        #     f"{Fore.CYAN}{Style.BRIGHT}{self.therapist.name}{Style.RESET_ALL}: {res.content}"
+        # )
+        print(f"{Fore.CYAN}{Style.BRIGHT}咨询师{Style.RESET_ALL}: {res.content}")
         return {
             "msg": f"{self.therapist.name}: {res.content}",
             "messages": state["messages"]
@@ -97,10 +101,20 @@ class TherapySession:
         }
 
     def generate_client_response(self, state: TherapySessionState):
+        if state["msg"].replace(f"{self.therapist.name}: ", "") in [
+            "END",
+            "end",
+            "exit",
+        ]:
+            return {
+                "msg": "Session has ended.",
+                "messages": state["messages"][:-1],
+            }
         res = self.client.generate_response(state["msg"])
-        print(
-            f"{Fore.RED}{Style.BRIGHT}{self.client.name}{Style.RESET_ALL}: {res.content}\n"
-        )
+        # print(
+        #     f"{Fore.RED}{Style.BRIGHT}{self.client.name}{Style.RESET_ALL}: {res.content}"
+        # )
+        print(f"{Fore.RED}{Style.BRIGHT}来访者{Style.RESET_ALL}: {res.content}")
         self.num_turns += 1
 
         return {
@@ -118,6 +132,8 @@ class TherapySession:
         }
 
     def check_session_end(self, state: TherapySessionState):
+        if state["msg"] == "Session has ended.":
+            return "END"
         turns_left = self.max_turns - self.num_turns
         if self.num_turns >= self.max_turns:
             print("=" * 50)
@@ -128,6 +144,19 @@ class TherapySession:
         return "CONTINUE"
 
     def end_session(self, state: TherapySessionState):
+        print("> Generating session feedback...", end="", flush=True)
+        feedback = self.evaluator.generate(state["messages"]).model_dump(mode="json")
+        print(f"\r{' ' * 50}\r> Generated session feedback", end="\n")
+        for k, v in feedback.items():
+            if k != "dimension_feedback":
+                print(f"{Fore.GREEN}{Style.BRIGHT}{k}:{Style.RESET_ALL} {v}")
+            else:
+                for dim, dim_feedback in v.items():
+                    print(f"  {Fore.YELLOW}{Style.BRIGHT}{dim}:{Style.RESET_ALL}")
+                    for fk, fv in dim_feedback.items():
+                        print(
+                            f"    {Fore.CYAN}{Style.BRIGHT}{fk}:{Style.RESET_ALL} {fv}"
+                        )
         # summary = self.therapist.generate_summary()
         # print("> Generated summary")
         # feedback = self.client.generate_feedback()
@@ -137,7 +166,7 @@ class TherapySession:
             # "summary": summary.model_dump(mode="json"),
             "num_turns": self.num_turns,
             # "agenda": self.therapist.agenda.model_dump(mode="json"),
-            # "feedback": feedback.model_dump(mode="json"),
+            "feedback": feedback,
         }
         save_json(session_state, self.output_dir)
 
