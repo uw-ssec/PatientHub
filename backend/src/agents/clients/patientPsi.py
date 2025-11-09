@@ -17,15 +17,19 @@ class PatientPsiClient(BaseAgent):
         self,
         model_client: BaseChatModel,
         data: Dict[str, Any],
+        lang: str = "en",
         patient_type: str = "upset",  # reserved
     ):
-        self.role = "Client"
+        self.role = "client"
         self.agent_type = "patientPsi"
+        self.lang = lang
         self.name = data["name"]
         self.model_client = model_client
         self.data = data
         self.patient_type = patient_type
-        self.prompts = load_prompts(f"data/prompts/clients/{self.agent_type}.yaml")
+        self.prompts = load_prompts(
+            role=self.role, agent_type=self.agent_type, lang=self.lang
+        )
         self.messages = [
             SystemMessage(content=self.prompts["profile"].render(data=self.data))
         ]

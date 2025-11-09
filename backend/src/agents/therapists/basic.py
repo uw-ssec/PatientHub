@@ -17,12 +17,6 @@ class Agenda(BaseModel):
     )
 
 
-class BaseElizaResponse(BaseModel):
-    content: str = Field(
-        description="The content of your generated response based on the client's input"
-    )
-
-
 class BaseTherapistResponse(BaseModel):
     client_mental_state: MentalState = Field(
         description="The Client's current mental state"
@@ -46,14 +40,16 @@ class SessionSummary(BaseModel):
 
 class BasicTherapist(BaseAgent):
     def __init__(
-        self, model_client: BaseChatModel, data: Dict[str, Any], prompt_path: str = None
+        self, model_client: BaseChatModel, data: Dict[str, Any], lang: str = "en"
     ):
         self.role = "therapist"
         self.agent_type = "basic"
         self.model_client = model_client
         self.name = data["demographics"]["name"]
         self.data = data
-        self.prompts = load_prompts(f"data/prompts/clients/{self.agent_type}.yaml")
+        self.prompts = load_prompts(
+            role=self.role, agent_type=self.agent_type, lang=self.lang
+        )
         self.client_mental_state = MentalState()
         self.agenda = Agenda()
         self.messages = [

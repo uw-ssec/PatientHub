@@ -21,8 +21,9 @@ def load_yaml(path: str):
         return {}
 
 
-def load_prompts(path: str):
+def load_prompts(role: str, agent_type: str, lang: str):
     prompts = {}
+    path = f"data/prompts/{role}/{agent_type}_{lang}.yaml"
     data = load_yaml(path)
     for k, v in data.items():
         if isinstance(v, str):

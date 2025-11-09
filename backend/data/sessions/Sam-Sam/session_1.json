@@ -2,43 +2,56 @@
     "messages": [
         {
             "role": "Therapist",
-            "content": "你好 你最近怎么样"
+            "content": "hi"
         },
         {
             "role": "Client",
-            "content": "嗯，我...我不知道该怎么说。上周发生了一些事情，我有点不太好。我的成绩没有达到预期，这让我感到非常沮丧和焦虑。"
+            "content": "Hi. I'm... I'm not sure where to start today. Things have been really overwhelming lately, especially after getting my midterm grade back."
         }
     ],
     "num_turns": 1,
     "feedback": {
-        "overall_score": 4,
-        "summary": "在这段对话中，治疗师以友好的问候开始，但在倾听和回应来访者的情感时，未能充分展示积极倾听的核心条件。",
+        "overall_score": 6,
+        "summary": "The therapist demonstrated a basic understanding of CBT principles, effectively identifying automatic thoughts related to the client's academic stress. However, the session lacked depth in exploring core beliefs and employing structured cognitive restructuring techniques. The therapist encouraged client reflection and initial reframing but could improve by setting more collaborative and specific homework tasks. More nuanced use of Socratic questioning could enhance client engagement with the cognitive model.",
         "dimension_feedback": {
-            "empathic_understanding": {
+            "identification_of_core_beliefs": {
                 "strengths": [
-                    "使用开放式问题开始对话，尝试了解来访者的状况。"
+                    "Recognized the impact of academic performance on client's self-perception",
+                    "Initiated discussion on how grades influence self-esteem"
                 ],
                 "areas_for_improvement": [
-                    "未能通过言语或非言语方式传达对来访者情感的理解。",
-                    "缺乏对来访者情绪的具体回应，未能有效地反映来访者的内心状态。"
+                    "Probe further to uncover core beliefs about self-worth related to grades",
+                    "Encourage exploration of broader life values and beliefs"
                 ]
             },
-            "unconditional_positive_regard": {
+            "socratic_questioning": {
                 "strengths": [
-                    "以友好的方式问候来访者，展示了基本的尊重。"
+                    "Used questions to encourage client self-reflection",
+                    "Facilitated exploration of client's thought patterns"
                 ],
                 "areas_for_improvement": [
-                    "未能通过语言表达对来访者无条件的积极关注。",
-                    "缺乏对来访者情感的支持性回应。"
+                    "Utilize more open-ended questions to deepen understanding",
+                    "Avoid leading questions that may suggest advice-giving"
                 ]
             },
-            "congruence": {
+            "actionable_homework": {
                 "strengths": [
-                    "使用了简单的问候语，营造了一个开放的对话氛围。"
+                    "Encouraged client reflection on actionable steps",
+                    "Supported client in identifying specific tasks to work on"
                 ],
                 "areas_for_improvement": [
-                    "需要更明确地表达对来访者情感的理解。",
-                    "应避免使用过于简单或表面的回应。"
+                    "Ensure homework is collaboratively set with clear goals",
+                    "Follow up on previous homework to assess its impact"
+                ]
+            },
+            "cognitive_restructuring": {
+                "strengths": [
+                    "Identified automatic thoughts related to academic stress",
+                    "Provided initial guidance on reframing negative thoughts"
+                ],
+                "areas_for_improvement": [
+                    "Explore deeper into underlying beliefs related to academic performance",
+                    "Use more structured techniques to challenge distorted thinking"
                 ]
             }
         }
