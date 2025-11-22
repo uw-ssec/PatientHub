@@ -1,8 +1,13 @@
 import os
+import json
 from typing import Any, Dict, List, Optional
 
 import torch
+from pydantic import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+from langchain_core.language_models import BaseChatModel
+from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
+from langchain_core.outputs import ChatGeneration, ChatResult
 
 
 class EeyoreLocalModel:
@@ -28,7 +33,7 @@ class EeyoreLocalModel:
         dtype = torch.bfloat16 if self.device.startswith("cuda") else torch.float32
         self.model = AutoModelForCausalLM.from_pretrained(
             model_dir,
-            torch_dtype=dtype,
+            dtype=dtype,
             local_files_only=True,
         ).to(self.device)
 
@@ -77,3 +82,102 @@ class EeyoreLocalModel:
                 text = parts[1].lstrip()
 
         return text
+
+'''
+    因为eeyore模型训练过程中就使用的固定格式
+    所以改成它习惯使用的 HF chat_template 格式
+'''
+class EeyoreChatModel(BaseChatModel):
+    local_model: EeyoreLocalModel
+
+    def __init__(
+        self,
+        local_model: Optional[EeyoreLocalModel] = None,
+        **kwargs: Any,
+    ):
+        if local_model is None:
+            local_model = EeyoreLocalModel.from_env_or_default()
+        super().__init__(local_model=local_model, **kwargs)
+
+    @property
+    def _llm_type(self) -> str:
+        return "eeyore-local"
+
+    def _generate(
+        self,
+        messages: List[BaseMessage],
+        stop: Optional[List[str]] = None,
+        **kwargs: Dict[str, Any],
+    ) -> ChatResult:
+        chat_messages: List[Dict[str, str]] = []
+        for m in messages:
+            if isinstance(m, SystemMessage):
+                role = "system"
+            elif isinstance(m, HumanMessage):
+                role = "user"
+            else:
+                role = "assistant"
+            chat_messages.append({"role": role, "content": m.content})
+
+        text = self.local_model.generate(chat_messages)
+        msg = AIMessage(content=text)
+        return ChatResult(generations=[ChatGeneration(message=msg)])
+
+    # 由于各种模型都使用self.model_client.with_structured_output(response_format)
+    # 因此采用妥协的方法来进行输出，可能实现得比较不优雅……
+    def with_structured_output(
+        self,
+        schema: Any,
+        *,
+        include_raw: bool = False,
+        **kwargs: Any,
+    ):
+        def parse(text: str):
+            cleaned = text.replace("```json", "").replace("```", "").strip()
+
+            if isinstance(schema, type) and issubclass(schema, BaseModel):
+                try:
+                    return schema.model_validate_json(cleaned)
+                except Exception:
+                    pass
+                try:
+                    data = json.loads(cleaned)
+                    return schema.model_validate(data)
+                except Exception:
+                    pass
+
+                fields = getattr(schema, "model_fields", None) or getattr(
+                    schema, "__fields__", {}
+                )
+                if "content" in fields:
+                    try:
+                        return schema(content=text)
+                    except Exception:
+                        pass
+                try:
+                    return schema()
+                except Exception:
+                    return schema
+
+            try:
+                return json.loads(cleaned)
+            except Exception:
+                return {"content": text}
+
+        class Wrapper:
+            def __init__(self, base: "EeyoreChatModel"):
+                self.base = base
+
+            def invoke(self, messages: List[BaseMessage]):
+                msg = self.base.invoke(messages)
+                parsed = parse(msg.content)
+                if include_raw:
+                    return {"raw": msg, "parsed": parsed, "parsing_error": None}
+                return parsed
+
+        return Wrapper(self)
+
+
+def get_eeyore_chat_model() -> EeyoreChatModel:
+    local = EeyoreLocalModel.from_env_or_default()
+    return EeyoreChatModel(local)
