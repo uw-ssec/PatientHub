@@ -2,6 +2,7 @@ from .basic import BasicClient
 from .patientPsi import PatientPsiClient
 from .roleplayDoh import RoleplayDohClient
 from .THU import THUClient
+from .eeyore import EeyoreClient
 from langchain_core.language_models import BaseChatModel
 
 
@@ -20,6 +21,8 @@ def get_client(
         return RoleplayDohClient(model_client=model_client, data=data)
     elif agent_type == "thu":
         return THUClient(model_client=model_client, data=data)
+    elif agent_type == "eeyore":
+        return EeyoreClient(model_client=model_client, data=data)
     else:
         raise ValueError(f"Unknown client agent type: {agent_type}")
 
@@ -29,4 +32,5 @@ __all__ = [
     "PatientPsiClient",
     "RoleplayDohClient",
     "THUClient",
+    "EeyoreClient",
 ]
