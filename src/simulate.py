@@ -7,6 +7,7 @@ from utils import load_json, get_model_client
 CLIENTS = load_json("data/characters/clients.json")
 CLIENTS = load_json("data/characters/Patient Psi CM Dataset.json")
 CLIENTS = load_json("data/characters/temp.json")
+CLIENTS = load_json("data/characters/Eeyore Profile Cognitive Model.json")
 THERAPISTS = load_json("data/characters/therapists.json")
 
 

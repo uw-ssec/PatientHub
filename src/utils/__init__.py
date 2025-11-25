@@ -51,6 +51,11 @@ def save_json(data, file_path: str):
 
 
 def get_model_client(model_name: str, api_type: str = "OR"):
+    if model_name in {"eeyore", "eeyore_local"}:
+        from utils.eeyore_local import get_eeyore_chat_model
+
+        return get_eeyore_chat_model()
+
     configs = {"temperature": 0.4, "max_tokens": 8192, "max_retries": 3}
     return init_chat_model(
         model=model_name,
