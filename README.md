@@ -57,6 +57,17 @@ uv run python -m src.scripts.simulate client=[client] therapist=[therapist] eval
   - `cbt` 
   - `active_listening` 
 
-## 3. Creating new clients
+## 3. Creating new agents
 
-[TODO]
+You can run the following command to create the necessary files for a new agent:
+
+```bash
+uv run python -m src.scripts.create --agent_type [client|therapist] --agent_name <agent_name>
+```
+
+For example
+
+```bash
+uv run python -m src.scripts.create --agent_type client --agent_name test
+```
+

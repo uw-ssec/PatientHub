@@ -22,7 +22,7 @@ def load_yaml(path: str):
         return {}
 
 
-def load_prompts(role: str, agent_type: str, lang: str):
+def load_prompts(role: str, agent_type: str, lang: str = "en"):
     path = f"data/prompts/{role}/{agent_type}.yaml"
     prompts = {}
     data = load_yaml(path)[lang]

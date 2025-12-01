@@ -1,0 +1,72 @@
+en: 
+  agent: |
+    from typing import Dict, List, Any
+    from pydantic import BaseModel, Field
+
+    from src.agents import InferenceAgent
+    from src.utils import load_prompts, load_json, get_model_client
+
+    from omegaconf import DictConfig
+    from langchain_core.language_models import BaseChatModel
+    from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+
+
+    # TODO: Define the response format
+    class Response(BaseModel):
+        content: str = Field(
+            description="The content of your generated response in this turn",
+        )
+
+
+    class {{class_name}}(InferenceAgent):
+        def __init__(self, configs: DictConfig):
+            self.configs = configs
+
+            self.data = load_json(configs.data_path)[configs.data_idx]
+            self.name = self.data.get("name", "{{agent_type}}")
+
+            self.model_client = get_model_client(configs)
+            # TODO: Define the prompts for the client agent
+            self.prompts = load_prompts(
+                role="{{agent_type}}", agent_type="{{agent_name}}", lang=configs.lang
+            )
+            # TODO: Initialize the system prompt
+            self.messages = [
+                SystemMessage(content="<insert system prompt here>")
+            ]
+
+        def generate(self, messages: List[str], response_format: BaseModel):
+            model_client = self.model_client.with_structured_output(response_format)
+            res = model_client.invoke(messages)
+            return res
+
+        def set_{{other_agent_type}}(self, {{other_agent_type}}, prev_sessions: List[Dict[str, str] | None] = []):
+            self.{{other_agent_type}} = {{other_agent_type}}.get("name", "{{other_agent_type}}")
+
+        def generate_response(self, msg: str):
+            self.messages.append(HumanMessage(content=msg))
+            res = self.generate(self.messages, response_format=Response)
+            self.messages.append(AIMessage(content=res.model_dump_json()))
+
+            return res
+
+        # TODO: Define any other necessary methods
+        def reset(self):
+            self.messages = []
+            self.{{other_agent_type}} = None
+  config: |
+    agent_type: {{agent_name}}
+    data_path: data/characters/{{agent_type}}s.json
+    data_idx: 0
+    api_type: LAB
+    model_name: gpt-4o
+    temperature: 0.7
+    max_tokens: 8192
+    max_retries: 3
+    lang: en
+  prompt: |
+    en: |
+      <insert prompt text here>
+    zh: |
+      <在这里输入提示文本>
+
