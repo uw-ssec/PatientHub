@@ -1,9 +1,10 @@
 import json
 import random
-from agents import BaseAgent
-from pydantic import BaseModel, Field
 from typing import Any, Dict, List
-from utils import load_json, load_prompts
+from pydantic import BaseModel, Field
+from src.agents import InferenceAgent
+from src.utils import load_json, load_prompts, get_model_client
+from omegaconf import DictConfig
 from langchain_core.messages import SystemMessage
 from langchain_core.language_models import BaseChatModel
 
@@ -45,28 +46,24 @@ class AssessmentResult(BaseModel):
     )
 
 
-class RoleplayDohClient(BaseAgent):
-    def __init__(
-        self,
-        model_client: BaseChatModel,
-        data: Dict[str, Any],
-        lang: str = "en",
-    ):
-        self.role = "client"
-        self.agent_type = "roleplayDoh"
-        self.lang = lang
-        self.data = data
-        self.name = data.get("name", "Client")
-        self.model_client = model_client
+class RoleplayDohClient(InferenceAgent):
+    def __init__(self, configs: DictConfig):
+        self.configs = configs
+
+        self.data = load_json(configs.data_path)[configs.data_idx]
+        self.name = self.data.get("name", "Client")
+
+        self.model_client = get_model_client(configs)
         self.prompts = load_prompts(
-            role=self.role, agent_type=self.agent_type, lang=self.lang
+            role="client", agent_type="roleplayDoh", lang=configs.lang
         )
-        self.client_profile = json.dumps(self.data, ensure_ascii=False, indent=2)
+
+        self.profile = json.dumps(self.data, ensure_ascii=False, indent=2)
         self.principles = self.load_principles()
         self.messages = []
 
     def load_principles(self):
-        principles_map = load_json("data/characters/roleplayDohPrinciple.json")
+        principles_map = load_json(self.configs.principles)
         principles: List[str] = []
         for group in principles_map.values():
             principles.extend(group)

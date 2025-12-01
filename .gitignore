@@ -178,4 +178,5 @@ cython_debug/
 .env
 docs
 crawler
-*.ipynb
+temp.*
+outputs

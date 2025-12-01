@@ -1,1 +1,3 @@
-from brain.mental_state import MentalState
+from .mental_state import MentalState
+
+__all__ = ["MentalState"]

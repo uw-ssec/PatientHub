@@ -1,0 +1,4 @@
+lang: en
+api_type: LAB
+model_name: gpt-4o
+output_dir: "data/character_gen.json"

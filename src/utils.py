@@ -4,6 +4,7 @@ import yaml
 from jinja2 import Template
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
+from langchain_huggingface import ChatHuggingFace, HuggingFacePipeline
 
 load_dotenv(".env")
 
@@ -42,7 +43,7 @@ def parse_json_response(res):
 
 
 def save_json(data, file_path: str):
-    # Checck if the directory exists, if not create it
+    # Check if the directory exists, if not create it
     if not os.path.exists(os.path.dirname(file_path)):
         os.makedirs(os.path.dirname(file_path))
 
@@ -50,19 +51,30 @@ def save_json(data, file_path: str):
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 
-def get_model_client(model_name: str, api_type: str = "OR"):
-    if model_name in {"eeyore", "eeyore_local"}:
-        from utils.eeyore_local import get_eeyore_chat_model
-
-        return get_eeyore_chat_model()
-
-    configs = {"temperature": 0.4, "max_tokens": 8192, "max_retries": 3}
-    return init_chat_model(
-        model=model_name,
-        model_provider="openai",
-        base_url=os.environ.get(f"{api_type}_BASE_URL"),
-        api_key=os.environ.get(f"{api_type}_API_KEY"),
-        temperature=configs["temperature"],
-        max_tokens=configs["max_tokens"],
-        max_retries=configs["max_retries"],
-    )
+def get_model_client(configs):
+    if configs["api_type"] == "local":
+        hf_pipe = HuggingFacePipeline.from_model_id(
+            model_id=configs["model_name"],
+            task="text-generation",
+            device=configs["device"],
+            pipeline_kwargs={
+                "max_new_tokens": configs["max_new_tokens"],
+                "temperature": configs["temperature"],
+                "repetition_penalty": configs["repetition_penalty"],
+                "return_full_text": False,
+            },
+        )
+        return init_chat_model(
+            model_provider="huggingface", model=configs["model_name"], llm=hf_pipe
+        )
+    else:
+        api_type = configs["api_type"]
+        return init_chat_model(
+            model=configs["model_name"],
+            model_provider="openai",
+            base_url=os.environ.get(f"{api_type}_BASE_URL"),
+            api_key=os.environ.get(f"{api_type}_API_KEY"),
+            temperature=configs["temperature"],
+            max_tokens=configs["max_tokens"],
+            max_retries=configs["max_retries"],
+        )

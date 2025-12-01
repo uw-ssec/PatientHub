@@ -1,0 +1,44 @@
+import hydra
+from omegaconf import DictConfig, OmegaConf
+
+from src.events import TherapySession
+from src.agents import get_inference_agent
+from src.utils import load_json, get_model_client
+
+
+@hydra.main(version_base=None, config_path="../configs", config_name="simulate")
+def simulate(configs: DictConfig) -> None:
+    lang = configs.session.lang
+    # Load client
+    configs.client.lang = lang
+    client = get_inference_agent(category="client", configs=configs.client)
+
+    # Load therapist
+    configs.therapist.lang = lang
+    therapist = get_inference_agent(category="therapist", configs=configs.therapist)
+
+    # Load evaluator
+    # configs.evaluator.lang = lang
+    # evaluator = get_inference_agent(category="evaluator", configs=configs.evaluator)
+
+    # Create therapy session
+    session = TherapySession(
+        client=client, therapist=therapist, evaluator=None, configs=configs.session
+    )
+
+    # Setting up langgraph
+    lg_config = {"recursion_limit": configs.session.recursion_limit}
+    if configs.session.langfuse:
+        from langfuse.langchain import CallbackHandler
+
+        session_handler = CallbackHandler()
+        lg_config["callbacks"] = [session_handler]
+
+    session.graph.invoke(
+        input={},
+        config=lg_config,
+    )
+
+
+if __name__ == "__main__":
+    simulate()

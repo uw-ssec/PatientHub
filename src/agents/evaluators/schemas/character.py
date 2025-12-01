@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 
 
-class CriticFeedback(BaseModel):
+class CharacterFeedback(BaseModel):
     realism: int = Field(
         ...,
         description="Realism score of the character on a scale from 1 to 10",

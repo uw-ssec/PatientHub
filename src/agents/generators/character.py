@@ -1,9 +1,9 @@
-from agents import BaseAgent
 from typing import Literal, List
+from src.utils import load_prompts
+from src.agents import InferenceAgent
 from pydantic import BaseModel, Field
-from utils import load_prompts
-from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import SystemMessage
+from langchain_core.language_models import BaseChatModel
 
 
 class StudentDemographics(BaseModel):
@@ -153,7 +153,7 @@ class StudentClientProfile(BaseModel):
     )
 
 
-class StudentClientGenerator(BaseAgent):
+class StudentClientGenerator(InferenceAgent):
     def __init__(self, model_client: BaseChatModel, lang: str):
         self.role = "generator"
         self.agent_type = "client"

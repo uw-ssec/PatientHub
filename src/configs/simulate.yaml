@@ -1,0 +1,12 @@
+defaults:
+  - _self_
+  - client: eeyore
+  - therapist: user
+  - evaluator: basic
+session:
+  lang: en
+  reminder_turn_num: 5
+  max_turns: 10
+  langfuse: False
+  recursion_limit: 1000
+  output_dir: "data/sessions/temp/session_1.json"

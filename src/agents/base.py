@@ -4,12 +4,31 @@ from typing import Any, Dict, List
 
 class BaseAgent(ABC):
     r"""An abstract base class for all agents."""
-
     role: str
     agent_type: str
+
+class TrainableAgent(BaseAgent):
+    r"""An abstract base class for trainable agents."""
+
+    @abstractmethod
+    def train(self, data: List[Dict[str, Any]], *args: Any, **kwargs: Any) -> None:
+        r"""Trains the agent using the provided data."""
+        pass
+
+    @abstractmethod
+    def evaluate(
+        self, data: List[Dict[str, Any]], *args: Any, **kwargs: Any
+    ) -> Dict[str, float]:
+        r"""Evaluates the agent's performance on the provided data."""
+        pass
+
+class InferenceAgent(BaseAgent):
+    r"""An abstract base class for inference agents."""
+
     model_client: Any
     data: Dict[str, Any]
     messages: List[Any]
+    lang: str
 
     @abstractmethod
     def generate(self, messages: List[str], response_format: Any) -> Any:

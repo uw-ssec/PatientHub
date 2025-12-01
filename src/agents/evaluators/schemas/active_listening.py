@@ -1,8 +1,5 @@
-from ..base import BaseAgent
-from utils import load_prompts
 from typing import Dict, List
 from pydantic import BaseModel, Field
-from langchain_core.language_models import BaseChatModel
 
 
 class DimensionFeedback(BaseModel):
@@ -36,24 +33,3 @@ class ActiveListeningFeedback(BaseModel):
     dimension_feedback: ActiveListeningDimensions = Field(
         description="Detailed feedback for each active listening dimension"
     )
-
-
-class ActiveListeningEvaluator(BaseAgent):
-    def __init__(self, model_client: BaseChatModel, lang: str = "en"):
-        self.role = "evaluator"
-        self.agent_type = "active_listening"
-        self.lang = lang
-        self.model_client = model_client
-        self.prompt = load_prompts(
-            role=self.role, agent_type=self.agent_type, lang=self.lang
-        )["prompt"]
-
-    def generate(self, messages: List[Dict]):
-        messages = [f"{msg['role']}: {msg['content']}" for msg in messages]
-        model_client = self.model_client.with_structured_output(ActiveListeningFeedback)
-        self.prompt = self.prompt.render(dialogue_history="\n".join(messages))
-        res = model_client.invoke(self.prompt)
-        return res
-
-    def reset(self):
-        pass

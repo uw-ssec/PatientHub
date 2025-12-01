@@ -1,23 +1,20 @@
 from .basic import BasicTherapist
 from .eliza import ElizaTherapist
 from .user import UserTherapist
-from langchain_core.language_models import BaseChatModel
+
+from omegaconf import DictConfig
 
 
-def get_therapist(
-    agent_type: str,
-    model_client: BaseChatModel = None,
-    lang: str = "en",
-    data: dict = None,
-):
+def get_therapist(configs: DictConfig):
+    agent_type = configs.agent_type
     print(f"Loading {agent_type} therapist agent...")
     if agent_type == "basic":
-        return BasicTherapist(model_client=model_client, data=data)
+        return BasicTherapist(configs=configs)
     elif agent_type == "eliza":
-        return ElizaTherapist(data=data)
+        return ElizaTherapist(configs=configs)
     elif agent_type == "user":
         # name = input("Enter your name: ")
-        return UserTherapist(data={"name": "Sam"})
+        return UserTherapist(configs=configs)
     else:
         raise ValueError(f"Unknown therapist agent type: {agent_type}")
 

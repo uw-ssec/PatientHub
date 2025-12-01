@@ -1,6 +1,8 @@
-from agents import BaseAgent
-from pydantic import BaseModel, Field
 from typing import Dict, List, Any
+from src.agents import InferenceAgent
+from pydantic import BaseModel, Field
+
+from omegaconf import DictConfig
 from langchain_core.messages import AIMessage, HumanMessage
 
 
@@ -8,12 +10,9 @@ class UserResponse(BaseModel):
     content: str = Field(description="The content of user input")
 
 
-class UserTherapist(BaseAgent):
-    def __init__(self, data: Dict[str, Any]):
-        self.role = "therapist"
-        self.agent_type = "user"
-        self.name = data["name"]
-        self.data = data
+class UserTherapist(InferenceAgent):
+    def __init__(self, configs: DictConfig):
+        self.name = "user"
         self.messages = []
 
     def set_client(self, client, prev_sessions: List[Dict[str, str] | None] = []):

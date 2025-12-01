@@ -1,8 +1,10 @@
-from agents import BaseAgent
-from pydantic import BaseModel, Field
-from utils import load_prompts
 from typing import Dict, List, Any
-from brain import MentalState
+from src.brain import MentalState
+from src.utils import load_prompts, load_json, get_model_client
+from src.agents import InferenceAgent
+from pydantic import BaseModel, Field
+
+from omegaconf import DictConfig
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
@@ -38,18 +40,16 @@ class SessionSummary(BaseModel):
     )
 
 
-class BasicTherapist(BaseAgent):
-    def __init__(
-        self, model_client: BaseChatModel, data: Dict[str, Any], lang: str = "en"
-    ):
-        self.role = "therapist"
-        self.agent_type = "basic"
-        self.model_client = model_client
+class BasicTherapist(InferenceAgent):
+    def __init__(self, configs: DictConfig):
+        self.configs = configs
+
+        self.data = load_json(configs.data_path)[configs.data_idx]
         self.name = data["demographics"]["name"]
-        self.data = data
-        self.lang = lang
+
+        self.model_client = get_model_client(configs)
         self.prompts = load_prompts(
-            role=self.role, agent_type=self.agent_type, lang=self.lang
+            role="therapist", agent_type="basic", lang=configs.lang
         )
         self.client_mental_state = MentalState()
         self.agenda = Agenda()

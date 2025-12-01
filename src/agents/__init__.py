@@ -1,27 +1,21 @@
-from .base import BaseAgent
-from .clients import get_client
+from .base import BaseAgent, InferenceAgent, TrainableAgent
 
-# from .evaluators import get_evaluator
+from .clients import get_client
+from .evaluators import get_evaluator
 from .therapists import get_therapist
 
+from omegaconf import DictConfig
 
-def get_agent(
-    agent_category: str,
-    agent_type: str,
-    model_client,
-    lang: str,
-    data: dict = None,
-):
-    if agent_category == "client":
-        return get_client(agent_type, model_client=model_client, lang=lang, data=data)
-    # elif agent_category == "evaluator":
-    #     return get_evaluator(agent_type, model_client=model_client)
-    elif agent_category == "therapist":
-        return get_therapist(
-            agent_type, model_client=model_client, lang=lang, data=data
-        )
+
+def get_inference_agent(category: str, configs: DictConfig):
+    if category == "client":
+        return get_client(configs=configs)
+    elif category == "evaluator":
+        return get_evaluator(configs=configs)
+    elif category == "therapist":
+        return get_therapist(configs=configs)
     else:
-        raise ValueError(f"Unknown agent category: {agent_category}")
+        raise ValueError(f"Unknown agent category: {category}")
 
 
-__all__ = ["BaseAgent", "get_agent"]
+__all__ = ["BaseAgent", "InferenceAgent", "TrainableAgent", "get_inference_agent"]

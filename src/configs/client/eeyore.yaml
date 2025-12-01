@@ -1,0 +1,11 @@
+agent_type: eeyore
+data_path: data/characters/Eeyore Profile Cognitive Model.json
+data_idx: 0
+api_type: local
+model_name: /data/public_checkpoints/Eeyore_llama3.1_8B
+temperature: 0.3
+max_tokens: 8192
+max_new_tokens: 128
+repetition_penalty: 1.2
+device: 5
+lang: en

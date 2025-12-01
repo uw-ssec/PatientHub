@@ -3,7 +3,6 @@ from typing import Literal
 from pydantic import BaseModel, Field
 from src.prompts import get_prompt
 from src.utils import parse_json_response, get_model_client
-from camel.agents import ChatAgent
 
 
 class Event(BaseModel):

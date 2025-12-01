@@ -1,8 +1,10 @@
 import re
 import random
-from agents import BaseAgent
-from pydantic import BaseModel, Field
 from typing import Dict, List, Any
+from src.agents import InferenceAgent
+from pydantic import BaseModel, Field
+
+from omegaconf import DictConfig
 from langchain_core.messages import AIMessage, HumanMessage
 
 
@@ -12,12 +14,9 @@ class BaseElizaResponse(BaseModel):
     )
 
 
-class ElizaTherapist(BaseAgent):
-    def __init__(self, data: Dict[str, Any]):
-        self.role = "therapist"
-        self.agent_type = "eliza"
-        self.name = data["demographics"]["name"]
-        self.data = data
+class ElizaTherapist(InferenceAgent):
+    def __init__(self, configs: DictConfig):
+        self.name = "Eliza"
         self.messages = []
         self.patterns = [
             (
@@ -191,7 +190,7 @@ class ElizaTherapist(BaseAgent):
         }
 
     def set_client(self, client, prev_sessions: List[Dict[str, str] | None] = []):
-        self.client = client.data["demographics"]
+        self.client = client.get("name", "Client")
 
     def reflect(self, fragment):
         tokens = fragment.lower().split()
