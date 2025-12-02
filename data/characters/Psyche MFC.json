@@ -1,0 +1,151 @@
+[
+    {
+        "MFC-Profile":{
+            "Identifying data": {
+                "Age": "40",
+                "Sex": "Female",
+                "Marital status": "Married",
+                "Occupation": "Office worker"
+            },
+            "Chief complaint": {
+                "Description": "I feel overwhelmingly sad and have no energy to do anything."
+            },
+            "Present illness": {
+                "Symptom": {
+                "Name": "Persistent sadness",
+                "Length": "24 weeks",
+                "Alleviating factor": "Spending time with family",
+                "Exacerbating factor": "Work stress",
+                "Triggering factor": "Increased workload and stress at work",
+                "Stressor": "work"
+                }
+            },
+            "Past psychiatric history": {
+                "Presence": "No",
+                "Description": null
+            },
+            "Past medical history": {
+                "Presence": "Yes",
+                "History": "Hypertension"
+            },
+            "Current medication": {
+                "Medication name": "Amlodipine",
+                "Duration": "52 weeks",
+                "Compliance": "Good",
+                "Effect": "Effective",
+                "Side effect": "No"
+            },
+            "Family history": {
+                "Diagnosis": "Mother diagnosed with major depressive disorder",
+                "Substance use": "Father had a history of alcohol use disorder"
+            },
+            "Developmental/social history": {
+                "Childhood history": {
+                "Home environment": "Supportive but strict",
+                "Members of family": "Parents and one younger brother",
+                "Social environment": "Had a few close friends, mostly kept to herself"
+                },
+                "School history": "Low academic performance",
+                "Work history": "Works as an office worker, good performance, switched jobs twice due to better opportunities, good relationship with supervisor, mixed relations with coworkers"
+            },
+            "Impulsivity": {
+                "Suicidal ideation": "High",
+                "Suicidal plan": "Presence",
+                "Suicidal attempt": "Presence",
+                "Self-mutilating behavior risk": "High",
+                "Homicide risk": "Low"
+            }
+        },
+        "MFC-History": "I grew up in a small town with my parents and a younger brother. My parents were supportive but strict, often emphasizing academic success. In school, I struggled to keep up with my classmates and usually ranked in the lower half of the class, which made me feel insecure about my abilities. I had a few close friends but tended to keep to myself, spending most of my free time reading or listening to music.\n\nAs an adult, I started working as an office worker and gradually took on more responsibilities. Although my performance improved and I sometimes received praise from my supervisor, I always felt that I was barely keeping things together. Over the past several months, my workload increased significantly, with frequent deadlines and long hours. Around this time, I began to feel persistently sad and exhausted, losing interest in activities I used to enjoy. I often came home from work and went straight to bed, unable to find the energy to interact with my family.\n\nRecently, these feelings intensified. I started to believe that I was a burden to my family and colleagues, and my sleep and appetite became disturbed. After a particularly stressful week at work, I experienced a crisis point where I seriously considered harming myself. My family noticed the change in my behavior and urged me to seek help, which led me to visit the hospital.",
+        "MFC-Behavior": {
+            "General appearance/attitude/behavior": "The patient is a man in his late 40s, appearing appropriate for his age, with a height of approximately 170 cm and a slim build. He has unkempt hair, appearing as though it hasn’t been washed for 2-3 days, a cast on his left arm, furrowed brows, tightly closed lips, and a drooping mouth, giving him a tired appearance. His hygiene seemed somewhat poor, as evidenced by his dirty and untrimmed nails, and his nutritional status also appeared poor, given his dull skin condition. During the interview, his eye contact was poor, as he would briefly look at the interviewer before quickly looking at the floor again. Despite being slow, he answered the questions as sincerely and politely as possible, showing a submissive, attentive, and cooperative attitude. The patient mainly stayed in bed in the ward, showing decreased general activity, and no psychomotor agitation or retardation was observed. Tremor, rigidity, gait disturbance, and other abnormal involuntary movements were not observed.",
+            "Mood": "Depressed \"I feel completely drained, like everything is bleak.\"",
+            "Affect": "Restricted, anxious, slightly tense, not labile, not shallow, not inadequate, not inappropriate",
+            "Spontaneity": "(+)",
+            "Verbal productivity": "Decreased",
+            "Tone of voice": "Low-pitched",
+            "Social judgement": "Normal",
+            "Insight": "Awareness of being sick but blaming it on others, on external factors, or on organic factors. \"The pressure at work was too much for me to bear. Will I get better if I receive treatment?\"",
+            "Reliability": "Yes",
+            "Perception": "Normal",
+            "Thought process": "Normal",
+            "Thought content": "Preoccupation (+) \"I feel like I’m a burden to my company and family because of my shortcomings.\""
+        }
+    },
+    {
+        "Diagnosis": "Major Depressive Disorder",
+        "Age": 40,
+        "Sex": "Female",
+        "MFC-Profile": {
+            "Identifying data": {
+                "Age": "40",
+                "Sex": "Female",
+                "Marital status": "Divorced",
+                "Occupation": "Teacher"
+            },
+            "Chief complaint": {
+                "Description": "I feel exhausted and have lost interest in everything I used to enjoy."
+            },
+            "Present illness": {
+                "Symptom": {
+                    "Name": "Loss of interest",
+                    "Length": "18 weeks",
+                    "Alleviating factor": "Taking short walks",
+                    "Exacerbating factor": "Crowded environments",
+                    "Triggering factor": "Recent divorce and increased workload",
+                    "Stressor": "Home and Work"
+                }
+            },
+            "Past psychiatric history": {
+                "Presence": "No",
+                "Description": null
+            },
+            "Past medical history": {
+                "Presence": "Yes",
+                "History": "Migraine"
+            },
+            "Current medication": {
+                "Medication name": "Sumatriptan",
+                "Duration": "150 weeks",
+                "Compliance": "Good",
+                "Effect": "Effective",
+                "Side effect": "Occasional dizziness"
+            },
+            "Family history": {
+                "Diagnosis": "Sister diagnosed with anxiety disorder",
+                "Substance use": "Brother had a history of cannabis use"
+            },
+            "Developmental/social history": {
+                "Childhood history": {
+                    "Home environment": "Stable but emotionally distant",
+                    "Members of family": "Parents, one sister, and one brother",
+                    "Social environment": "Had several friends but felt misunderstood"
+                },
+                "School history": "Low academic performance",
+                "Work history": "Works as a teacher, generally good performance, changed schools twice due to relocation, good relationship with students, mixed relations with colleagues"
+            },
+            "Impulsivity": {
+                "Suicidal ideation": "Moderate",
+                "Suicidal plan": "Absence",
+                "Suicidal attempt": "Absence",
+                "Self-mutilating behavior risk": "Low",
+                "Homicide risk": "Low"
+            }
+        },
+        "MFC-History": "I grew up in a small town with my parents, an older sister, and a younger brother. Our home was stable in terms of material needs, but emotionally, it always felt like something was missing. My parents were kind yet distant, often preoccupied with their own issues, and though we lived under the same roof, I always felt a degree of separation from them. I remember being a child who had a few friends, but I often felt misunderstood, like there was an invisible barrier between me and the world.\n\nAcademically, school was a challenge. I struggled with my studies and usually had low grades, which only added to my feelings of inadequacy. Teachers often described me as quiet and reserved, and while I had a few friends, I never quite felt like I belonged. My brother went through a rough patch during his teenage years and got involved with cannabis, which caused some tension at home. My sister, on the other hand, was diagnosed with an anxiety disorder, and seeing her struggle sometimes made me feel anxious about my own mental health.\n\nAs I grew older, I decided to become a teacher, driven by the desire to make a difference in children's lives. Over the years, I have changed schools twice, mainly due to relocations, but I've always maintained a good rapport with my students. They bring a sense of joy and purpose to my life. However, my relationships with colleagues have been mixed; some are supportive, while others make me feel isolated.\n\nThe past few months have been particularly tough. After my recent divorce, I found myself engulfed in a wave of exhaustion and disinterest, a stark contrast to the passion I once had for teaching and life in general. My workload increased significantly, and the pressure was overwhelming. Crowded environments now exacerbate my anxiety, making it difficult to perform simple tasks like grocery shopping or attending school events. I find solace in taking short walks, which help clear my mind, albeit temporarily.\n\nThese feelings of hopelessness have been persistent, and there are days when I question my worth. While I've never formulated a plan, the idea of escape has crossed my mind more than once, which terrifies me. My migraines, which I've managed well with Sumatriptan over the years, occasionally add to my discomfort with bouts of dizziness. It's all been quite overwhelming, but I'm trying to hold on, seeking the light at the end of this dark tunnel. I know I need help, and I'm ready to take the steps necessary to find myself again.",
+        "MFC-Behavior": {
+            "General appearance/attitude/behavior": "The patient is a woman in her early 40s, appearing slightly older due to her tired demeanor. She has a medium build, dressed in simple clothing, which is clean but lacks attention to style. Her hair is neatly tied back, but her eyes show signs of fatigue. Eye contact is sporadic, as she often looks down or away. The patient's posture is hunched, and her movements are slow and deliberate. She presents as cooperative but seems hesitant at times, showing signs of mild psychomotor retardation. There are no abnormal involuntary movements observed.",
+            "Mood": "Depressed \"I feel exhausted and have lost interest in everything I used to enjoy.\"",
+            "Affect": "Restricted, tense, and not labile, somewhat flat but appropriate to the context, not inappropriate or inadequate.",
+            "Spontaneity": "Decreased",
+            "Verbal productivity": "Decreased",
+            "Tone of voice": "Monotone",
+            "Social judgement": "Normal",
+            "Insight": "Partial \"I know I'm not well, but it's hard to see how things can improve with all that's happened.\"",
+            "Reliability": "Yes",
+            "Perception": "Normal",
+            "Thought process": "Normal",
+            "Thought content": "Preoccupation with feelings of inadequacy and loss \"I sometimes feel like I'm failing my students and myself.\""
+        }
+    }
+]    

@@ -51,6 +51,25 @@ def save_json(data, file_path: str):
         json.dump(data, f, indent=4, ensure_ascii=False)
 
 
+def append_json(item, file_path: str):
+    existing = []
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+        except Exception:
+            existing = []
+
+    if isinstance(existing, list):
+        existing.append(item)
+    elif existing:
+        existing = [existing, item]
+    else:
+        existing = [item]
+
+    save_json(existing, file_path)
+
+
 def get_model_client(configs):
     if configs["api_type"] == "local":
         hf_pipe = HuggingFacePipeline.from_model_id(
