@@ -1,3 +1,4 @@
+import json
 from typing import Dict, List, Any
 from pydantic import BaseModel, Field
 
@@ -20,18 +21,20 @@ class psycheClient(InferenceAgent):
     def __init__(self, configs: DictConfig):
         self.configs = configs
 
-        self.data = load_json(configs.data_path)[configs.data_idx]
-        self.name = self.data.get("name", "client")
+        all_cases = load_json(configs.data_path)
+        self.data = all_cases[-1]
+        self.name = "PSYCHE-SP"
 
         self.model_client = get_model_client(configs)
-        # TODO: Define the prompts for the client agent
         self.prompts = load_prompts(
             role="client", agent_type="psyche", lang=configs.lang
         )
-        # TODO: Initialize the system prompt
-        self.messages = [
-            SystemMessage(content="<insert system prompt here>")
-        ]
+
+        mfc_json = json.dumps(self.data, ensure_ascii=False, indent=2)
+        system_content = self.prompts["PSYCHE_SP_prompt"].render(
+            data={"mfc": mfc_json}
+        )
+        self.messages = [SystemMessage(content=system_content)]
 
     def generate(self, messages: List[str], response_format: BaseModel):
         model_client = self.model_client.with_structured_output(response_format)
@@ -39,7 +42,7 @@ class psycheClient(InferenceAgent):
         return res
 
     def set_therapist(self, therapist, prev_sessions: List[Dict[str, str] | None] = []):
-        self.therapist = therapist.get("name", "therapist")
+        self.therapist = therapist.get("name", "Therapist")
 
     def generate_response(self, msg: str):
         self.messages.append(HumanMessage(content=msg))
@@ -48,7 +51,10 @@ class psycheClient(InferenceAgent):
 
         return res
 
-    # TODO: Define any other necessary methods
     def reset(self):
-        self.messages = []
         self.therapist = None
+        mfc_json = json.dumps(self.data, ensure_ascii=False, indent=2)
+        system_content = self.prompts["PSYCHE_SP_prompt"].render(
+            data={"mfc": mfc_json}
+        )
+        self.messages = [SystemMessage(content=system_content)]
