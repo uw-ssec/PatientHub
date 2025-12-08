@@ -47,27 +47,25 @@ def save_json(data, file_path: str):
     if not os.path.exists(os.path.dirname(file_path)):
         os.makedirs(os.path.dirname(file_path))
 
-    with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
-
-
-def append_json(item, file_path: str):
-    existing = []
-    if os.path.exists(file_path):
-        try:
-            with open(file_path, "r", encoding="utf-8") as f:
-                existing = json.load(f)
-        except Exception:
-            existing = []
-
-    if isinstance(existing, list):
-        existing.append(item)
-    elif existing:
-        existing = [existing, item]
+    # Create new file and save content if it doesn't exist
+    if not os.path.exists(file_path):
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=4, ensure_ascii=False)
+    # Append to existing file
     else:
-        existing = [item]
+        prev_data = None
+        with open(file_path, "r", encoding="utf-8") as f:
+            prev_data = json.load(f)
 
-    save_json(existing, file_path)
+        if isinstance(prev_data, list):
+            prev_data.append(data)
+        elif prev_data:
+            prev_data = [prev_data, data]
+        else:
+            prev_data = [data]
+
+        with open(file_path, "w", encoding="utf-8") as f:
+            json.dump(prev_data, f, indent=4, ensure_ascii=False)
 
 
 def get_model_client(configs):
