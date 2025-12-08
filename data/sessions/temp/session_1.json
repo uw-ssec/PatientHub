@@ -2,12 +2,36 @@
     "messages": [
         {
             "role": "Therapist",
-            "content": "hi how are you oding"
+            "content": "Tell me a little bit about what brings you today."
         },
         {
             "role": "Client",
-            "content": "I'm doing ok I guess"
+            "content": "Well, my wife was concerned about some things, and here I am. I guess she wants me to talk to someone. Life's been pretty hectic with work and managing bills, so I'm just trying to unwind and keep stress at bay."
+        },
+        {
+            "role": "Therapist",
+            "content": "Okay. Um, so you said that your wife said it's a problem. Um, so do you not feel like it's a problem for you?"
+        },
+        {
+            "role": "Client",
+            "content": "Honestly, I don't think it's a problem. I smoke weed to relax after a long day, especially with all the stress from work and paying bills. It's my way to unwind, and I feel it's manageable. My wife worries, but I see it as my choice to keep calm."
+        },
+        {
+            "role": "Therapist",
+            "content": "Okay. Can you tell me a little bit more about how, like, it's-it's not an issue for you?"
+        },
+        {
+            "role": "Client",
+            "content": "I just think everyone has their own way of dealing with stress, you know? Some people watch TV, others go for a jog. I choose to smoke a little weed. It's not causing me any issues personally, and I feel more relaxed and focused after."
+        },
+        {
+            "role": "Therapist",
+            "content": "Okay. Um, is it causing any problems in areas like your marriage or anything like that?"
+        },
+        {
+            "role": "Client",
+            "content": "My marriage is mostly alright. We have regular ups and downs like any couple, managing family and finances. Work stress can be a bit much, but I feel I handle it the best way I know how. My wife just thinks I should explore other ways to relax, I guess."
         }
     ],
-    "num_turns": 1
+    "num_turns": 4
 }

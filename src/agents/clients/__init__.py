@@ -4,6 +4,7 @@ from .roleplayDoh import RoleplayDohClient
 from .THU import THUClient
 from .eeyore import EeyoreClient
 from .psyche import psycheClient
+from .consistentMI import consistentMIClient
 from .SimPatient import SimPatientClient
 
 from omegaconf import DictConfig
@@ -25,6 +26,8 @@ def get_client(configs: DictConfig):
         return EeyoreClient(configs=configs)
     elif agent_type == 'psyche':
         return psycheClient(configs=configs)
+    elif agent_type == 'consistentMI':
+        return consistentMIClient(configs=configs)
     elif agent_type == 'SimPatient':
         return SimPatientClient(configs=configs)
     else:

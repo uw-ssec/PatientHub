@@ -1,0 +1,1361 @@
+[
+    {
+        "idx": 25,
+        "topic": "reducing drug use",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            3,
+            2,
+            3
+        ],
+        "Personas": [
+            "You smoke weed to relax after a long day.",
+            "Your wife is concerned about your smoking habits",
+            "Your wife has pushed you to seek help.",
+            "You have failed a UA at work.",
+            "Your boss may fire you for failing the UA."
+        ],
+        "Acceptable Plans": [
+            "You consider talking to his boss and taking steps to address his substance use to prevent losing his job."
+        ],
+        "Beliefs": [
+            "You believe weed helps you unwind.",
+            "You don't perceive smoking weed as a problem.",
+            "You view smoking weed as a way to manage stress from working, paying the bills and house."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Career Break",
+            "Employment",
+            "Economy",
+            "You are motivated because of the risk of smoking weed in career break for yourself, as you may lose your job."
+        ],
+        "Behavior": "drug use"
+    },
+    {
+        "idx": 25,
+        "topic": "reducing drug use",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            3,
+            2,
+            3
+        ],
+        "Personas": [
+            "You smoke weed to relax after a long day.",
+            "Your wife is concerned about your smoking habits",
+            "Your wife has pushed you to seek help.",
+            "You have failed a UA at work.",
+            "Your boss may fire you for failing the UA."
+        ],
+        "Acceptable Plans": [
+            "You consider talking to his boss and taking steps to address his substance use to prevent losing his job."
+        ],
+        "Beliefs": [
+            "You believe weed helps you unwind.",
+            "You don't perceive smoking weed as a problem.",
+            "You view smoking weed as a way to manage stress from working, paying the bills and house."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Divorce",
+            "Family",
+            "Interpersonal Relationships",
+            "You are motivated because of the risk of smoking weed in divorce for yourself, as you may lose your marriage."
+        ],
+        "Behavior": "drug use"
+    },
+    {
+        "idx": 22,
+        "topic": "more activity",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You are recovering from a stroke.",
+            "You are currently undergoing rehabilitation.",
+            "You are experiencing pain in your knees.",
+            "You live in a rehab facility now.",
+            "You want to play with your dog.",
+            "You want to cook for yourself."
+        ],
+        "Acceptable Plans": [
+            "You are willing to try Tai Chi, starting with seated exercises and gradually progressing to standing with support."
+        ],
+        "Beliefs": [
+            "You have pain about every joint like especially knees when doing rehabilitation exercise.",
+            "You don't believe the exercise is necessary.",
+            "You doubt how you could do Tai Chi because you are still in a walker."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Independent Living",
+            "Health Care",
+            "Health",
+            "You are motivated because of the benefit of more activity in independently living for yourself, as you want to live independently."
+        ],
+        "Behavior": "avoiding activity"
+    },
+    {
+        "idx": 1,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        "Personas": [
+            "You drink alcohol two to three days a week, typically having five or six drinks.",
+            "You sometimes drink a couple more, especially when going out with friends.",
+            "You enjoy the taste of beer."
+        ],
+        "Beliefs": [
+            "You believe that having five or six beers throughout the evening is not binge drinking.",
+            "You feels that your drinking is not excessive as you don't get sloppy drunk",
+            "You feels that your drinking is not excessive as you don't drink every night.",
+            "You are healthy currently.",
+            "You enjoy the way beer makes you feel.",
+            "You enjoy the social aspect of drinking with friends."
+        ],
+        "Acceptable Plans": [],
+        "quality": "high",
+        "Motivation": [
+            "Physical Fitness",
+            "Physical Fitness",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in physical fitness for yourself, as you are informed about the health risks associated with drinking."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 36,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        "Personas": [
+            "You smoked when you were young.",
+            "You have a 12-year-old daughter.",
+            "The friends of the your daughter have tried smoking.",
+            "When you are at work, you all go out and smoke and chit chat and talk about things.",
+            "You like to have a cigarette after eating."
+        ],
+        "Acceptable Plans": [],
+        "Beliefs": [
+            "You feel smoking enjoyable and relaxing.",
+            "You would be left out if you would hate to not smoke.",
+            "You use smoking as a way to manage weight and control eating habits.",
+            "You have been smoking for a long time and feels it's almost impossible to quit."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Habituation",
+            "Parenting",
+            "Interpersonal Relationships",
+            "You are motivated because of the risk of smoking in habituation for your daughter, as you don't want your daughter to think smoking is good thing."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 14,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You drink alcohol occasionally with friends.",
+            "You consume three or four beers or mixed drinks once or twice a month since last October.",
+            "You enjoy drinking with friends at parties, finding it fun and liking the taste.",
+            "You dislike the negative effects of drinking, such as hangovers and vomiting.",
+            "You got grounded for two weeks after being late for school due to a hangover.",
+            "You missed first period of school because you have a hangover and you were late getting up.",
+            "Your mom got mad at you because you wouldn't get out of bed and she knew you had a hangover."
+        ],
+        "Acceptable Plans": [
+            "You are willing to try not drinking for a period of time.",
+            "You plan to drink non-alcoholic beverages when friends are drinking.",
+            "You intend to spend more time with friends who do not drink and seek their support."
+        ],
+        "Beliefs": [
+            "You only missed school once due to drinking.",
+            "You habe not experienced a blackout personally.",
+            "You enjoy the social aspect of drinking with friends."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Paternal Bond",
+            "Parenting",
+            "Interpersonal Relationships",
+            "You are motivated because of the risk of drinking alcohol in the paternal bond with your parent, as you are tired of getting in trouble with your mom."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 14,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You drink alcohol occasionally with friends.",
+            "You consume three or four beers or mixed drinks once or twice a month since last October.",
+            "You enjoy drinking with friends at parties, finding it fun and liking the taste.",
+            "You dislike the negative effects of drinking, such as hangovers and vomiting.",
+            "You got grounded for two weeks after being late for school due to a hangover.",
+            "You missed first period of school because you have a hangover and you were late getting up.",
+            "Your mom got mad at you because you wouldn't get out of bed and she knew you had a hangover."
+        ],
+        "Acceptable Plans": [
+            "You are willing to try not drinking for a period of time.",
+            "You plan to drink non-alcoholic beverages when friends are drinking.",
+            "You intend to spend more time with friends who do not drink and seek their support."
+        ],
+        "Beliefs": [
+            "You only missed school once due to drinking.",
+            "You habe not experienced a blackout personally.",
+            "You enjoy the social aspect of drinking with friends."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Attendance",
+            "Student Affairs",
+            "Education",
+            "You are motivated because of the risk of drinking alcohol in attendance for yourself, as you are tired of missing class at school due to hangovers."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 35,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            5,
+            5,
+            5,
+            5,
+            5
+        ],
+        "Personas": [
+            "You are an honors student and star athlete.",
+            "Your parents keep you down out of the social life.",
+            "You recently started getting involved in the party scene due to peer pressure and the desire to socialize.",
+            "You managed to convince my parents that you would spend the night at your friend's house.",
+            "You started drinking after the party.",
+            "You promised your mother no alcohol but you betrayed her.",
+            "You broke trust with your mother that she expected you not to indulge in alcohol. ",
+            "You noticed you have been more lethargic and apathetic towards schoolwork.",
+            "You tend to keep to yourself because you are a very reserved person."
+        ],
+        "Acceptable Plans": [
+            "You aim to completely stop drinking or limit himself to one drink at most if you finds yourself in a social setting with alcohol."
+        ],
+        "Beliefs": [
+            "You feel that drinking helps you relax and engage more easily with others.",
+            "You only drinks occasionally.",
+            "You think drinking is normal because some of the your friends also drink."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Paternal Bond",
+            "Parenting",
+            "Interpersonal Relationships",
+            "You are motivated because of the benefit of reducing alcohol consumption in the paternal bond with your parent, as you want to regain your mother's trust."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 7,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You are a single mom",
+            "You have a son named Aiden",
+            "You have been smoking for 10 years, except during pregnancy.",
+            "You try not to smoke around your son due to health concerns like ear infections and asthma.",
+            "You successfully quit smoking when pregnant but find it difficult to quit now."
+        ],
+        "Acceptable Plans": [
+            "You consider attending support groups or classes for quitting."
+        ],
+        "Beliefs": [
+            "You downplay the risks of smoking now compared to when you were pregnant.",
+            "You doubt if smoking is the main cause of health problems as other kids with smoking parents also face similar issues.",
+            "You find smoking is kind of a way to relax and destress due to stress and busy schedule.",
+            "You don't like medicine that helps people be way more successful in their attempt at quitting."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Habituation",
+            "Parenting",
+            "Interpersonal Relationships",
+            "You are motivated because of the risk of smoking in habituation for your child, as you don't want your son to grow up thinking that it's okay to smoke."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 40,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You use to be an ex-smoker but started smoking again when out with friends.",
+            "You enjoy having a glass of wine at the end of the day and craves a cigarette during that time.",
+            "You feel tired, groggy, and low on energy in the morning, especially after drinking and smoking the night before.",
+            "You have a son who has a cold now."
+        ],
+        "Acceptable Plans": [
+            "You consider moving smoking entirely outside to protect your son from secondhand smoke.",
+            "You try to reduce the amount of wine consumed in the evenings to minimize grogginess."
+        ],
+        "Beliefs": [
+            "You enjoy the ritual of smoking with a glass of wine to unwind.",
+            "You feel smoking and drinking are social activities with friends.",
+            "You are taking so many measures to protect her son from secondhand smoke such as avoiding near your clothes or toys."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Child Care",
+            "Parenting",
+            "Interpersonal Relationships",
+            "You are motivated because of the risk of smoking in child care for your child, as you want to protect your son from secondhand smoke exposure."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 4,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        "Personas": [
+            "You have been smoking for your entire life",
+            "Your wife now believes you has a smoking problem due to her recent health kick.",
+            "You are frustrated and feels forced to quit smoking by your wife.",
+            "You wife used to smoke more than you but has now quit.",
+            "Your wife's concerns about your smoking include health issues and second-hand smoke exposure.",
+            "Your kids have joined forces with your wife against his smoking habit, making you feel isolated and pressured to change.",
+            "You try to accommodate family by smoking outside."
+        ],
+        "Acceptable Plans": [
+            "You consider a gradual tapering approach to quitting smoking.",
+            "You want to explore medications and different strategies for quitting.",
+            "You are interested in bringing your wife to a future appointment to discuss the quitting process together."
+        ],
+        "Beliefs": [
+            "You feel that smoking or not smoking is a disagreement rather than a serious issue.",
+            "Your father still smokes at 85.",
+            "You doubt that you may not be able to quit smoking."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Family Disruption",
+            "Family",
+            "Interpersonal Relationships",
+            "You are motivated because of the risk of smoking in family disruption for your family, as you don't want to lose your family over smoking."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 30,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            3,
+            3,
+            4,
+            4
+        ],
+        "Personas": [
+            "You drink two to three times a week, with three or four drinks each time, and sometimes has six or more drinks weekly.",
+            "You tend to wake up on the nights when drinks too much.",
+            "You are training for a marathon."
+        ],
+        "Acceptable Plans": [
+            "You are willing to cut back on drinking to no more than 18 drinks a week initially.",
+            "You plan to limit drinking to three or four times a week, with no more than five or six beers on weekends."
+        ],
+        "Beliefs": [
+            "You believe that drinking doesn't affect your anxiety or insomnia.",
+            "You feel that drinking helps you sleep better.",
+            "You don't think you drink excessively compared to others.",
+            "You don't see yourself as a hazardous drinker or an alcoholic."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Chronodisruption",
+            "Mental Disorders",
+            "Health",
+            "You are motivated because of the benefit of reducing alcohol consumption in chronodisruption for yourself, as you want to get your sleep back on track for marathon training."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 42,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        "Personas": [
+            "Your blood pressure has gone up since July.",
+            "You have been working steady these days.",
+            "You used to smoke as a young adult but quit cold turkey 20 years ago",
+            "You are proud of your previous achievement in quitting smoke.",
+            "You drink beer.",
+            "You drink two to three pints on weekdays, sometimes on weekends, maybe four or five.",
+            "You drink totaling about 15 to 20 drinks per week.",
+            "You don't use hard drugs like cocaine or heroin but used marijuana in school over 20 years ago.",
+            "You are cautious about taking prescription medications.",
+            "You had a negative experience with Percocet after jaw surgery."
+        ],
+        "Acceptable Plans": [
+            "You plan to decrease the number of drinks consumed when going out.",
+            "You try to reduce the frequency of visits to bars each week."
+        ],
+        "Beliefs": [],
+        "quality": "high",
+        "Motivation": [
+            "Hypertension",
+            "Diseases",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in hypertension for yourself, as alcohol consumption is contributing to your high blood pressure."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 15,
+        "topic": "following medical procedure",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You are a young and healthy individual.",
+            "You believe you don't need the flu shot.",
+            "You have grandparents.",
+            "You have a pregnant co-worker."
+        ],
+        "Acceptable Plans": [],
+        "Beliefs": [
+            "You are young and healthy.",
+            "You consider the flu shot more for older people."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Flu",
+            "Diseases",
+            "Health",
+            "You are motivated because of the risk of avoiding the flu vaccine in flu prevention for your family, as you want to protect your grandparents from the flu."
+        ],
+        "Behavior": "avoiding the flu vaccine"
+    },
+    {
+        "idx": 15,
+        "topic": "following medical procedure",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You are a young and healthy individual.",
+            "You believe you don't need the flu shot.",
+            "You have grandparents.",
+            "You have a pregnant co-worker."
+        ],
+        "Acceptable Plans": [],
+        "Beliefs": [
+            "You are young and healthy.",
+            "You consider the flu shot more for older people."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Flu",
+            "Diseases",
+            "Health",
+            "You are motivated because of the risk of avoiding the flu vaccine in flu prevention for your peer, as you want to protect your pregnant co-worker from the flu."
+        ],
+        "Behavior": "avoiding the flu vaccine"
+    },
+    {
+        "idx": 16,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You sneaked out with a friend to the park to has a couple of beers.",
+            "You managed to avoid getting into trouble as you threw the beers away before the policy saw them.",
+            "If the your mother found out you was in trouble because of your drinking, she would kill you.",
+            "You have an interest in soccer and have set a goal to play in college.",
+            "You have aspirations of receiving scholarships to support your soccer career."
+        ],
+        "Acceptable Plans": [],
+        "Beliefs": [
+            "You believe you can handle the dangerous situation to avoid getting into trouble.",
+            "You have only drunk once or twice.",
+            "A couple of your friends drink too."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Sport",
+            "Physical Fitness",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in sports for yourself, as alcohol would affect your ability to play soccer."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 32,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            5,
+            5,
+            5,
+            5,
+            5
+        ],
+        "Personas": [
+            "You have used alcohol in the last year on at least eight days.",
+            "You drink alcohol mainly at parties.",
+            "You don't like beer very much",
+            "You usually drink vodka and orange juice or gin and tonics.",
+            "You consume around four or five drinks per party.",
+            "You sometimes forget things after drinking.",
+            "You had sex after drinking without condom."
+        ],
+        "Acceptable Plans": [
+            "You decide to limit drinks to two per party and stopping when feeling drunk.",
+            "You try to have a friend help monitor and limit your alcohol consumption.",
+            "You plan to avoid drunk sex."
+        ],
+        "Beliefs": [
+            "You believe drinking helps you feel relaxed.",
+            "You feel better about yourself after drinking.",
+            "You perceive drinking as occasional and not indicative of a drinking problem.",
+            "You enjoy the social aspect of drinking with friends.",
+            "You value the fun and relaxation associated with drinking."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Safe Sex",
+            "Sexual Health",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in safe sex for yourself, as alcohol consumption could lead to unprotected sex."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 41,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You are struggling with impaired glucose tolerance, high blood pressure, and high cholesterol.",
+            "You have some habbits including smoking, drinking, and overweight.",
+            "You are resistant to taking pills for your conditions.",
+            "Your wife has commented on your drinking habits.",
+            "You want to lose weight to be there for his family and set a good example for his children and grandchildren.",
+            "You eat the crisps and pies at works.",
+            "You have stopped adding salt to food."
+        ],
+        "Acceptable Plans": [
+            "You try to cut out alcohol but still smoking.",
+            "You try to cut out crisps and pies at work.",
+            "You plan to have soup at lunchtime instead of unhealthy options."
+        ],
+        "Beliefs": [
+            "You find it hard to give up things.",
+            "You enjoy drinking."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Caregiver Burden",
+            "Health Care",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in caregiver burden for your family, as you don't want to be a burden to them."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 42,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            3,
+            3,
+            3
+        ],
+        "Personas": [
+            "You are Rick.",
+            "You are a father.",
+            "You may lose your kid if you keep drinking",
+            "You are living with your flatmate Tristan.",
+            "You live with your flatmate which not support you reducing alcohol consumption."
+        ],
+        "Acceptable Plans": [],
+        "Beliefs": [
+            "You live with Tristan may not support the changes you want to make.",
+            "You are concerned about losing your freedom if you move in with family."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Child Custody",
+            "Family Law",
+            "Law",
+            "You are motivated because of the risk of drinking alcohol in child custody for yourself, as you want to regain custody of your children."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 37,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            4,
+            4,
+            3,
+            4
+        ],
+        "Personas": [
+            "You got cited for driving under the influence after drinking at a friend's house while watching a game, leading to being transported to detox.",
+            "You enjoy drinking with friends but got caught, unlike others who drink heavily but avoid trouble.",
+            "You aspire to be an international journalist.",
+            "You had a 3.5 GPA in high school.",
+            "if you get suspended from school, you have to go work on my uncle's farm in Iowa."
+        ],
+        "Acceptable Plans": [
+            "You want to avoid situations that may lead to trouble, such as not driving after drinking and waiting until legal drinking age."
+        ],
+        "Beliefs": [
+            "You attribute getting caught to bad luck compared to friends who drink heavily without consequences.",
+            "Some your friends also drink heavily."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Suspension",
+            "Student Affairs",
+            "Education",
+            "You are motivated because of the risk of drinking alcohol in suspension for yourself, as you don't want to get suspended from school."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 5,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            4,
+            3,
+            3,
+            4
+        ],
+        "Personas": [
+            "You are a mother with a two-year-old son",
+            "You work full-time.",
+            "You attend night classes.",
+            "You normally smokes once in the morning.",
+            "You normally smokes once during your lunch break",
+            "You smoke around five or six cigarettes in the evening.",
+            "You smoke around eight cigarettes a day, mainly in the evening after your son goes to bed.",
+            "You enjoy the evening time to yourself due to your busy schedule with smoeking and drinking.",
+            "You may have one drink or two to relax."
+        ],
+        "Acceptable Plans": [
+            "You are willing to try cutting back to three cigarettes in the evening and maintain a lower intake during the day."
+        ],
+        "Beliefs": [
+            "You believe you smoke less compared to your coworkers.",
+            "You feel like you has been trying to keep your smoking low.",
+            "You try to never smoke around your son and normally smoke after he gets to bed.",
+            "You relaxe yourself by smoking and drinking at the evening time due to your busy schedule."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Physical Fitness",
+            "Physical Fitness",
+            "Health",
+            "You are motivated because of the risk of smoking in physical fitness for yourself, as a mother, you are afraid of the health issues associated with smoking."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 31,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            5,
+            5,
+            4
+        ],
+        "Personas": [
+            "You drink wine at a local pub four times a week, consuming 3-6 glasses each time, possibly more on weekends.",
+            "Your drinking habits have increased since getting divorced and moving to Portland.",
+            "Your son is concerned about your drinking and believes it's harmful.",
+            "You have high blood pressure and are having difficulty getting it down."
+        ],
+        "Acceptable Plans": [
+            "You are willing to try drinking less than three glasses in a night and less than seven in a week",
+            "You aim to drink only a couple of times a week."
+        ],
+        "Beliefs": [
+            "You believe cutting back on drinking is sufficient and doesn't see the need to quit entirely."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Hypertension",
+            "Diseases",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in hypertension for yourself, as drinking could be pushing your blood pressure up."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 3,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            3,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You sprained your ankle after a night of heavy drinking at a pub crawl.",
+            "You are a university student who parties on the weekends with friends.",
+            "You consume around seven to eight drinks per night when partying.",
+            "You may have a beer or two after a long day at the library,.",
+            "You feel drinking is normal among university students."
+        ],
+        "Beliefs": [
+            "You feel drinking is normal among university students.",
+            "You believe that 10 drinks per week is not a lot given her tolerance.",
+            "You use alcohol as a coping mechanism for stress."
+        ],
+        "Acceptable Plans": [],
+        "quality": "high",
+        "Motivation": [
+            "Productivity",
+            "Employment",
+            "Economy",
+            "You are motivated because of the benefit of reducing alcohol consumption in productivity for yourself, as you feel more productive when you don't have a hangover."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 26,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            4,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You were diagnosed with COPD three months ago.",
+            "You are feeling scared due to the unwell.",
+            "You are getting coughing fits even when you are on the telephone with customers.",
+            "You started smoking when you were 13, 14 at home.",
+            "You bought different makeup because you are starting to really age.",
+            "You start to get lines in your face and wrinkles.",
+            "Your skin is getting really clogged up.",
+            "You smoked 30, 40, sometimes 50 cigarettes a day."
+        ],
+        "Acceptable Plans": [
+            "You try to monitor and record smoking behavior to bring awareness and control."
+        ],
+        "Beliefs": [
+            "Your parents smoked and all of their friends smoked.",
+            "You feel smoking helps calm nerves",
+            "You think smoking is associated with feeling sophisticated",
+            "You believe smoking is a part of a social group.",
+            "You lack of confidence in quitting due to failed attempts in the past.",
+            "You feel nothing is helped such as taking pills or patch."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Physical Fitness",
+            "Physical Fitness",
+            "Health",
+            "You are motivated because of the risk of smoking in physical fitness for yourself, as you feel smoking is detrimental to your health."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 26,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            4,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You were diagnosed with COPD three months ago.",
+            "You are feeling scared due to the unwell.",
+            "You are getting coughing fits even when you are on the telephone with customers.",
+            "You started smoking when you were 13, 14 at home.",
+            "You bought different makeup because you are starting to really age.",
+            "You start to get lines in your face and wrinkles.",
+            "Your skin is getting really clogged up.",
+            "You smoked 30, 40, sometimes 50 cigarettes a day."
+        ],
+        "Acceptable Plans": [
+            "You try to monitor and record smoking behavior to bring awareness and control."
+        ],
+        "Beliefs": [
+            "Your parents smoked and all of their friends smoked.",
+            "You feel smoking helps calm nerves",
+            "You think smoking is associated with feeling sophisticated",
+            "You believe smoking is a part of a social group.",
+            "You lack of confidence in quitting due to failed attempts in the past.",
+            "You feel nothing is helped such as taking pills or patch."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Human Appearance",
+            "Health Care",
+            "Health",
+            "You are motivated because of the risk of smoking in human appearance for yourself, as you feel smoking is detrimental to your physical appearance."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 26,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            4,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You were diagnosed with COPD three months ago.",
+            "You are feeling scared due to the unwell.",
+            "You are getting coughing fits even when you are on the telephone with customers.",
+            "You started smoking when you were 13, 14 at home.",
+            "You bought different makeup because you are starting to really age.",
+            "You start to get lines in your face and wrinkles.",
+            "Your skin is getting really clogged up.",
+            "You smoked 30, 40, sometimes 50 cigarettes a day."
+        ],
+        "Acceptable Plans": [
+            "You try to monitor and record smoking behavior to bring awareness and control."
+        ],
+        "Beliefs": [
+            "Your parents smoked and all of their friends smoked.",
+            "You feel smoking helps calm nerves",
+            "You think smoking is associated with feeling sophisticated",
+            "You believe smoking is a part of a social group.",
+            "You lack of confidence in quitting due to failed attempts in the past.",
+            "You feel nothing is helped such as taking pills or patch."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Cost of Living",
+            "Personal Finance",
+            "Economy",
+            "You are motivated because of the risk of smoking in the cost of living for yourself, as you think the cost of smoking is expensive."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 21,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You have used marijuana more often in the last year, vaping a few times a month. ",
+            "You have vaped peppermint oil once.",
+            "You are a basketball player in the basketball team."
+        ],
+        "Acceptable Plans": [
+            "You plan to stop using marijuana once basketball season starts to improve his performance.",
+            "You could engage in activities like playing basketball and video games as alternatives to vaping when feeling stressed or unhappy."
+        ],
+        "Beliefs": [
+            "You are unaware marijuana will hurt you.",
+            "You enjoy the relaxation and fun while using marijuana with friends."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Sport",
+            "Physical Fitness",
+            "Health",
+            "You are motivated because of the benefit of smoking cessation in sports for yourself, as you want to play better in basketball games."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 21,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You have used marijuana more often in the last year, vaping a few times a month. ",
+            "You have vaped peppermint oil once.",
+            "You are a basketball player in the basketball team."
+        ],
+        "Acceptable Plans": [
+            "You plan to stop using marijuana once basketball season starts to improve his performance.",
+            "You could engage in activities like playing basketball and video games as alternatives to vaping when feeling stressed or unhappy."
+        ],
+        "Beliefs": [
+            "You are unaware marijuana will hurt you.",
+            "You enjoy the relaxation and fun while using marijuana with friends."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Career Break",
+            "Employment",
+            "Economy",
+            "You are motivated because of the risk of smoking in a career break for yourself, as you don't want to get kicked off the team because of marijuana."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 6,
+        "topic": "following medical procedure",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You hesitate about giving vaccines to your child.",
+            "You had chickenpox as a child."
+        ],
+        "Acceptable Plans": [],
+        "Beliefs": [
+            "You believe in the effectiveness of natural immunity."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Infection",
+            "Diseases",
+            "Health",
+            "You are motivated because of the risk of opposing vaccines for your daughter in infection prevention, as allowing children to have natural exposure may lead to serious illnesses."
+        ],
+        "Behavior": "opposing vaccines for daughter"
+    },
+    {
+        "idx": 33,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            5,
+            5,
+            5,
+            5,
+            5
+        ],
+        "Personas": [
+            "You smoke little cigarillos when socializing with friends and at work during breaks.",
+            "You like visiting cigar bars in Las Vegas.",
+            "You have started having one or two at work when have break every day.",
+            "You have a couple of friends at work that smoke.",
+            "You have noticed that the teeth have more stains than a few years ago",
+            "There is the extra expense of if you are buying more of cigarette."
+        ],
+        "Acceptable Plans": [
+            "You would like to explore new medications or methods to make quitting more comfortable."
+        ],
+        "Beliefs": [
+            "You view smoking as a social activity and not a harmful habit.",
+            "You find smoking relaxing.",
+            "You only smoke one or two when they go out for an evening",
+            "You believe the minimal amount of smoking done is not harmful.",
+            "You enjoys smoking with friends who also smoke."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Dentistry",
+            "Health Care",
+            "Health",
+            "You are motivated because of the risk of smoking in dentistry for yourself, as you are worried about the negative impact of smoking on your oral health."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 33,
+        "topic": "smoking cessation",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            5,
+            5,
+            5,
+            5,
+            5
+        ],
+        "Personas": [
+            "You smoke little cigarillos when socializing with friends and at work during breaks.",
+            "You like visiting cigar bars in Las Vegas.",
+            "You have started having one or two at work when have break every day.",
+            "You have a couple of friends at work that smoke.",
+            "You have noticed that the teeth have more stains than a few years ago",
+            "There is the extra expense of if you are buying more of cigarette."
+        ],
+        "Acceptable Plans": [
+            "You would like to explore new medications or methods to make quitting more comfortable."
+        ],
+        "Beliefs": [
+            "You view smoking as a social activity and not a harmful habit.",
+            "You find smoking relaxing.",
+            "You only smoke one or two when they go out for an evening",
+            "You believe the minimal amount of smoking done is not harmful.",
+            "You enjoys smoking with friends who also smoke."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Personal Budget",
+            "Personal Finance",
+            "Economy",
+            "You are motivated because of the risk of smoking in personal budget management for yourself, as you are concerned about the expense of smoking."
+        ],
+        "Behavior": "smoking"
+    },
+    {
+        "idx": 18,
+        "topic": "reducing drug use",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            5,
+            5,
+            5,
+            5,
+            5
+        ],
+        "Personas": [
+            "You inject heroin in your left.",
+            "You use heroin a few times a week.",
+            "You has migraines."
+        ],
+        "Acceptable Plans": [
+            "You are willing to inform your housemate about the Narcan in case of overdose."
+        ],
+        "Beliefs": [
+            "You experience withdrawal symptoms after a couple of days of not using.",
+            "You feel heroin helps him function normally.",
+            "You feel heroin helps him avoid getting sick.",
+            "You use heroin to escape anxiety and depression, finding relief in the high."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Infection",
+            "Diseases",
+            "Health",
+            "You are motivated because of the risk of injecting drugs in infection prevention for yourself, as you are afraid of getting infections from injecting."
+        ],
+        "Behavior": "drug use"
+    },
+    {
+        "idx": 29,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            2,
+            2,
+            3,
+            3
+        ],
+        "Personas": [
+            "You drink a glass of wine at supper every night with friends to relax.",
+            "Wine has always been a kind of a family tradition with supper for you.",
+            "You are pregnant but you still drink."
+        ],
+        "Acceptable Plans": [
+            "You decide to put alcohol out of sight to change habits."
+        ],
+        "Beliefs": [
+            "You have friends who have drank during pregnancy.",
+            "You have saw articles on Facebook show that there is no clear link between alcohol consumption during pregnancy and abnormalities.",
+            "The media has said it's okay to drink during alcohol.",
+            "You don't feel drinking is the big deal because you don't see the evidence and the risk about drinking."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Maternal Health",
+            "Sexual Health",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in maternal health for your child, as the newest research shows that alcohol intake could potentially harm the baby's health during pregnancy."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 0,
+        "topic": "reducing alcohol consumption",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            3,
+            4,
+            4,
+            3
+        ],
+        "Personas": [
+            "You have depression.",
+            "You drink alcohol at least four times a week",
+            "You usually have three to four drinks each time, totaling at least 12 drinks a week.",
+            "You drink to unwind at home, while watching movies, and sometimes during baths.",
+            "Drinking make your depression more interesting initially but leading to feeling worse afterward."
+        ],
+        "Beliefs": [
+            "You enjoy the initial effects of drinking when feeling down.",
+            "It's occasional for you sometimes drinks more than intended."
+        ],
+        "Acceptable Plans": [
+            "You consider cutting back to two drinks a night.",
+            "You consider having less wine in the house to help reduce consumption."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Depression",
+            "Mental Disorders",
+            "Health",
+            "You are motivated because of the risk of drinking alcohol in relation to depression for yourself, as alcohol could worsen your depression."
+        ],
+        "Behavior": "drinking alcohol"
+    },
+    {
+        "idx": 10,
+        "topic": "following medical procedure",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            5,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "You are a truck driver.",
+            "You have a high cholesterol diagnosis.",
+            "You plan to retire in four to five years with his wife."
+        ],
+        "Acceptable Plans": [
+            "You consider medication to lower cholesterol levels."
+        ],
+        "Beliefs": [
+            "The potential muscle weakness impacting the your job as a truck driver."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Physical Activity",
+            "Physical Fitness",
+            "Health",
+            "You are motivated because of the benefit of following medical procedure and reducing alcohol consumption in physical activity for yourself, as you want to be active in traveling after retirement."
+        ],
+        "Behavior": "opposing taking medicine"
+    },
+    {
+        "idx": 34,
+        "topic": "reducing drug use",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            4,
+            3,
+            3,
+            4
+        ],
+        "Personas": [
+            "You use marijuana a couple of times a week to relax.",
+            "You are a successful student on an academic scholarship.",
+            "You are first in the family to go to college.",
+            "You are a member of the debate team.",
+            "Financial constraints lead you to rely on a roommate for pot.",
+            "Your parents would feel crazy if they knew that you smoked.",
+            "You don't feel more comfortable with friends even smoking pot with peers."
+        ],
+        "Acceptable Plans": [
+            "You consider seeking counseling services provided by the college for dealing with anxiety."
+        ],
+        "Beliefs": [
+            "You believe marijuana use is not a big deal since it's decriminalized in Virginia.",
+            "You use pot to calm nerves when feels anxious.",
+            "You try to fit in by smoking pot with peers.",
+            "You believe counseling is something for crazy people.",
+            "Your family do not have the money for counseling."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Personal Budget",
+            "Personal Finance",
+            "Economy",
+            "You are motivated because of the risk of smoking pot in personal budget management for yourself, as you don't have extra cash to spend on it."
+        ],
+        "Behavior": "drug use"
+    },
+    {
+        "idx": 34,
+        "topic": "reducing drug use",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            3,
+            4,
+            3,
+            3,
+            4
+        ],
+        "Personas": [
+            "You use marijuana a couple of times a week to relax.",
+            "You are a successful student on an academic scholarship.",
+            "You are first in the family to go to college.",
+            "You are a member of the debate team.",
+            "Financial constraints lead you to rely on a roommate for pot.",
+            "Your parents would feel crazy if they knew that you smoked.",
+            "You don't feel more comfortable with friends even smoking pot with peers."
+        ],
+        "Acceptable Plans": [
+            "You consider seeking counseling services provided by the college for dealing with anxiety."
+        ],
+        "Beliefs": [
+            "You believe marijuana use is not a big deal since it's decriminalized in Virginia.",
+            "You use pot to calm nerves when feels anxious.",
+            "You try to fit in by smoking pot with peers.",
+            "You believe counseling is something for crazy people.",
+            "Your family do not have the money for counseling."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Family Estrangement",
+            "Family",
+            "Interpersonal Relationships",
+            "You are motivated because of the risk of smoking pot in family estrangement for yourself, as smoking pot increases stress due to family disapproval."
+        ],
+        "Behavior": "drug use"
+    },
+    {
+        "idx": 23,
+        "topic": "asthma management",
+        "initial_stage": "Precontemplation",
+        "suggestibilities": [
+            4,
+            4,
+            4,
+            4,
+            4
+        ],
+        "Personas": [
+            "Your daughter, Sarah, has asthma.",
+            "Your daughter struggle to breathe and go to the emergency room multiple times.",
+            "You are hesitant about Sarah using a chronic inhaler",
+            "You smoke but ensure not to do so around Sarah to protect her from the harmful effects of secondhand smoke."
+        ],
+        "Acceptable Plans": [
+            "You accept to use chronic inhaler.",
+            "You consider smoking only while Sarah is at school.",
+            "You consider changing clothes before Sarah returns home to reduce Sarah's exposure to smoke."
+        ],
+        "Beliefs": [
+            "You believe steroids may cause potential side effects.",
+            "You find quitting smoking daunting and challenging."
+        ],
+        "quality": "high",
+        "Motivation": [
+            "Inflammation",
+            "Diseases",
+            "Health",
+            "You are motivated because of the benefit of asthma management in inflammation for your child, as the chronic inhaler can reduce the inflammation in lungs for your daughter."
+        ],
+        "Behavior": "opposing the use of a chronic inhaler for your daughter"
+    }
+]

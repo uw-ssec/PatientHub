@@ -5,6 +5,7 @@ from jinja2 import Template
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_huggingface import ChatHuggingFace, HuggingFacePipeline
+from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 
 load_dotenv(".env")
 
@@ -71,29 +72,66 @@ def append_json(item, file_path: str):
 
 
 def get_model_client(configs):
-    if configs["api_type"] == "local":
+    # Support both DictConfig (attribute access) and dict (key access)
+    def get(name, default=None):
+        if isinstance(configs, dict):
+            return configs.get(name, default)
+        return getattr(configs, name, default)
+
+    api_type = get("api_type")
+    model_name = get("model_name")
+
+    if api_type == "local":
         hf_pipe = HuggingFacePipeline.from_model_id(
-            model_id=configs["model_name"],
+            model_id=model_name,
             task="text-generation",
-            device=configs["device"],
+            device=get("device"),
             pipeline_kwargs={
-                "max_new_tokens": configs["max_new_tokens"],
-                "temperature": configs["temperature"],
-                "repetition_penalty": configs["repetition_penalty"],
+                "max_new_tokens": get("max_new_tokens"),
+                "temperature": get("temperature"),
+                "repetition_penalty": get("repetition_penalty"),
                 "return_full_text": False,
             },
         )
         return init_chat_model(
-            model_provider="huggingface", model=configs["model_name"], llm=hf_pipe
+            model_provider="huggingface", model=model_name, llm=hf_pipe
         )
-    else:
-        api_type = configs["api_type"]
+    if api_type == "huggingface":
+        return ChatHuggingFace.from_model_id(
+            model_id=model_name,
+            task="text-generation",
+            device=get("device"),
+            model_kwargs={
+                "max_new_tokens": get("max_new_tokens"),
+                "temperature": get("temperature"),
+                "repetition_penalty": get("repetition_penalty"),
+                "return_full_text": False,
+            },
+        )
+    if api_type == "LAB":
         return init_chat_model(
-            model=configs["model_name"],
+            model=model_name,
             model_provider="openai",
             base_url=os.environ.get(f"{api_type}_BASE_URL"),
             api_key=os.environ.get(f"{api_type}_API_KEY"),
-            temperature=configs["temperature"],
-            max_tokens=configs["max_tokens"],
-            max_retries=configs["max_retries"],
+            temperature=get("temperature"),
+            max_tokens=get("max_tokens"),
+            max_retries=get("max_retries"),
         )
+
+def get_reranker(configs):
+    # Support both DictConfig (attribute access) and dict (key access)
+    def get(name, default=None):
+        if isinstance(configs, dict):
+            return configs.get(name, default)
+        return getattr(configs, name, default)
+
+    api_type = get("api_type")
+    model_name = get("model_name")
+    if api_type != "huggingface" or not model_name:
+        return None
+
+    try:
+        return HuggingFaceBgeEmbeddings(model_name=model_name)
+    except Exception:
+        return None
