@@ -160,6 +160,35 @@ en:
 
     Provide your response in JSON format, ensuring that the sum of all probabilities equals 100. For example: {'Deny': 35, 'Downplay': 25, 'Blame': 25, 'Inform': 5, 'Engage': 10}
 
+  select_action_contemplation_prompt: |
+    Assume you are a Client involved in a counseling conversation. The current conversation is provided below:
+    {{ recent_context }}
+
+    Based on the context, allocate probabilities to each of the following dialogue actions to maintain coherence:
+    - Inform: The client shares details about their background, experiences, or emotions revealing the current state.
+    - Engage: The client interacts politely with the counselor, such as greeting or thanking.
+    - Hesitate: The client shows uncertainty, indicating ambivalence about change.
+    - Doubt: The client expresses skepticism about the practicality or success of proposed changes without revealing further information.
+    - Acknowledge: The client acknowledges that their behavior is problematic or that change may be needed.
+
+    Provide your response in JSON format, ensuring that the sum of all probabilities equals 100. For example:
+    {"Inform": 20, "Engage": 25, "Hesitate": 30, "Doubt": 10, "Acknowledge": 15}
+
+  select_action_preparation_prompt: |
+    Assume you are a Client involved in a counseling conversation. The current conversation is provided below:
+    {{ recent_context }}
+
+    The client is in the Preparation stage, getting ready to take action and discuss concrete steps toward change.
+    Based on the context, allocate probabilities to each of the following dialogue actions to maintain coherence:
+    - Inform: The client shares further details about their background, experiences, or emotions relevant to planning.
+    - Engage: The client interacts politely and maintains rapport with the counselor.
+    - Reject: The client declines the proposed plan, deeming it unsuitable.
+    - Accept: The client agrees to adopt the suggested action plan.
+    - Plan: The client proposes or details steps for a change plan.
+
+    Provide your response in JSON format, ensuring that the sum of all probabilities equals 100. For example:
+    {"Inform": 15, "Engage": 20, "Reject": 25, "Accept": 10, "Plan": 30}
+
 
   # ========= 7. select_information prompts =========
   select_information_has_question_prompt: |
