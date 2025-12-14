@@ -5,6 +5,7 @@ from .THU import THUClient
 from .eeyore import EeyoreClient
 from .psyche import psycheClient
 from .SimPatient import SimPatientClient
+from .consistentMI import consistentMIClient
 
 from omegaconf import DictConfig
 from langchain_core.language_models import BaseChatModel
@@ -27,6 +28,8 @@ def get_client(configs: DictConfig):
         return psycheClient(configs=configs)
     elif agent_type == 'SimPatient':
         return SimPatientClient(configs=configs)
+    elif agent_type == 'consistentMI':
+        return consistentMIClient(configs=configs)
     else:
         raise ValueError(f"Unknown client agent type: {agent_type}")
 
