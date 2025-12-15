@@ -4,17 +4,16 @@
 
 # Supported Clients
 
-- [x] Custom basic for testing purposes
-- [x] [PatientPsi](https://arxiv.org/abs/2405.19660)
-- [x] [RoleplayDoh](https://aclanthology.org/2024.emnlp-main.591/)
-- [x] [Eeyore](https://aclanthology.org/2025.findings-acl.707.pdf)
-- [x] [ConsistentMI](https://github.com/IzzetYoung/ConsistentMIClientSimulator)
-- [x] [PSYCHE](https://arxiv.org/pdf/2501.01594)
-- [x] [SimPatient](https://github.com/IanSteenstra/SimPatient)
-- [ ] [ClientCast](https://github.com/wangjs9/ClientCAST)
-- [ ] [AnnaAgent](https://github.com/sci-m-wang/AnnaAgent)
-- [ ] [PatientSim](https://github.com/dek924/PatientSim)
-- [ ] [EvoPatient](https://github.com/ZJUMAI/EvoPatient)
+| Paper                                                                                                                                                                  | Venue               | Implementation                                      |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | --------------------------------------------------- |
+| [Consistent Client Simulation for Motivational Interviewing-based Counseling](https://aclanthology.org/2025.acl-long.1021/)                                            | ACL 2025 (Main)     | [`consistentMI`](.//agents/clients/consistentMI.py) |
+| [Eeyore: Realistic Depression Simulation via Expert-in-the-Loop Supervised and Preference Optimization](https://aclanthology.org/2025.findings-acl.707/)               | ACL 2025 (Findings) | [`eeyore`](.//agents/clients/eeyore.py)             |
+| [AnnaAgent: Dynamic Evolution Agent System with Multi-Session Memory for Realistic Seeker Simulation](https://aclanthology.org/2025.findings-acl.1192/)                | ACL 2025 (Findings) | `annaAgent` (N/A)                                   |
+| [Scaffolding Empathy: Training Counselors with Simulated Patients and Utterance-level Performance Visualizations](https://dl.acm.org/doi/full/10.1145/3706598.3714014) | CHI 2025            | [`simPatient`](.//agents/clients/simPatient.py)     |
+| [Towards a Client-Centered Assessment of LLM Therapists by Client Simulation](https://github.com/wangjs9/ClientCAST)                                                   | Arxiv               | `clientCast` (N/A)                                  |
+| [PSYCHE: A Multi-faceted Patient Simulation Framework for Evaluation of Psychiatric Assessment Conversational Agents](https://arxiv.org/pdf/2501.01594)                | ArXiv               | [`psyche`](.//agents/clients/psyche.py)             |
+| [PATIENT-Ψ: Using Large Language Models to Simulate Patients for Training Mental Health Professionals](https://aclanthology.org/2024.emnlp-main.711/)                  | EMNLP 2024 (Main)   | [`patientPsi`](.//agents/clients/patientPsi.py)     |
+| [Roleplay-doh: Enabling Domain-Experts to Create LLM-simulated Patients via Eliciting and Adhering to Principles](https://aclanthology.org/2024.emnlp-main.591/)       | EMNLP 2024 (Main)   | [`roleplayDoh`](.//agents/clients/roleplayDoh.py)   |
 
 # Guide
 
