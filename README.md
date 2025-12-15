@@ -2,20 +2,6 @@
 
 > A unified hub to create, simulate, and evaluate methods for patient/client simulation.
 
-# Supported Clients
-
-| Paper                                                                                                                                                                  | Venue               | Focus                              | Implementation                                         |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------- | ------------------------------------------------------ |
-| [Consistent Client Simulation for Motivational Interviewing-based Counseling](https://aclanthology.org/2025.acl-long.1021/)                                            | ACL 2025 (Main)     | General (MI)                       | [`consistentMI`](./src/agents/clients/consistentMI.py) |
-| [Eeyore: Realistic Depression Simulation via Expert-in-the-Loop Supervised and Preference Optimization](https://aclanthology.org/2025.findings-acl.707/)               | ACL 2025 (Findings) | Depression (Screening/General)     | [`eeyore`](./src/agents/clients/eeyore.py)             |
-| [AnnaAgent: Dynamic Evolution Agent System with Multi-Session Memory for Realistic Seeker Simulation](https://aclanthology.org/2025.findings-acl.1192/)                | ACL 2025 (Findings) | General (Multi-session Counseling) | `annaAgent` (N/A)                                      |
-| [Scaffolding Empathy: Training Counselors with Simulated Patients and Utterance-level Performance Visualizations](https://dl.acm.org/doi/full/10.1145/3706598.3714014) | CHI 2025            | Alcohol Misuse (MI)                | [`simPatient`](./src/agents/clients/simPatient.py)     |
-| [TalkDep: Clinically Grounded LLM Personas for Conversation-Centric Depression Screening](https://dl.acm.org/doi/10.1145/3746252.3761617)                              | CIKM 2025           | Depression (Diagnosis)             | `talkDep` (N/A)                                        |
-| [Towards a Client-Centered Assessment of LLM Therapists by Client Simulation](https://github.com/wangjs9/ClientCAST)                                                   | Arxiv               | General (Psychotherapy)            | `clientCast` (N/A)                                     |
-| [PSYCHE: A Multi-faceted Patient Simulation Framework for Evaluation of Psychiatric Assessment Conversational Agents](https://arxiv.org/pdf/2501.01594)                | ArXiv               | General (Psychiatric Assessment)   | [`psyche`](./src/agents/clients/psyche.py)             |
-| [PATIENT-Ψ: Using Large Language Models to Simulate Patients for Training Mental Health Professionals](https://aclanthology.org/2024.emnlp-main.711/)                  | EMNLP 2024 (Main)   | General (CBT)                      | [`patientPsi`](./src/agents/clients/patientPsi.py)     |
-| [Roleplay-doh: Enabling Domain-Experts to Create LLM-simulated Patients via Eliciting and Adhering to Principles](https://aclanthology.org/2024.emnlp-main.591/)       | EMNLP 2024 (Main)   | General (Counseling)               | [`roleplayDoh`](./src/agents/clients/roleplayDoh.py)   |
-
 # Guide
 
 ## 1. Setting up the environment
@@ -48,20 +34,32 @@ In addition, you can run the following script for customized simulations
 uv run python -m src.scripts.simulate client=[client] therapist=[therapist] evaluator=evaluator evaluator.eval_type=[eval_type]
 ```
 
-- `client` can be one of the following
-  - `basic` → custom client for testing purposes
-  - `patientPsi`
-  - `roleplayDoh`
-  - `eeyore`
-  - `consistentMI`
-  - `psyche`
-  - `SimPatient`
-- `therapist` can be one of the following
-  - `basic` → custom therapist for testing purposes
-  - `eliza` → simple implementation of the eliza chatbot
-  - `user `→ user role-playing as a therapist
-- `evaluator` can be one of the following
-  - `basic` → custom evaluator for testing purposes
+## 3. Supported Agents
+
+### Clients (Patients)
+
+| Source / Description                                                                                                                                                   | Venue               | Focus                              | Agent                                                  |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------- | ------------------------------------------------------ |
+| [Consistent Client Simulation for Motivational Interviewing-based Counseling](https://aclanthology.org/2025.acl-long.1021/)                                            | ACL 2025 (Main)     | General (MI)                       | [`consistentMI`](./src/agents/clients/consistentMI.py) |
+| [Eeyore: Realistic Depression Simulation via Expert-in-the-Loop Supervised and Preference Optimization](https://aclanthology.org/2025.findings-acl.707/)               | ACL 2025 (Findings) | Depression (Screening/General)     | [`eeyore`](./src/agents/clients/eeyore.py)             |
+| [AnnaAgent: Dynamic Evolution Agent System with Multi-Session Memory for Realistic Seeker Simulation](https://aclanthology.org/2025.findings-acl.1192/)                | ACL 2025 (Findings) | General (Multi-session Counseling) | `annaAgent` (N/A)                                      |
+| [Scaffolding Empathy: Training Counselors with Simulated Patients and Utterance-level Performance Visualizations](https://dl.acm.org/doi/full/10.1145/3706598.3714014) | CHI 2025            | Alcohol Misuse (MI)                | [`simPatient`](./src/agents/clients/simPatient.py)     |
+| [TalkDep: Clinically Grounded LLM Personas for Conversation-Centric Depression Screening](https://dl.acm.org/doi/10.1145/3746252.3761617)                              | CIKM 2025           | Depression (Diagnosis)             | `talkDep` (N/A)                                        |
+| [Towards a Client-Centered Assessment of LLM Therapists by Client Simulation](https://github.com/wangjs9/ClientCAST)                                                   | Arxiv               | General (Psychotherapy)            | `clientCast` (N/A)                                     |
+| [PSYCHE: A Multi-faceted Patient Simulation Framework for Evaluation of Psychiatric Assessment Conversational Agents](https://arxiv.org/pdf/2501.01594)                | ArXiv               | General (Psychiatric Assessment)   | [`psyche`](./src/agents/clients/psyche.py)             |
+| [PATIENT-Ψ: Using Large Language Models to Simulate Patients for Training Mental Health Professionals](https://aclanthology.org/2024.emnlp-main.711/)                  | EMNLP 2024 (Main)   | General (CBT)                      | [`patientPsi`](./src/agents/clients/patientPsi.py)     |
+| [Roleplay-doh: Enabling Domain-Experts to Create LLM-simulated Patients via Eliciting and Adhering to Principles](https://aclanthology.org/2024.emnlp-main.591/)       | EMNLP 2024 (Main)   | General (Counseling)               | [`roleplayDoh`](./src/agents/clients/roleplayDoh.py)   |
+
+### Therapists
+
+- `basic` → custom therapist for testing purposes
+- `eliza` → simple implementation of the eliza chatbot
+- `user `→ user role-playing as a therapist
+
+### Evaluators
+
+- `basic` → custom evaluator for testing purposes
+
 - `eval_type` can be one of the following
   - `cbt`
   - `active_listening`
@@ -71,11 +69,11 @@ uv run python -m src.scripts.simulate client=[client] therapist=[therapist] eval
 You can run the following command to create the necessary files for a new agent:
 
 ```bash
-uv run python -m src.scripts.create --agent_type [client|therapist] --agent_name <agent_name>
+uv run python -m src.scripts.create agent_type=[client|therapist] agent_name=<agent_name>
 ```
 
 For example
 
 ```bash
-uv run python -m src.scripts.create --agent_type client --agent_name test
+uv run python -m src.scripts.create agent_type=client agent_name=test
 ```

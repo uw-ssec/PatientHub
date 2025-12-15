@@ -1,9 +1,8 @@
 import hydra
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig
 
 from src.events import TherapySession
 from src.agents import get_inference_agent
-from src.utils import load_json, get_model_client
 
 
 @hydra.main(version_base=None, config_path="../configs", config_name="simulate")
@@ -34,10 +33,10 @@ def simulate(configs: DictConfig) -> None:
         session_handler = CallbackHandler()
         lg_config["callbacks"] = [session_handler]
 
-    session.graph.invoke(
-        input={},
-        config=lg_config,
-    )
+    # session.graph.invoke(
+    #     input={},
+    #     config=lg_config,
+    # )
 
 
 if __name__ == "__main__":

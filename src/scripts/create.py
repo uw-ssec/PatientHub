@@ -6,17 +6,16 @@ A script for creating new agents. By running this script, it will ask for a {nam
 """
 
 import os
-import argparse
+import hydra
+from omegaconf import DictConfig
 from src.utils import load_prompts
 
 
 class FileCreator:
-    def __init__(self, args):
-        self.agent_type = args.agent_type
-        self.agent_name = args.agent_name
-        self.agent_class_name = (
-            f"{args.agent_name.capitalize()}{args.agent_type.capitalize()}"
-        )
+    def __init__(self, configs: DictConfig):
+        self.agent_type = configs.agent_type
+        self.agent_name = configs.agent_name
+        self.agent_class_name = self.get_class_name()
         # Load boilderplate for files
         self.prompts = load_prompts(role="generator", agent_type="files")
         # Define paths
@@ -27,8 +26,12 @@ class FileCreator:
             "prompt": f"data/prompts/{self.agent_type}/{self.agent_name}.yaml",
         }
 
+    def get_class_name(self) -> str:
+        name = self.agent_name + self.agent_type.capitalize()
+        return name[0].upper() + name[1:]
+
     # Create agent implementation file
-    def create_agent_file(self):
+    def create_agent_file(self) -> None:
         if not os.path.exists(self.paths["agent"]):
             agent_content = self.prompts["agent"].render(
                 agent_name=self.agent_name,
@@ -50,7 +53,7 @@ class FileCreator:
             )
 
     # Add implementation to __init__.py:
-    def add_to_init(self):
+    def add_to_init(self) -> None:
         prev_line = ""
         is_imported = False
         lines = open(self.paths["_init_"], "r", encoding="utf-8").readlines()
@@ -69,7 +72,7 @@ class FileCreator:
         print(f"> Updated {self.paths['_init_']} to include {self.agent_class_name}.")
 
     # Create configuration file
-    def create_config_file(self):
+    def create_config_file(self) -> None:
         if not os.path.exists(self.paths["config"]):
             config_content = self.prompts["config"].render(
                 agent_name=self.agent_name, agent_type=self.agent_type
@@ -85,7 +88,7 @@ class FileCreator:
             )
 
     # Create prompt template file
-    def create_prompt_file(self):
+    def create_prompt_file(self) -> None:
         if not os.path.exists(self.paths["prompt"]):
             prompt_content = self.prompts["prompt"].render()
             with open(self.paths["prompt"], "w", encoding="utf-8") as f:
@@ -98,29 +101,20 @@ class FileCreator:
                 f"> {self.agent_type} prompt template already exists at: {self.paths['prompt']}"
             )
 
-    def create_files(self):
+    def create_files(self) -> None:
         self.create_agent_file()
         self.create_config_file()
         self.create_prompt_file()
+        print("> File creation process completed.")
+
+
+@hydra.main(version_base=None, config_path="../configs", config_name="create")
+def main(configs: DictConfig) -> None:
+    file_creator = FileCreator(configs=configs)
+    if configs.agent_type not in ["client", "therapist"]:
+        raise ValueError("agent_type must be either 'client' or 'therapist'")
+    file_creator.create_files()
 
 
 if __name__ == "__main__":
-    # client_name = input("Enter the name of the new client: ")
-    args = argparse.ArgumentParser()
-    # The type can only be client or therapist for now
-    args.add_argument(
-        "--agent_type",
-        type=str,
-        required=True,
-        help="The type of the new agent",
-        choices=["client", "therapist"],
-    )
-    args.add_argument(
-        "--agent_name",
-        type=str,
-        required=True,
-        help="The name of the new agent (lowercase)",
-    )
-    args = args.parse_args()
-    file_creator = FileCreator(args=args)
-    file_creator.create_files()
+    main()
