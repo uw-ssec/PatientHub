@@ -1,6 +1,6 @@
 [
     {
-        "MFC-Profile":{
+        "MFC-Profile": {
             "Identifying data": {
                 "Age": "40",
                 "Sex": "Female",
@@ -12,12 +12,12 @@
             },
             "Present illness": {
                 "Symptom": {
-                "Name": "Persistent sadness",
-                "Length": "24 weeks",
-                "Alleviating factor": "Spending time with family",
-                "Exacerbating factor": "Work stress",
-                "Triggering factor": "Increased workload and stress at work",
-                "Stressor": "work"
+                    "Name": "Persistent sadness",
+                    "Length": "24 weeks",
+                    "Alleviating factor": "Spending time with family",
+                    "Exacerbating factor": "Work stress",
+                    "Triggering factor": "Increased workload and stress at work",
+                    "Stressor": "work"
                 }
             },
             "Past psychiatric history": {
@@ -41,9 +41,9 @@
             },
             "Developmental/social history": {
                 "Childhood history": {
-                "Home environment": "Supportive but strict",
-                "Members of family": "Parents and one younger brother",
-                "Social environment": "Had a few close friends, mostly kept to herself"
+                    "Home environment": "Supportive but strict",
+                    "Members of family": "Parents and one younger brother",
+                    "Social environment": "Had a few close friends, mostly kept to herself"
                 },
                 "School history": "Low academic performance",
                 "Work history": "Works as an office worker, good performance, switched jobs twice due to better opportunities, good relationship with supervisor, mixed relations with coworkers"
@@ -73,27 +73,24 @@
         }
     },
     {
-        "Diagnosis": "Major Depressive Disorder",
-        "Age": 40,
-        "Sex": "Female",
         "MFC-Profile": {
             "Identifying data": {
                 "Age": "40",
                 "Sex": "Female",
-                "Marital status": "Divorced",
-                "Occupation": "Teacher"
+                "Marital status": "Single",
+                "Occupation": "Project manager"
             },
             "Chief complaint": {
-                "Description": "I feel exhausted and have lost interest in everything I used to enjoy."
+                "Description": "I just feel this constant heaviness and sadness, like I can't find joy in anything anymore."
             },
             "Present illness": {
                 "Symptom": {
-                    "Name": "Loss of interest",
-                    "Length": "18 weeks",
-                    "Alleviating factor": "Taking short walks",
-                    "Exacerbating factor": "Crowded environments",
-                    "Triggering factor": "Recent divorce and increased workload",
-                    "Stressor": "Home and Work"
+                    "Name": "Persistent depressive mood",
+                    "Length": "20 weeks",
+                    "Alleviating factor": "Engaging in physical exercise",
+                    "Exacerbating factor": "Long periods of isolation",
+                    "Triggering factor": "Increased responsibilities and lack of support at work",
+                    "Stressor": "work"
                 }
             },
             "Past psychiatric history": {
@@ -102,50 +99,50 @@
             },
             "Past medical history": {
                 "Presence": "Yes",
-                "History": "Migraine"
+                "History": "Hypothyroidism"
             },
             "Current medication": {
-                "Medication name": "Sumatriptan",
-                "Duration": "150 weeks",
+                "Medication name": "Sertraline",
+                "Duration": "40 weeks",
                 "Compliance": "Good",
-                "Effect": "Effective",
-                "Side effect": "Occasional dizziness"
+                "Effect": "Moderate",
+                "Side effect": "Mild nausea"
             },
             "Family history": {
-                "Diagnosis": "Sister diagnosed with anxiety disorder",
-                "Substance use": "Brother had a history of cannabis use"
+                "Diagnosis": "Father diagnosed with generalized anxiety disorder",
+                "Substance use": "Brother had issues with cannabis use"
             },
             "Developmental/social history": {
                 "Childhood history": {
                     "Home environment": "Stable but emotionally distant",
-                    "Members of family": "Parents, one sister, and one brother",
-                    "Social environment": "Had several friends but felt misunderstood"
+                    "Members of family": "Parents and an older sister",
+                    "Social environment": "Had a few close friends but was shy and reserved"
                 },
-                "School history": "Low academic performance",
-                "Work history": "Works as a teacher, generally good performance, changed schools twice due to relocation, good relationship with students, mixed relations with colleagues"
+                "School history": "Above average academic performance, occasional difficulties with peer interactions",
+                "Work history": "Works as a project manager, consistent performer, changed jobs once due to corporate restructuring, good relationship with current supervisor, somewhat isolated from coworkers"
             },
             "Impulsivity": {
                 "Suicidal ideation": "Moderate",
                 "Suicidal plan": "Absence",
                 "Suicidal attempt": "Absence",
-                "Self-mutilating behavior risk": "Low",
+                "Self-mutilating behavior risk": "Moderate",
                 "Homicide risk": "Low"
             }
         },
-        "MFC-History": "I grew up in a small town with my parents, an older sister, and a younger brother. Our home was stable in terms of material needs, but emotionally, it always felt like something was missing. My parents were kind yet distant, often preoccupied with their own issues, and though we lived under the same roof, I always felt a degree of separation from them. I remember being a child who had a few friends, but I often felt misunderstood, like there was an invisible barrier between me and the world.\n\nAcademically, school was a challenge. I struggled with my studies and usually had low grades, which only added to my feelings of inadequacy. Teachers often described me as quiet and reserved, and while I had a few friends, I never quite felt like I belonged. My brother went through a rough patch during his teenage years and got involved with cannabis, which caused some tension at home. My sister, on the other hand, was diagnosed with an anxiety disorder, and seeing her struggle sometimes made me feel anxious about my own mental health.\n\nAs I grew older, I decided to become a teacher, driven by the desire to make a difference in children's lives. Over the years, I have changed schools twice, mainly due to relocations, but I've always maintained a good rapport with my students. They bring a sense of joy and purpose to my life. However, my relationships with colleagues have been mixed; some are supportive, while others make me feel isolated.\n\nThe past few months have been particularly tough. After my recent divorce, I found myself engulfed in a wave of exhaustion and disinterest, a stark contrast to the passion I once had for teaching and life in general. My workload increased significantly, and the pressure was overwhelming. Crowded environments now exacerbate my anxiety, making it difficult to perform simple tasks like grocery shopping or attending school events. I find solace in taking short walks, which help clear my mind, albeit temporarily.\n\nThese feelings of hopelessness have been persistent, and there are days when I question my worth. While I've never formulated a plan, the idea of escape has crossed my mind more than once, which terrifies me. My migraines, which I've managed well with Sumatriptan over the years, occasionally add to my discomfort with bouts of dizziness. It's all been quite overwhelming, but I'm trying to hold on, seeking the light at the end of this dark tunnel. I know I need help, and I'm ready to take the steps necessary to find myself again.",
+        "MFC-History": "I grew up in a suburban neighborhood with my parents and my older sister. My father was a quiet man, often lost in his own thoughts, likely due to his struggles with generalized anxiety disorder, although he never talked about it. My mother tried her best to keep the household running smoothly, but emotional warmth was often missing. I always felt a certain distance from them, even though our home was otherwise stable.\n\nIn school, I was a diligent student, consistently achieving above average grades. However, social interactions were sometimes challenging for me. I was shy and reserved, preferring to spend time with a few close friends rather than mingling with larger groups. At times, I felt isolated, but I managed to navigate through my school years without major issues.\n\nAs an adult, I pursued a career as a project manager, a role that suited my organizational skills. I initially thrived, but over time, the pressures of increased responsibilities and a lack of support at work began to weigh heavily on me. About 20 weeks ago, I started experiencing a persistent depressive mood. It felt like a cloud had settled over me, and I struggled to find joy in anything anymore. I noticed that engaging in physical exercise, like going for a run, alleviated some of the heaviness, but long periods of isolation made it worse.\n\nMy work environment became a significant stressor. While I have a good relationship with my supervisor, I often feel isolated from my coworkers, which adds to my sense of loneliness. The constant demands and the feeling of being unsupported led to an increase in my responsibilities, triggering my depressive symptoms further.\n\nRecently, I've been experiencing moderate suicidal ideation. Though I have no plans or attempts, the thoughts linger in the background, exacerbated by the stress and isolation. I also deal with self-mutilating urges, which I manage through seeking support from friends and engaging in activities that distract me.\n\nCurrently, I'm on Sertraline, which I've been taking for 40 weeks. It provides moderate relief, though I experience mild nausea as a side effect. Despite my compliance with the medication, the heaviness persists, and I continue to grapple with the sadness that has become a part of my daily life.",
         "MFC-Behavior": {
-            "General appearance/attitude/behavior": "The patient is a woman in her early 40s, appearing slightly older due to her tired demeanor. She has a medium build, dressed in simple clothing, which is clean but lacks attention to style. Her hair is neatly tied back, but her eyes show signs of fatigue. Eye contact is sporadic, as she often looks down or away. The patient's posture is hunched, and her movements are slow and deliberate. She presents as cooperative but seems hesitant at times, showing signs of mild psychomotor retardation. There are no abnormal involuntary movements observed.",
-            "Mood": "Depressed \"I feel exhausted and have lost interest in everything I used to enjoy.\"",
-            "Affect": "Restricted, tense, and not labile, somewhat flat but appropriate to the context, not inappropriate or inadequate.",
+            "General appearance/attitude/behavior": "The patient is a woman in her early 40s, appearing slightly older than her stated age, with a height of approximately 165 cm and a medium build. Her hair is neatly tied back, but her facial expression is tired and drawn, with dark circles under her eyes. Her clothing is clean and appropriate for the season, though slightly wrinkled. She maintains minimal eye contact during the interview and her posture is somewhat slumped, suggesting low energy levels. She is cooperative and attentive, answering questions politely but without enthusiasm. There is no evidence of psychomotor agitation or retardation. Her movements are slow but steady, with no abnormal involuntary movements observed.",
+            "Mood": "Depressed \"I just feel this constant heaviness and sadness, like I can't find joy in anything anymore.\"",
+            "Affect": "Restricted, anxious, slightly tense, not labile, not shallow, not inappropriate.",
             "Spontaneity": "Decreased",
             "Verbal productivity": "Decreased",
-            "Tone of voice": "Monotone",
+            "Tone of voice": "Monotone, low-pitched",
             "Social judgement": "Normal",
-            "Insight": "Partial \"I know I'm not well, but it's hard to see how things can improve with all that's happened.\"",
+            "Insight": "Partial insight into her condition, acknowledging the impact of work stress on her mood. \"I know that work has been overwhelming, but I can't shake off this sadness.\"",
             "Reliability": "Yes",
             "Perception": "Normal",
             "Thought process": "Normal",
-            "Thought content": "Preoccupation with feelings of inadequacy and loss \"I sometimes feel like I'm failing my students and myself.\""
+            "Thought content": "Preoccupation with feelings of inadequacy and loneliness. \"I feel like I'm not doing enough at work and it's all piling on.\" Moderate suicidal ideation present, without plan or intent."
         }
     }
-]    
+]
