@@ -7,6 +7,7 @@ from .simPatient import SimPatientClient
 from .consistentMI import ConsistentMIClient
 from .difyTest import DifyTestClient
 from .user import UserClient
+from .clientCast import ClientCastClient
 
 from omegaconf import DictConfig
 
@@ -20,6 +21,7 @@ CLIENTS = {
     "consistentMI": ConsistentMIClient,
     "difyTest": DifyTestClient,
     "user": UserClient,
+    "clientCast": ClientCastClient,
 }
 
 
@@ -42,4 +44,5 @@ __all__ = [
     "ConsistentMIClient",
     "DifyTestClient",
     "UserClient",
+    "ClientCastClient",
 ]
