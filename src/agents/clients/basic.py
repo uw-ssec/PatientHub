@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 
 from src.brain import MentalState
 from src.agents import InferenceAgent
-from src.utils import load_prompts, load_json, get_model_client
+from src.utils import load_prompts, load_json, get_chat_model
 
 from omegaconf import DictConfig
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
@@ -39,7 +39,7 @@ class BasicClient(InferenceAgent):
         self.data = load_json(configs.data_path)[configs.data_idx]
         self.name = self.data["demographics"]["name"]
 
-        self.model_client = get_model_client(configs)
+        self.chat_model = get_chat_model(configs)
         self.prompts = load_prompts(
             role="client", agent_type="basic", lang=configs.lang
         )
@@ -50,8 +50,8 @@ class BasicClient(InferenceAgent):
         ]
 
     def generate(self, messages: List[str], response_format: BaseModel):
-        model_client = self.model_client.with_structured_output(response_format)
-        res = model_client.invoke(messages)
+        chat_model = self.chat_model.with_structured_output(response_format)
+        res = chat_model.invoke(messages)
         return res
 
     def set_therapist(self, therapist, prev_sessions: List[Dict[str, str] | None] = []):

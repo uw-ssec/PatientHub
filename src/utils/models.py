@@ -1,7 +1,4 @@
 import os
-import json
-import yaml
-from jinja2 import Template
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_huggingface import ChatHuggingFace, HuggingFacePipeline
@@ -9,66 +6,7 @@ from langchain_huggingface import ChatHuggingFace, HuggingFacePipeline
 load_dotenv(".env")
 
 
-def load_json(path: str):
-    return json.load(open(path, "r", encoding="utf-8"))
-
-
-def load_yaml(path: str):
-    try:
-        with open(path, "r") as file:
-            return yaml.safe_load(file)
-    except Exception as e:
-        print("Error loading YAML file:", e)
-        return {}
-
-
-def load_prompts(role: str, agent_type: str, lang: str = "en"):
-    path = f"data/prompts/{role}/{agent_type}.yaml"
-    prompts = {}
-    data = load_yaml(path)[lang]
-    for k, v in data.items():
-        if isinstance(v, str):
-            prompts[k] = Template(v)
-    return prompts
-
-
-def parse_json_response(res):
-    try:
-        res = res.replace("```json", "").replace("```", "")
-        res = json.loads(res)
-        return res
-    except Exception as e:
-        print(f"Error while parsing JSON response: {e}")
-        return res
-
-
-def save_json(data, file_path: str):
-    # Check if the directory exists, if not create it
-    if not os.path.exists(os.path.dirname(file_path)):
-        os.makedirs(os.path.dirname(file_path))
-
-    # Create new file and save content if it doesn't exist
-    if not os.path.exists(file_path):
-        with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, indent=4, ensure_ascii=False)
-    # Append to existing file
-    else:
-        prev_data = None
-        with open(file_path, "r", encoding="utf-8") as f:
-            prev_data = json.load(f)
-
-        if isinstance(prev_data, list):
-            prev_data.append(data)
-        elif prev_data:
-            prev_data = [prev_data, data]
-        else:
-            prev_data = [data]
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(prev_data, f, indent=4, ensure_ascii=False)
-
-
-def get_model_client(configs):
+def get_chat_model(configs):
     # Support both DictConfig (attribute access) and dict (key access)
     def get(name, default=None):
         if isinstance(configs, dict):

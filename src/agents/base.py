@@ -28,7 +28,7 @@ class TrainableAgent(BaseAgent):
 class InferenceAgent(BaseAgent):
     r"""An abstract base class for inference agents."""
 
-    model_client: Any
+    chat_model: Any
     data: Dict[str, Any]
     messages: List[Any]
     lang: str

@@ -1,6 +1,6 @@
 from typing import Any, Dict, List
 from src.agents import InferenceAgent
-from src.utils import load_json, load_prompts, get_model_client
+from src.utils import load_json, load_prompts, get_chat_model
 from omegaconf import DictConfig
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
@@ -15,7 +15,7 @@ class EeyoreClient(InferenceAgent):
         self.name = self.data.get("name", "Client")
         self.profile = self.data.get("profile", {})
 
-        self.model_client = get_model_client(configs)
+        self.chat_model = get_chat_model(configs)
 
         self.prompts = load_prompts(
             role="client", agent_type="eeyore", lang=configs.lang
@@ -32,7 +32,7 @@ class EeyoreClient(InferenceAgent):
         self.therapist = therapist.get("name", "Therapist")
 
     def generate(self, messages: List[Any]):
-        return self.model_client.invoke(messages)
+        return self.chat_model.invoke(messages)
 
     def generate_response(self, msg: str):
         self.messages.append(HumanMessage(content=msg))

@@ -2,7 +2,7 @@ import json
 from typing import Literal
 from pydantic import BaseModel, Field
 from src.prompts import get_prompt
-from src.utils import parse_json_response, get_model_client
+from src.utils import parse_json_response, get_chat_model
 
 
 class Event(BaseModel):
@@ -20,5 +20,5 @@ class BetweenSessionEvents(BaseModel):
 
 class EventGenerator:
     def __init__(self, model_name: str, api_type: str, data=None):
-        self.model_client = get_model_client(model_name, api_type)
+        self.chat_model = get_chat_model(model_name, api_type)
         self.agent = self.create_agent()

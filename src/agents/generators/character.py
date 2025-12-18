@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 from langchain_core.messages import SystemMessage
 
 from src.agents import InferenceAgent
-from src.utils import load_prompts, get_model_client, save_json
+from src.utils import load_prompts, get_chat_model, save_json
 
 
 class Demographics(BaseModel):
@@ -165,7 +165,7 @@ class StudentClientProfile(BaseModel):
 class StudentClientGenerator(InferenceAgent):
     def __init__(self, configs: DictConfig):
         self.configs = configs
-        self.model_client = get_model_client(configs)
+        self.chat_model = get_chat_model(configs)
         self.prompts = load_prompts(
             role="generator", agent_type="client", lang=configs.lang
         )
@@ -177,8 +177,8 @@ class StudentClientGenerator(InferenceAgent):
         print(json.dumps(schema, indent=2, ensure_ascii=False))
 
     def generate(self, prompt: str):
-        model_client = self.model_client.with_structured_output(StudentClientProfile)
-        res = model_client.invoke([SystemMessage(content=prompt)])
+        chat_model = self.chat_model.with_structured_output(StudentClientProfile)
+        res = chat_model.invoke([SystemMessage(content=prompt)])
         return res
 
     def create_character(

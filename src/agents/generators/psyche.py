@@ -5,7 +5,7 @@ from omegaconf import DictConfig
 from langchain_core.messages import SystemMessage
 from pydantic import BaseModel, Field
 
-from src.utils import load_prompts, get_model_client
+from src.utils import load_prompts, get_chat_model
 
 
 class IdentifyingData(BaseModel):
@@ -102,8 +102,7 @@ class PastPsychiatricHistory(BaseModel):
         default=None,
         alias="Description",
         description=(
-            "Description of past psychiatric episodes if present; "
-            "otherwise null."
+            "Description of past psychiatric episodes if present; " "otherwise null."
         ),
         example=None,
     )
@@ -388,21 +387,19 @@ class MFCBehavior(BaseModel):
 class PsycheGenerator:
     def __init__(self, configs: DictConfig):
         self.configs = configs
-        self.model_client = get_model_client(configs)
+        self.chat_model = get_chat_model(configs)
         self.prompts = load_prompts(
             role="generator", agent_type="psyche", lang=configs.lang
         )
 
-    def generate_mfc_profile(
-        self, diagnosis: str, age: int, sex: str
-    ) -> MFCProfile:
+    def generate_mfc_profile(self, diagnosis: str, age: int, sex: str) -> MFCProfile:
         prompt = self.prompts["MFC_Profile_generate_prompt"].render(
             diagnosis=diagnosis,
             age=age,
             sex=sex,
         )
-        model_client = self.model_client.with_structured_output(MFCProfile)
-        res = model_client.invoke([SystemMessage(content=prompt)])
+        chat_model = self.chat_model.with_structured_output(MFCProfile)
+        res = chat_model.invoke([SystemMessage(content=prompt)])
         return res
 
     def generate_mfc_history(
@@ -419,8 +416,8 @@ class PsycheGenerator:
             sex=sex,
             mfc_profile_json=profile_json,
         )
-        model_client = self.model_client.with_structured_output(MFCHistory)
-        res = model_client.invoke([SystemMessage(content=prompt)])
+        chat_model = self.chat_model.with_structured_output(MFCHistory)
+        res = chat_model.invoke([SystemMessage(content=prompt)])
         return res
 
     def generate_mfc_behavior(
@@ -448,8 +445,8 @@ class PsycheGenerator:
             mfc_profile_json=profile_json,
             mfc_history_json=history_json,
         )
-        model_client = self.model_client.with_structured_output(MFCBehavior)
-        res = model_client.invoke([SystemMessage(content=prompt)])
+        chat_model = self.chat_model.with_structured_output(MFCBehavior)
+        res = chat_model.invoke([SystemMessage(content=prompt)])
         return res
 
     def generate_case(self, diagnosis: str, age: int, sex: str) -> Dict[str, Any]:

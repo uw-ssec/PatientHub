@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 
 from src.agents import InferenceAgent
 from src.utils import (
-    get_model_client,
+    get_chat_model,
     get_reranker_model,
     load_json,
     load_prompts,
@@ -59,7 +59,7 @@ class ConsistentMIClient(InferenceAgent):
         self.prompts = load_prompts(
             role="client", agent_type="consistentMI", lang=configs.lang
         )
-        self.model_client = get_model_client(configs.model_client)
+        self.chat_model = get_chat_model(configs.chat_model)
         (
             self.retriever_tokenizer,
             self.retriever_model,
@@ -82,8 +82,8 @@ class ConsistentMIClient(InferenceAgent):
         self._init_conversation()
 
     def generate(self, messages: List[Any], response_format: BaseModel):
-        model_client = self.model_client.with_structured_output(response_format)
-        res = model_client.invoke(messages)
+        chat_model = self.chat_model.with_structured_output(response_format)
+        res = chat_model.invoke(messages)
         return res
 
     def set_therapist(
@@ -108,7 +108,7 @@ class ConsistentMIClient(InferenceAgent):
         return Response(content=content)
 
     def reset(self):
-        # Keep model_client and prompts; reload profile-dependent state
+        # Keep chat_model and prompts; reload profile-dependent state
         self._load_profile()
         self._init_topics()
         self._init_conversation()

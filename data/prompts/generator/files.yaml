@@ -4,7 +4,7 @@ en:
     from pydantic import BaseModel, Field
 
     from src.agents import InferenceAgent
-    from src.utils import load_prompts, load_json, get_model_client
+    from src.utils import load_prompts, load_json, get_chat_model
 
     from omegaconf import DictConfig
     from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
@@ -24,7 +24,7 @@ en:
             self.data = load_json(configs.data_path)[configs.data_idx]
             self.name = self.data.get("name", "{{agent_type}}")
 
-            self.model_client = get_model_client(configs)
+            self.chat_model = get_chat_model(configs)
             # TODO: Define the prompts for the client agent
             self.prompts = load_prompts(
                 role="{{agent_type}}", agent_type="{{agent_name}}", lang=configs.lang
@@ -35,8 +35,8 @@ en:
             ]
 
         def generate(self, messages: List[str], response_format: BaseModel):
-            model_client = self.model_client.with_structured_output(response_format)
-            res = model_client.invoke(messages)
+            chat_model = self.chat_model.with_structured_output(response_format)
+            res = chat_model.invoke(messages)
             return res
 
         def set_{{other_agent_type}}(self, {{other_agent_type}}, prev_sessions: List[Dict[str, str] | None] = []):

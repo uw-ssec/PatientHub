@@ -2,40 +2,41 @@ from typing import Dict, List
 from pydantic import BaseModel, Field
 
 from src.agents import InferenceAgent
-from src.utils import load_prompts, get_chat_model
+from src.utils import load_prompts, load_json, get_chat_model
 
 from omegaconf import DictConfig
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 
+# TODO: Define the response format
 class Response(BaseModel):
-    reasoning: str = Field(
-        description="The reasoning behind the generated response (no longer than 5 sentences)"
-    )
     content: str = Field(
         description="The content of your generated response in this turn",
     )
 
 
-class CBTTherapist(InferenceAgent):
+class ClientCastClient(InferenceAgent):
     def __init__(self, configs: DictConfig):
         self.configs = configs
 
-        self.name = "Therapist"
+        self.data = load_json(configs.data_path)[configs.data_idx]
+        self.name = self.data.get("name", "client")
 
         self.chat_model = get_chat_model(configs)
+        # TODO: Define the prompts for the client agent
         self.prompts = load_prompts(
-            role="therapist", agent_type="CBT", lang=configs.lang
+            role="client", agent_type="clientCast", lang=configs.lang
         )
-        self.messages = [SystemMessage(content=self.prompts["system"].render())]
+        # TODO: Initialize the system prompt
+        self.messages = [SystemMessage(content="<insert system prompt here>")]
 
     def generate(self, messages: List[str], response_format: BaseModel):
         chat_model = self.chat_model.with_structured_output(response_format)
         res = chat_model.invoke(messages)
         return res
 
-    def set_client(self, client, prev_sessions: List[Dict[str, str] | None] = []):
-        self.client = client.get("name", "client")
+    def set_therapist(self, therapist, prev_sessions: List[Dict[str, str] | None] = []):
+        self.therapist = therapist.get("name", "therapist")
 
     def generate_response(self, msg: str):
         self.messages.append(HumanMessage(content=msg))
@@ -44,6 +45,7 @@ class CBTTherapist(InferenceAgent):
 
         return res
 
+    # TODO: Define any other necessary methods
     def reset(self):
-        self.messages = [SystemMessage(content=self.prompts["system"])]
-        self.client = None
+        self.messages = []
+        self.therapist = None
