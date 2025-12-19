@@ -179,5 +179,6 @@ cython_debug/
 docs
 crawler
 temp.*
-outputs
+outputs/
 THU/
+evaluations/

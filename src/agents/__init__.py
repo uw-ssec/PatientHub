@@ -3,6 +3,7 @@ from .base import BaseAgent, InferenceAgent, TrainableAgent, UserAgent
 from .clients import get_client
 from .evaluators import get_evaluator
 from .therapists import get_therapist
+from .generators import get_generator
 
 from omegaconf import DictConfig
 
@@ -14,6 +15,8 @@ def get_inference_agent(category: str, configs: DictConfig):
         return get_evaluator(configs=configs)
     elif category == "therapist":
         return get_therapist(configs=configs)
+    elif category == "generator":
+        return get_generator(configs=configs)
     else:
         raise ValueError(f"Unknown agent category: {category}")
 

@@ -1,26 +1,13 @@
-"""
-A script for creating new agents.
-It requires:
-    - agent_type: either "client" or "therapist"
-    - agent_name: the name of the new agent to be created
-It creates:
-- The agent implementation at `src/agents/{agent_type}s/{agent_name}.py`.
-- The configuration file at `configs/{agent_type}s/{agent_name}.yaml`.
-- A prompt template file at `data/prompts/{agent_type}s/{agent_name}.yaml`.
-It also adds the new agent to the corresponding `__init__.py` file.
-The configurations for the new agent are specified in the `configs/create.yaml` file.
-"""
-
 import os
-import hydra
 from omegaconf import DictConfig
+
 from src.utils import load_prompts
 
 
-class FileCreator:
+class AgentFilesGenerator:
     def __init__(self, configs: DictConfig):
-        self.agent_type = configs.agent_type
-        self.agent_name = configs.agent_name
+        self.agent_type = configs.gen_agent_type
+        self.agent_name = configs.gen_agent_name
         self.agent_class_name = self.get_class_name()
         # Load boilderplate for files
         self.prompts = load_prompts(role="generator", agent_type="files")
@@ -28,7 +15,7 @@ class FileCreator:
         self.paths = {
             "_init_": f"src/agents/{self.agent_type}s/__init__.py",
             "agent": f"src/agents/{self.agent_type}s/{self.agent_name}.py",
-            "config": f"src/configs/{self.agent_type}/{self.agent_name}.yaml",
+            "config": f"configs/{self.agent_type}/{self.agent_name}.yaml",
             "prompt": f"data/prompts/{self.agent_type}/{self.agent_name}.yaml",
         }
 
@@ -37,7 +24,7 @@ class FileCreator:
         return name[0].upper() + name[1:]
 
     # Create agent implementation file
-    def create_agent_file(self) -> None:
+    def generate_agent_file(self) -> None:
         if not os.path.exists(self.paths["agent"]):
             agent_content = self.prompts["agent"].render(
                 agent_name=self.agent_name,
@@ -80,7 +67,7 @@ class FileCreator:
         print(f"> Updated {self.paths['_init_']} to include {self.agent_class_name}.")
 
     # Create configuration file
-    def create_config_file(self) -> None:
+    def generate_config_file(self) -> None:
         if not os.path.exists(self.paths["config"]):
             config_content = self.prompts["config"].render(
                 agent_name=self.agent_name, agent_type=self.agent_type
@@ -96,7 +83,7 @@ class FileCreator:
             )
 
     # Create prompt template file
-    def create_prompt_file(self) -> None:
+    def generate_prompt_file(self) -> None:
         if not os.path.exists(self.paths["prompt"]):
             prompt_content = self.prompts["prompt"].render()
             with open(self.paths["prompt"], "w", encoding="utf-8") as f:
@@ -109,20 +96,8 @@ class FileCreator:
                 f"> {self.agent_type} prompt template already exists at: {self.paths['prompt']}"
             )
 
-    def create_files(self) -> None:
-        self.create_agent_file()
-        self.create_config_file()
-        self.create_prompt_file()
+    def generate_files(self) -> None:
+        self.generate_agent_file()
+        self.generate_config_file()
+        self.generate_prompt_file()
         print("> File creation process completed.")
-
-
-@hydra.main(version_base=None, config_path="../configs", config_name="create")
-def main(configs: DictConfig) -> None:
-    file_creator = FileCreator(configs=configs)
-    if configs.agent_type not in ["client", "therapist"]:
-        raise ValueError("agent_type must be either 'client' or 'therapist'")
-    file_creator.create_files()
-
-
-if __name__ == "__main__":
-    main()

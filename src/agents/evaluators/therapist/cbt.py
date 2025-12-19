@@ -1,6 +1,11 @@
 from typing import Dict, List
 from pydantic import BaseModel, Field
 
+from src.agents import InferenceAgent
+from src.utils import load_prompts, get_chat_model
+
+from omegaconf import DictConfig
+
 
 class DimensionFeedback(BaseModel):
     strengths: List[str] = Field(
@@ -36,3 +41,22 @@ class CBTFeedback(BaseModel):
     dimension_feedback: CBTDimensions = Field(
         description="Detailed scores for each CBT dimension"
     )
+
+
+class CBTEvaluator(InferenceAgent):
+    def __init__(self, configs: DictConfig):
+        self.chat_model = get_chat_model(configs)
+        self.prompt = load_prompts(
+            role="evaluator/therapist", agent_type="cbt", lang=configs.lang
+        )["prompt"]
+
+    def generate(self, messages: List[Dict]):
+        messages = [f"{msg['role']}: {msg['content']}" for msg in messages]
+        chat_model = self.chat_model.with_structured_output(CBTFeedback)
+        self.prompt = self.prompt.render(dialogue_history="\n".join(messages))
+        res = chat_model.invoke(self.prompt)
+
+        return res
+
+    def reset(self):
+        pass

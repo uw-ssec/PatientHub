@@ -157,9 +157,10 @@ class TherapySession:
         # feedback = self.client.generate_feedback()
         # print("> Generated feedback")
         session_state = {
+            "profile": self.client.data,
             "messages": state["messages"],
-            # "summary": summary.model_dump(mode="json"),
             "num_turns": self.num_turns,
+            # "summary": summary.model_dump(mode="json"),
             # "agenda": self.therapist.agenda.model_dump(mode="json"),
             # "feedback": feedback,
         }
