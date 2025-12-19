@@ -1,6 +1,6 @@
 defaults:
   - _self_
-  - generator: psyche
+  - generator: clientCast
 gen_type: client
 api_type: LAB
 model_name: gpt-4o

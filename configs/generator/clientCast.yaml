@@ -1,0 +1,6 @@
+agent_type: clientCast
+input_dir: data/resources/ClientCast_human_data.json
+symptoms_dir: data/resources/ClientCast_symptoms.json
+data_idx: 0
+output_dir: data/characters/ClientCast.json
+lang: en

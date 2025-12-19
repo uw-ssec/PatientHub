@@ -1,13 +1,15 @@
+from .agent_files import AgentFilesGenerator
 from .student import StudentClientGenerator
 from .psyche import PsycheGenerator
-from .agent_files import AgentFilesGenerator
+from .clientCast import ClientCastGenerator
 
 from omegaconf import DictConfig
 
 GENERATORS = {
+    "agent_files": AgentFilesGenerator,
     "student": StudentClientGenerator,
     "psyche": PsycheGenerator,
-    "agent_files": AgentFilesGenerator,
+    "clientCast": ClientCastGenerator,
 }
 
 
@@ -22,7 +24,8 @@ def get_generator(configs: DictConfig):
 
 __all__ = [
     "get_generator",
+    "AgentFilesGenerator",
     "StudentClientGenerator",
     "PsycheGenerator",
-    "AgentFilesGenerator",
+    "ClientCastGenerator",
 ]

@@ -1,0 +1,1536 @@
+[
+  {
+    "conv_id": "0",
+    "messages": [
+      {
+        "role": "Therapist",
+        "content": "Thanks for filling it out. We give this form to everyone once a year regardless of why they come in. It helps us provide better care. Is it okay if I take a look at what you put down?"
+      },
+      {
+        "role": "Client",
+        "content": "Sure."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, let's see. It looks that you put-- You drink alcohol at least four times a week on average-"
+      },
+      {
+        "role": "Client",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Therapist",
+        "content": "-and you usually have three to four drinks when you do drink."
+      },
+      {
+        "role": "Client",
+        "content": "Usually three drinks and glasses of wine."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. That's at least 12 drinks a week."
+      },
+      {
+        "role": "Client",
+        "content": "Something like that."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Just so you know, my role, um, when we talk about alcohol use, is just to share information about risk and to help patients who want help. This is different than telling them what I think they should do. I don't do that."
+      },
+      {
+        "role": "Client",
+        "content": "Okay."
+      },
+      {
+        "role": "Therapist",
+        "content": "Uh, what else can you tell me about your drinking."
+      },
+      {
+        "role": "Client",
+        "content": "Well, I usually drink when I'm at home trying to unwind and I drink while I'm watching a movie. And sometimes, um, I take a bath but I also drink when I take a bath sometimes."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So, can I share with you some information on alcohol use?"
+      },
+      {
+        "role": "Client",
+        "content": "Okay."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So, there has been a lot of research on alcohol use and the guidelines we use in this country says that having seven or more drinks per week can raise the risk of health problems for women."
+      },
+      {
+        "role": "Client",
+        "content": "Hmm. Seven?"
+      },
+      {
+        "role": "Therapist",
+        "content": "Seven."
+      },
+      {
+        "role": "Client",
+        "content": "Wow. I knew my doctor didn't like me drinking the amount that I did but I didn't know that seven was the limit."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah, you're surprised to hear that?"
+      },
+      {
+        "role": "Client",
+        "content": "Yes. What-what kind of health problems?"
+      },
+      {
+        "role": "Therapist",
+        "content": "Well things like heart disease, cancer, liver problems, uh, stomach pains, insomnia. Unfortunately, uh, people who drink at a risky level are more likely to be diagnosed with depression and alcohol can make depression worse or harder to treat."
+      },
+      {
+        "role": "Client",
+        "content": "Hmm. Well, that's not good news."
+      },
+      {
+        "role": "Therapist",
+        "content": "Well, how do you think your drinking relates to the depression you've experienced?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, to be honest, I drink sometimes when I'm feeling down and I find it more interesting and not so blur."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. And how do you feel after you drink?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, then I feel blur again."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, there are some answers on this form here. Uh, less than monthly you drank more than you intended to."
+      },
+      {
+        "role": "Client",
+        "content": "Yes on occasion."
+      },
+      {
+        "role": "Therapist",
+        "content": "And sometimes you feel guilty after you drink."
+      },
+      {
+        "role": "Client",
+        "content": "Sometimes I just don't like how much I drink. I sometimes finish a bottle in one night."
+      },
+      {
+        "role": "Therapist",
+        "content": "So you're not proud of finishing a bottle?"
+      },
+      {
+        "role": "Client",
+        "content": "No, it's not like I get crazy or anything but I just don't like the amount that I'm drinking."
+      },
+      {
+        "role": "Therapist",
+        "content": "Right. By the way, binge drinking is defined for women as having more than, uh, three drinks and there are about five drinks in a bottle. So, you enjoy drinking wine because it helps make things, uh, a little bit more interesting when you're feeling down but at the same time you don't like drinking when you have more than you want it to and then the depression returns after you drink."
+      },
+      {
+        "role": "Client",
+        "content": "Mm-hmm. Yes, sometimes I feel worse after drinking."
+      },
+      {
+        "role": "Therapist",
+        "content": "Where do you wanna go from here? What do you wanna change about your drinking habits?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, I don't think that I'm ready to cut down to seven drinks a week. That seems like a lot but I would consider cutting back to two drinks a night. I think that would be my goal."
+      },
+      {
+        "role": "Therapist",
+        "content": "If I gave you a scale from 0 to 10, 0 being not ready at all to cut back on drinking and 10 being very ready, what number would you be at?"
+      },
+      {
+        "role": "Client",
+        "content": "I'd say an eight."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Why do you think it's not something less like a six?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, I'm more ready than a six because I'm ready to cut back on my drinking and I don't wanna make my depression any worse."
+      },
+      {
+        "role": "Therapist",
+        "content": "What would help you cut back to two drinks?"
+      },
+      {
+        "role": "Client",
+        "content": "Maybe having less wine in the house."
+      },
+      {
+        "role": "Therapist",
+        "content": "Having less wine in the house will help?"
+      },
+      {
+        "role": "Client",
+        "content": "Yes."
+      },
+      {
+        "role": "Therapist",
+        "content": "What else besides drinking helps you relax and unwind in the evenings?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, I like to watch movies, read a book, and take a bath but sometimes I drink when I take a bath."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, it's not just wine that helps you relax. Um, there's reading a book, watching a movie, and taking a hot bath too."
+      },
+      {
+        "role": "Client",
+        "content": "Mm-hmm. Yes."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So, it sounds like you have some reasons to cut back on drinking and you have ways to relax besides drinking and it sounds like you're pretty ready to cut back."
+      },
+      {
+        "role": "Client",
+        "content": "Yes."
+      },
+      {
+        "role": "Therapist",
+        "content": "Great. I'd be interested to see how well you do on your goal in the next few weeks. Would you be willing to come back and talk to me about it?"
+      },
+      {
+        "role": "Client",
+        "content": "Sure."
+      },
+      {
+        "role": "Therapist",
+        "content": "Great. So, let's see how well you're doing with these new meds."
+      },
+      {
+        "role": "Client",
+        "content": "Okay."
+      }
+    ]
+  },
+  {
+    "conv_id": "2",
+    "messages": [
+      {
+        "role": "Therapist",
+        "content": "Hi, John. Nice to see you again. So, tell me, how are things going?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, doc, I know you told me that I need to lose weight. And even though the scale didn't show today, I was able to lose about 5 pounds, but then I gained it right back."
+      },
+      {
+        "role": "Therapist",
+        "content": "Well, I appreciate you bringing your weight to the forefront. Do you mind if we explore this issue further?"
+      },
+      {
+        "role": "Client",
+        "content": "No, by all means. I know we have to discuss it."
+      },
+      {
+        "role": "Therapist",
+        "content": "All right. Uh, well, it sounds like you've been struggling with your weight recently. And I understand how difficult it is to lose the weight and then have it come back again. So, tell me what you did to lose that initial 5 pounds."
+      },
+      {
+        "role": "Client",
+        "content": "I started watching what I ate and I ate less. I've been eating more fruits and vegetables. I've also been walking a lot. I'm walking up to 20 minutes a day now. I saw the weight come slowly off, um, and I felt better. But then when I watched it come back on again, you know, I gave up."
+      },
+      {
+        "role": "Therapist",
+        "content": "But you did have some success. Tell me how you felt when you lost the weight."
+      },
+      {
+        "role": "Client",
+        "content": "I felt great and I felt really proud of myself. I thought that this was something that I could do."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Well, it sounds like you realized that when you lost the weight you feel better and that it's gonna affect your overall health. So, tell me what you think changed that caused you to gain the weight back."
+      },
+      {
+        "role": "Client",
+        "content": "Well, I think it's because I've been eating more fruits and vegetables, that- that's it."
+      },
+      {
+        "role": "Therapist",
+        "content": "And how many servings of fruits and vegetables on average per day would you have?"
+      },
+      {
+        "role": "Client",
+        "content": "To be honest, I have four or five -- four to six glasses of orange juice a day. Um, I have fruit for lunch and breakfast. I have, uh, usually one to two servings of a vegetable like lettuce or broccoli with thinner."
+      },
+      {
+        "role": "Therapist",
+        "content": "John, it's very important that you recognize that some fruits, but especially fruit juice can contain a huge amount of calories. Did you know that a glass of orange juice has almost as many calories as a can of cola?"
+      },
+      {
+        "role": "Client",
+        "content": "No, I didn't know. Um, but doesn't the fruit- food pyramid classify, um, fruit juice as a- a serving?"
+      },
+      {
+        "role": "Therapist",
+        "content": "You're absolutely right, but keep in mind that the food pyramid is to be used as a guideline only. When it comes to nutrition, we have to have a more personalized approach. So I have a hunch, and that is the excess fruit that you were consuming probably caused your weight rebound. What's your impression?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, this changes quite a bit. I mean, here I'm thinking that my fruit intake is making me healthier and actually it's making me fatter."
+      },
+      {
+        "role": "Therapist",
+        "content": "Indeed. Let me ask you something, knowing what you know now, how important is it to you to lose the weight by decreasing the amount of juice that you're currently taking in?"
+      },
+      {
+        "role": "Client",
+        "content": "Obviously, I need to cut back on the fruit juice. But boy, do I love that OJ."
+      },
+      {
+        "role": "Therapist",
+        "content": "Oh, I understand. Let me ask you this, on a scale from 0 to 10, 0 meaning that there's no way you can do it, and 10 meaning that you're 100% confident that you can do it, how confident are you that you'll be able to reduce the amount of juice you're currently taking in."
+      },
+      {
+        "role": "Client",
+        "content": "Um, six or seven."
+      },
+      {
+        "role": "Therapist",
+        "content": "All right. So, you're not a zero. So, that tells me that you've got some confidence that this is doable, this is something you certainly can do it. Why are you not a zero?"
+      },
+      {
+        "role": "Client",
+        "content": "I guess it's because I know that I need to do it to lose the weight."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, you realize, again, that if you decrease the amount of juice you're taking in, you're gonna decrease your weight, you're gonna feel better, and you're gonna impact your po- health positively?"
+      },
+      {
+        "role": "Client",
+        "content": "Yes."
+      },
+      {
+        "role": "Therapist",
+        "content": "But you're also not a 10, and that tells me that there may be some obstacles to your success. What would it take for you to be a 10 or even an 8 or 9?"
+      },
+      {
+        "role": "Client",
+        "content": "Getting the fruit juice of the house because I know if it's there I'll drink it. My wife does the shopping for us, so maybe if I ask her not to get the juice, that would solve it."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Now, if the juice was still there, can you think of anything else you could do?"
+      },
+      {
+        "role": "Client",
+        "content": "I suppose I could replace it with, um, a low-calorie drink or drink more water."
+      },
+      {
+        "role": "Therapist",
+        "content": "Excellent. John, I get the impression that you want to stay in course with weight reduction. And the best way to do this will be to decrease the amount of juice that you're currently taking in. So if I saw you in two weeks and I asked you how much juice you're t- drinking and how you did it, what would you tell me?"
+      },
+      {
+        "role": "Client",
+        "content": "I'd say I didn't have any and I substituted it with, um, sugar-free drinks."
+      },
+      {
+        "role": "Therapist",
+        "content": "Excellent. Well, it sounds like you have a plan. Same scale, 0 to 10, how confident are you that you can, uh, make this happen?"
+      },
+      {
+        "role": "Client",
+        "content": "A 10."
+      },
+      {
+        "role": "Therapist",
+        "content": "I agree. All right. Well, you-you know what? I'm not gonna start any medications today. Your levels were a little bit off, but I think we can handle this from a purely lifestyle standpoint. What do you think?"
+      },
+      {
+        "role": "Client",
+        "content": "Great. It sounds good to me."
+      },
+      {
+        "role": "Therapist",
+        "content": "Excellent. I'll see you in two weeks."
+      },
+      {
+        "role": "Client",
+        "content": "Okay."
+      }
+    ]
+  },
+  {
+    "conv_id": "6",
+    "messages": [
+      {
+        "role": "Therapist",
+        "content": "Hi, Sal. Thanks for coming in today."
+      },
+      {
+        "role": "Client",
+        "content": "No problem."
+      },
+      {
+        "role": "Therapist",
+        "content": "I saw that your doctor made the referral and, um, and I really appreciate you taking the time to come and make that appointment."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, it's-it's a bit of an inconvenience I'd say, but I'm here though."
+      },
+      {
+        "role": "Therapist",
+        "content": "So you made it in here and do you have a sense of-of what some of the doctor's concerns were that led her to refer you?"
+      },
+      {
+        "role": "Client",
+        "content": "I don't know, something about changing my life even more. You know, the smoking's been changed, and now it's, you know, cut down the drinking, get rid of those extra smokes, get rid of my dog. I don't know what else have to do."
+      },
+      {
+        "role": "Therapist",
+        "content": "So your asthma has been acting up and there's a lot of stuff, not just the asthma going on?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, there's a lot of stress too. My wife's still on maternity leave, she's not getting paid, she's with the baby right now. And I'm the only person that's working right now, and plus I got to change all these things that are going on in my life."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. Almost\u2014"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, it's a lot."
+      },
+      {
+        "role": "Therapist",
+        "content": "Almost overwhelming it sounds like."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, yeah, it is overwhelming. It is."
+      },
+      {
+        "role": "Therapist",
+        "content": "Well, we have about, I guess, 15 or 20 minutes together and I wonder, would it be okay, if we took a couple of minutes and just kind of looked at all of the different things that are going on for you and maybe you can let me know, what would be the most helpful to spend-spend some time on?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, it just feels like everything's all over the place but I guess we got to start somewhere."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Well, one of the things that-that we use are these-- it's kind of like a worksheet and it's an agenda-setting worksheet basically."
+      },
+      {
+        "role": "Client",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Therapist",
+        "content": "So if you were to-to list all of the different things that people around you are saying that you need to work on or you need to change, what would some of those things be? And, Sal, just because we write them down here, it doesn't mean that you have to change them."
+      },
+      {
+        "role": "Client",
+        "content": "Okay."
+      },
+      {
+        "role": "Therapist",
+        "content": "It really-- You're in the driver's seat, so it's just to kind of put all the cards on the table, so to speak."
+      },
+      {
+        "role": "Client",
+        "content": "Okay. Um, okay, that sounds good. As long as I'm not changing anything and we're just kind of putting, um, I guess, pen to paper or something."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yep."
+      },
+      {
+        "role": "Client",
+        "content": "Um, okay, so my asthma."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay, so asthma is one."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "What else?"
+      },
+      {
+        "role": "Client",
+        "content": "Um, the fact that they want me to get rid of Oscar, that's-that's my dog."
+      },
+      {
+        "role": "Therapist",
+        "content": "So your dog, and-and the doctor's saying the dog's\u2014"
+      },
+      {
+        "role": "Client",
+        "content": "Well, he's-- Yeah, he's saying it's a main-- It's a main contributor to my asthma problems."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay."
+      },
+      {
+        "role": "Client",
+        "content": "Which I don't- I don't- I don't- I don't buy it and I can't just get rid of him like that, but it's something that's there."
+      },
+      {
+        "role": "Therapist",
+        "content": "That's pretty shocking to be told that you have to get rid of your dog."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. The dog has been there before my wife. I know I've had him longer."
+      },
+      {
+        "role": "Therapist",
+        "content": "Hmm. So that's a huge stress right now?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Yeah, it's- it's a big stress, it's like my best friend, so that's one of the important things. Also, I guess, cutting down these last cigarettes I've been working on."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay, so smoking and-and I'm working towards quitting completely sounds like that's a goal for you?"
+      },
+      {
+        "role": "Client",
+        "content": "Um, finances is a problem right now too."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay, so money."
+      },
+      {
+        "role": "Client",
+        "content": "Time, I got to come to all these appointments and I'm taking time off work, which obviously is the money factor, right?"
+      },
+      {
+        "role": "Therapist",
+        "content": "Right. Right, right. So the appointments and time."
+      },
+      {
+        "role": "Client",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Therapist",
+        "content": "Um, and some of these things are kind of related to each other I think we're already seeing."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, yeah. Yeah, there's something going on. And, um, also my drinking, I got to cut down my drinking too."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay, wow. So there's a lot happening right now, Sal. Anything else that that's concerning you?"
+      },
+      {
+        "role": "Client",
+        "content": "No. It's just overwhelming when you see them everything they're, you know?"
+      },
+      {
+        "role": "Therapist",
+        "content": "Right. Well, so where would you-- I mean, if you-you had to pick somewhere, one or two kind of high priorities or-or things to talk about in our time this morning, where would you wanna start?"
+      },
+      {
+        "role": "Client",
+        "content": "I think- I think the thoughts about the dog has been definitely bothering me, that's been one."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay."
+      },
+      {
+        "role": "Client",
+        "content": "And, um, my-my asthma is out of control too. So maybe those two."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay, and those are ones that are pretty related to each other sounds like. Okay."
+      }
+    ]
+  },
+  {
+    "conv_id": "2",
+    "messages": [
+      {
+        "role": "Therapist",
+        "content": "Sarah, I'm so glad you came in for your well-woman exam today. I think we addressed a lot of your concerns. However, I would like to ask you more about your smoking. Would that be okay?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, I guess."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So about how much are you smoking over the course of a day? You had said it had increased over once or twice a day."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, um, normally, I'm smoking, you know, like once in the morning, uh, once during my lunch break and then in the evening maybe like five or six."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So about eight cigarettes. So over the course of a day, just under half a pack?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. And that's changed over what period of time?"
+      },
+      {
+        "role": "Client",
+        "content": "Um, honestly, it's probably been over the past year or so that I- I've been smoking a little bit more."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So over the past year, the smoking has increased. And that's been mainly in the evening?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Um, I have a two-year-old son as I mentioned, so I try to never smoke around him. So I'm normally kinda waiting until he gets to bed."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. Well, that's the time when you can relax and unwind."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah, exactly. You know, I told you, my-my schedule is kinda crazy right now. I, um, I work full-time and I just started back at night classes. So, you know, all that combined, you know, I enjoy that time to myself in the evening."
+      },
+      {
+        "role": "Therapist",
+        "content": "Sure. Sure. Well, it's a time to relax and you've got a lot going on."
+      },
+      {
+        "role": "Client",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Therapist",
+        "content": "So are there other things you do in the evening to relax?"
+      },
+      {
+        "role": "Client",
+        "content": "Um, I mean, maybe I'll have like a drink or two."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. A drink or two. So about how many drinks would you say you have over the course of a day?"
+      },
+      {
+        "role": "Client",
+        "content": "Um, maybe like two max."
+      },
+      {
+        "role": "Therapist",
+        "content": "Two max. How many drinks would you say you'd have over the course of a week?"
+      },
+      {
+        "role": "Client",
+        "content": "I don't know. I mean, I don't really get why you're asking me that. I mean, I just came here, you know, for a regular visit. I-I am not here to talk about my drinking."
+      },
+      {
+        "role": "Therapist",
+        "content": "No, I understand- I understand. And I'm certainly not here to tell you what to-to do, Sarah. I'm interested in hearing your thoughts and sharing some information with you, and what you do with that information is totally up to you. You've got a lot going on. You're a mother, you're working, you're going to school, and our healthcare team wants to make sure that you have all the resources available to you to meet your goals, including good health. And my job as your healthcare provider is to listen to you and to share information with you, including healthcare concerns associated with smoking and alcohol. Would that be okay with you?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, I guess."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Well, we do know that an increase in smoking and alcohol is associated with certain kinds of cancer; colon cancer, cervical cancer, breast cancer, lung cancer, and, um, also pancreatic cancer. It's also associated with liver and lung disease as well as heart disease, diabetes, and hypertension. So that's a lot of information, but I'm-"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "-interested in what your thoughts are, Sarah."
+      },
+      {
+        "role": "Client",
+        "content": "Well, I-I'm just kinda surprised because, I mean, I don't smoke or drink that much. And I mean, compared to people I work with, you know, I-I smoke a lot less, and I feel like I've actually been trying to keep it pretty low."
+      },
+      {
+        "role": "Therapist",
+        "content": "So you're consciously trying to cut back."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "I have a readiness ruler in my pocket here, 0 means not ready to stop smoking at all and 10 means absolutely ready to stop smoking. Where do you see yourself on that scale?"
+      },
+      {
+        "role": "Client",
+        "content": "Um, maybe like a five."
+      },
+      {
+        "role": "Therapist",
+        "content": "About a five. So you're halfway there. So why did you choose a five rather than a four?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, I mean, you brought up some kinda scary stuff like, you know, cancer risk or other things like that. And you know, being a mother, I-I don't want something to happen to me obviously."
+      },
+      {
+        "role": "Therapist",
+        "content": "Right. Well, that's a lot of information to think about. So given, the fact that these healthcare concerns are a possibility, and that you're worried about your family and you certainly have goals you want to succeed at, where are you in your consideration to making a change? In other words, what steps would you consider taking for this number to move closer to a 10?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, I mean, I could maybe try to cut back in the evenings a little bit."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay, great. Let's quantify that a little bit. So how many cigarettes would that be?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, right now, if I'm having like five or six, I could try to smoke three in the evening plus, you know, still the couple during the day."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So you-- that's cutting back quite a bit. That's a big step. So since we're kind of running out of time here today, I'm wondering if we could-- would be willing to come back in about four weeks to review this plan?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Sure."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay, good. So we can go over your laboratory results at that time, as well as review your plan. Now, would you like some information on smoking cessation?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, I-I think that would be very helpful."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Well, I've got a brochure here and this has-- it's a really good brochure. It has some distraction techniques in it in case you get those nicotine cravings. So it's been helpful, um, in-- with patients before. I'd also like to ask you, would you be willing to see one of our counselors?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, what-what for exactly?"
+      },
+      {
+        "role": "Therapist",
+        "content": "Well, Dr. Kirtley is one of our counselors and he is an expert in-- at discussing the association between alcohol and stress. I want to share something with you. The National Guidelines recommend that women have no more than seven drinks of alcohol per week to-to stay at that low risk level, to avoid the healthcare concerns that we spoke of earlier."
+      },
+      {
+        "role": "Client",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Therapist",
+        "content": "You've indicated that your alcohol consumption is a bit higher than that, putting you at risk. So that's why I asked if you'd be willing to talk to Dr. Kirtley."
+      },
+      {
+        "role": "Client",
+        "content": "I mean, I would like to talk about, you know, my stress, but I'm still not sure with the whole drinking thing."
+      },
+      {
+        "role": "Therapist",
+        "content": "Certainly, certainly. I'm glad you're willing to talk to him. So before you leave here today, we'll, uh, stop by the scheduler's desk and make an appointment for you to see me back in four weeks, as well as the appointment with Dr. Kirtley. And that way, before you leave, you're all set. So do you have any other questions for me, Sarah?"
+      },
+      {
+        "role": "Client",
+        "content": "I don't think so."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. Well, it's very nice to meet you. I'll see you in a month."
+      },
+      {
+        "role": "Client",
+        "content": "Okay."
+      }
+    ]
+  },
+  {
+    "conv_id": "5",
+    "messages": [
+      {
+        "role": "Therapist",
+        "content": "Hi, Billy."
+      },
+      {
+        "role": "Client",
+        "content": "Hi."
+      },
+      {
+        "role": "Therapist",
+        "content": "Hi, another session and another session where you are actually on time."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "You've done-- You've got a really good track record of, uh, being on time. Yeah? Do you realize that?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, no, it's easy."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. Yeah. You know, I've been thinking about, um, thinking about you, and thinking about, um, that first meeting we had, and where you are now. So, wh-what do you think some of the changes are that-that you've made in this- in this, sort of, five-five to six weeks that we've been meeting?"
+      },
+      {
+        "role": "Client",
+        "content": "Uh. Meeting's definitely helped."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. It's helped heaps."
+      },
+      {
+        "role": "Therapist",
+        "content": "It's helped heaps?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah? So, what sort of things has it helped with?"
+      },
+      {
+        "role": "Client",
+        "content": "Just, uh, someone to talk to and just someone to keep me busy and, kind of, keep me in check."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. So, what changes have you made, Billy?"
+      },
+      {
+        "role": "Client",
+        "content": "Um, well, I said I went to the polytech and stuff and I went back there and got another form and stuff, and just helping me with that."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. And, get-getting to the polytech and getting the forms, that's a pretty big deal."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah? I was thinking about the Billy, say, the Billy of six months ago. I'm wondering if the Billy of six months ago would've done that?"
+      },
+      {
+        "role": "Client",
+        "content": "Nah. I didn't really think about it frankly."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. So, what shifted that made it that you were actually able to go to the polytech and get the forms? What's shifted in you?"
+      },
+      {
+        "role": "Client",
+        "content": "I don't know. I just thought if, uh, I could get a job and stuff, doing stuff I like, uh, it'll make things easier."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. Where have you got to with the forms? I mean, we talked about that quite a lot last time."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Oh, I know. After talking to you, I got Donna to help me out, and that's just really helpful."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So, what did you say to Donna?"
+      },
+      {
+        "role": "Client",
+        "content": "Oh, I just said-- I said, \"Uh, could you give me a hand with this?\""
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Client",
+        "content": "And, like, she filled them up for me, and I told her what to write."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So, where did you get to in terms of telling her that, uh, reading and writing is not that for you?"
+      },
+      {
+        "role": "Client",
+        "content": "Just-- I-I asked her to fill that out for me because I said I'd be too messy."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, I was thinking about how that stuff about not feeling confident around reading and writing has, um, really got in the way for you."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "And I mentioned that's somewhere where you don't feel so confident, and I'm wondering what it would be like to feel confident with reading and writing. What difference would that make to your life?"
+      },
+      {
+        "role": "Client",
+        "content": "Like, a big difference, but, like, it's not like I don't try."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm."
+      },
+      {
+        "role": "Client",
+        "content": "Like, I'm just not really good with it."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. Yeah, I can really see that you're making an effort. In fact, I can see that you're really making an effort in lots of areas, not just in terms of reading and writing."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Like if I'd got into polytech and stuff, so I think that's good."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, where are the forms now?"
+      },
+      {
+        "role": "Client",
+        "content": "They're still at home."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, what needs to happen next?"
+      },
+      {
+        "role": "Client",
+        "content": "Just take them in."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, you actually have to deliver them to the polytech, do you?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Uh, I think you can post them, but I'll just drop them in."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. So, when do you think you're gonna do that?"
+      },
+      {
+        "role": "Client",
+        "content": "Uh, probably by the end of this week."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. So, by the end of this week, so by next time, when you come here, as in, those forms will be at the polytech?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "And what-what happens next in terms of what happens once the forms are there?"
+      },
+      {
+        "role": "Client",
+        "content": "I don't know. I don't know if you have to interview or whatever, but I guess, course-- I don't even know any course that I'll do."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. So what's the- what's the-- Say, if you get on the course and, um, you're, like, real good with, uh, hands-on stuff, but the stuff around the manuals, and the assignments, and those sorts of things, um, don't feel so good. What-what do you think we need to do around helping you with that?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, um-- Well, I don't know. Hopefully, there's not so much of that stuff. Um, oh, well, I don't know. I could find out maybe someone who can help you, like, at the school, at the polytech, maybe somebody can help you out and stuff, or there might be computers there or something."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, all these changes that you've- that you've made, um, Billy, where-where is the offending fitting into all of that now?"
+      },
+      {
+        "role": "Client",
+        "content": "Not really fitting in. It kind of just gets in the way."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, offending gets in the way of the life that you're starting to lead?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah? So, what temptations have you had to, kind of, go back to offending?"
+      },
+      {
+        "role": "Client",
+        "content": "Like like getting on the piss, but with Donna, there kind of keeps me busy."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm. So the drinking is something that we talked about can make it easier for you to offend."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "So you've noticed that when you've been drinking that those feelings are coming back again, or?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. I just wanna have a bit of a laugh and like go smash some windows or go and nick a car or something, but yeah. It's kind of harder to think straight."
+      },
+      {
+        "role": "Therapist",
+        "content": "It's harder to think straight when you've been drinking?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. Yeah. And so you've got Donna around at the moment?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "And that's helping keep you in check, as you said?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. What would happen if she wasn't around say or at a party or?"
+      },
+      {
+        "role": "Client",
+        "content": "I'd probably just go be stupid with my mates."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So Donna at the moment who kind of being there is like a strength?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. 'Cause if there's just like if a mate said they're gonna go out and pick a car or something, she just bumps them out and then-then I don't know. She say that's stupid and stuff. And I don't know. It gives me something to do."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm. What do you think?"
+      },
+      {
+        "role": "Client",
+        "content": "Just kind of stupid. Well, it's pointless, but still a bit of a laugh."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm. Yeah. 'Cause I was thinking about that dream that you've got about the job and a life with Donna and kids and stuff like that and how you were saying that the offending doesn't fit in with that dream or that idea."
+      },
+      {
+        "role": "Client",
+        "content": "No."
+      },
+      {
+        "role": "Therapist",
+        "content": "So there's that on the one hand, but on the other hand, there's the kind of immediate, um, feeling when you've had a few to drink and you're with your mates and it feels like it would be a bit of a laugh?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "So you've got-got those two things going on at the same time. Yeah?"
+      },
+      {
+        "role": "Client",
+        "content": "Mm."
+      },
+      {
+        "role": "Therapist",
+        "content": "And it sounds like sometimes when you're in there with your mates and had a few drinks, it's hard to hold on to that vision of the future."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. You don't really think about that. Well, just in the moment."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So what-wh-- in the moment, what are you thinking?"
+      },
+      {
+        "role": "Client",
+        "content": "Just have a bit of fun. Not really thinking."
+      },
+      {
+        "role": "Therapist",
+        "content": "Not really thinking or simply not thinking beyond the next kind of minute or so-"
+      },
+      {
+        "role": "Client",
+        "content": "No. Just, like, it's not normally my idea, like someone else would just suggest it and you kind of just, yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "So it's not your idea. And you also go along with it?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. You can't really be like, \"Oh no,\" just give me shit."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. What would happen if you say no?"
+      },
+      {
+        "role": "Client",
+        "content": "Just like, it can be shit and I still do it. They just-just call me a pussy or whatever and I don't know. And they'd talk me into it probably."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm. So it's hard to actually say no to your friends cause of what they- what they thought of you."
+      },
+      {
+        "role": "Client",
+        "content": "They'd just think I was joking, yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. So I'm wondering what the-the thinking, 'cause, um, one of the things that's really changed for you is being with Donna."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "So I'm wondering, you know, most of them butt-butts head on your friendships with those- with those guys."
+      },
+      {
+        "role": "Client",
+        "content": "I don't see them as much, but like she gets along with them aye, so-"
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Client",
+        "content": "I don't think, like, I am not sure they like it."
+      },
+      {
+        "role": "Therapist",
+        "content": "Then so when you're-- so you're spending less time with them and more time with Donna?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. And you're saying you're kind of hanging out with her and going to movies and stuff? Yeah. And that means you're spending less time with your-- with those people that have actually led you in trouble in the past?"
+      },
+      {
+        "role": "Client",
+        "content": "They don't lead me into trouble. But-"
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So tell me- tell me what it is that they do so I get a better understanding of it."
+      },
+      {
+        "role": "Client",
+        "content": "Uh, like it's my choice though, they don't make me."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. I know it's just having grown up with, it's just what we've always done."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So that's just what you've always done."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "But we're also talking about this idea that it doesn't fit with what your goals are or what your hopes are?"
+      },
+      {
+        "role": "Client",
+        "content": "Mm."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. Mm. How would you like it to be?"
+      },
+      {
+        "role": "Client",
+        "content": "My life? Well, what do you mean?"
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm, well the stuff about when you're in the moment. Yeah."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "When you've had a few drinks and you kind of go and get into trouble. How would you like that to be different?"
+      },
+      {
+        "role": "Client",
+        "content": "I don't know. Just more or less like if Donna was there and maybe if my mates got some girlfriends or something like that would calm them down too."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm-hmm."
+      },
+      {
+        "role": "Client",
+        "content": "So just hang out instead of go and do stuff, like stupid stuff."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So-so Donna's helped calm you down and you'd like, um, them to calm down too?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, 'cause then we could hang out together and stuff with our girlfriends and stuff."
+      },
+      {
+        "role": "Therapist",
+        "content": "So am I hearing that it's tricky in some ways to hang out with them sometimes now that you're with Donna?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Cause I like I feel guilty not spending my time with, yeah, Donna. Like, I miss my mates, like, I get lonely and stuff, but even though they get me into trouble, but just, kind of, feel stoked that-that I see them on the weekends and stuff."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So-so what's the definition, for you, of a good mate?"
+      },
+      {
+        "role": "Client",
+        "content": "It's, like, loyal yes, someone who's got my back."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, someone who's loyal, someone who's got your back, yeah? What else? What else is really your definition of a really good mate?"
+      },
+      {
+        "role": "Client",
+        "content": "That's about it. It's-- yeah. Someone who'll stand up for you."
+      },
+      {
+        "role": "Therapist",
+        "content": "Oh, so, someone who'll stand up for you?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah? Yeah. Sounds like a really strong definition of a good mate for you?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, I'm wondering about, um, whether good mates lead you into trouble, if it's something you wanna do. If you got something different that you wanna do, what would a good mate do in that situation?"
+      },
+      {
+        "role": "Client",
+        "content": "I mean, support me."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. How-how would you wanna be supported, Billy?"
+      },
+      {
+        "role": "Client",
+        "content": "Just don't give me shit about, I don't know. Um, yeah, just, if I- if I don't wanna go do something, don't, like, don't give me shit about it."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm. Okay, so that's-that's the kind of support that a really good mate would give you? It sounds like these guys have been around for you-"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, yeah, they"
+      },
+      {
+        "role": "Therapist",
+        "content": "-for quite some time, and they're really important to you."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah. Okay. So, I'm wondering how we can get to that point where, yeah, you can say, \"No, I don't wanna do that,\" and they're supportive of you?"
+      },
+      {
+        "role": "Client",
+        "content": "Mm."
+      },
+      {
+        "role": "Therapist",
+        "content": "What do you think it would take?"
+      },
+      {
+        "role": "Client",
+        "content": "Just they know that I'm serious."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So, how would they know you're serious?"
+      },
+      {
+        "role": "Client",
+        "content": "I guess, like, if they actually know I'm going to polytech and stuff that they might understand."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay."
+      },
+      {
+        "role": "Client",
+        "content": "But, like I feel guilty if they wanna go and have fun, and I'm not with them."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. That's the second time you've used that word 'guilty'."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah? So, it sounds like it's a really-- something's really important to you about that."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Like, just going out with them or spending some times with them-- time with them, but, like, I really wanna spend time with Donna too so, it'd be cool if we could spend time together, like, with Donna and my mates."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. So, it's almost as if you feel a bit torn because you wanna be with Donna, but you also wanna be with your with your mates?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, like-- Well, I know I get into trouble with them, but they're still my mates, and I feel--"
+      },
+      {
+        "role": "Therapist",
+        "content": "Yeah, so they're still important to you?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "Hmm. I also am hearing that you don't wanna get into trouble anymore."
+      },
+      {
+        "role": "Client",
+        "content": "No."
+      },
+      {
+        "role": "Therapist",
+        "content": "Mm. Yeah."
+      }
+    ]
+  },
+  {
+    "conv_id": "8",
+    "messages": [
+      {
+        "role": "Therapist",
+        "content": "So, what brings you here, Bob? What's, what can I do to help?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Yeah, well, the only reason I'm here is 'cause my wife thinks I've got a problem with smoking. I've been smoking all my life and, uh, six months ago, uh, she thought, she got into this health kick, right? And now everyone who smokes is evil. And, uh, so that's why I'm here just to please her, get her off my back and\u2014"
+      },
+      {
+        "role": "Therapist",
+        "content": "So, you're not too happy to be here. This is the last thing that you want to be doing this afternoon."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. That's an understatement. I mean, I'm supposed to be at work right now, too, right? So-"
+      },
+      {
+        "role": "Therapist",
+        "content": "You've taken time off you, it's costing you time and money being here."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, yeah. I'm only here because my wife forced me to come, you know. Like this has come to a head six months of just nagging me, relentless every day, because she was able to quit smoking and now I have to quit."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, let me ask you this, Bob, what are some of your wife's concerns about your smoking?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, she's concerned about my health and she cuts out all these articles from the paper about second-hand smoke and\u2014"
+      },
+      {
+        "role": "Therapist",
+        "content": "Wow, that she's been showing you and making you read."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah, I've got to read this. That's my reading assignment for breakfast and I want to go out and have-- We used to go out and have a cigarette together at the table. Now I have to go outside in this weather, you know, what's that about? And she used to smoke more than me and now she's like holier than now?"
+      },
+      {
+        "role": "Therapist",
+        "content": "So, you're pretty angry about it. It's pretty outraging that you're forced to change your whole life because of a decision she made six months ago."
+      },
+      {
+        "role": "Client",
+        "content": "And she's got my kids on this against me, you know, my son and my daughter, they're, it's like, they're ganging up on me, you know what I mean?"
+      },
+      {
+        "role": "Therapist",
+        "content": "So, from your perspective, do you see any consequences to your smoking?"
+      },
+      {
+        "role": "Client",
+        "content": "Well, the big one of course is how it's affecting my wife and the family. Like my dad's 85, he still smokes. I mean, yeah, you know, sometimes I thought of quitting, but I mean, I don't know. I don't know if I can-- I don't know if I can quit."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, let me make sure I understand kind of the whole scenario 'cause there's a lot of pieces to it. Your wife is on your case and your kids are ganging up too. So, you're sort of isolated, you're put in a corner and you're being told this is something you have to do, you have no choice in the matter."
+      },
+      {
+        "role": "Client",
+        "content": "Yeah."
+      },
+      {
+        "role": "Therapist",
+        "content": "You have a few concerns about your health, but that's not really the driving force. It sounds like it's most of all that it would be nice if things just went back to the way they were before she quit smoking and that all of this stuff wasn't something that you had to deal with anymore. Does that pretty much sum up--?"
+      },
+      {
+        "role": "Client",
+        "content": "Yeah. Yeah. I-I'm just, I don't want to lose her or my family over smoking."
+      },
+      {
+        "role": "Therapist",
+        "content": "I get the feeling that your relationship is really important to you. That you would do anything."
+      },
+      {
+        "role": "Client",
+        "content": "Well, yeah, I mean, we've been married over 25 years, and uh, we've never had any major problems. Like this is-- this is the first problem. I don't even really see it as a problem cause we used to both smoke and I was trying to accommodate them by smoking outside, but it's feeling like we're going like this and I'm just concerned, like if this keeps going, like."
+      },
+      {
+        "role": "Therapist",
+        "content": "So, it strikes me that the way that we're talking about it, it's like it's all or nothing. Either you keep smoking the way you are, things continue to go downhill and get worse, your wife gets more and more on your case, or you put your cigarettes down starting the moment you walk in the door tonight and never pick them up again. It's almost like one or the other. It strikes me that as well there might be some middle ground here that it took you a long time to learn how to be a smoker and maybe it's going to take some time to learn how to stop smoking."
+      },
+      {
+        "role": "Client",
+        "content": "So, I can actually do it that way like gradual taber?"
+      },
+      {
+        "role": "Therapist",
+        "content": "There are some medications and some different approaches that we can use that aren't so abrupt. Recognizing that it-it's going to take some time and practice to get to where you might want to be."
+      },
+      {
+        "role": "Client",
+        "content": "I wish my wife could have come today cause she's feels after like, just stop like right away. So do you think she could come with me at a future appointment or something and she could hear that message?"
+      },
+      {
+        "role": "Therapist",
+        "content": "If you wanted to bring your wife along, I'd be more than happy to talk with both of you."
+      },
+      {
+        "role": "Client",
+        "content": "Okay. I'll have to talk to her as well because their schedule changes from week to week, she works shifts, so I'll call you back tomorrow and we'll set something up."
+      },
+      {
+        "role": "Therapist",
+        "content": "Okay. That sounds good."
+      },
+      {
+        "role": "Client",
+        "content": "All right."
+      },
+      {
+        "role": "Therapist",
+        "content": "Thanks for coming in."
+      },
+      {
+        "role": "Client",
+        "content": "Okay. Thanks."
+      }
+    ]
+  }
+]

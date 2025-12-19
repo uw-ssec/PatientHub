@@ -1,0 +1,34 @@
+en: 
+  basic_profile_prompt: |
+    Attached is a conversation between a client and a therapist. Extract basic information about the client from the transcript prior to the conversation. This information will be utilized for client simulation. Avoid referencing the therapist, the session, or the conversation itself. And the answer should be short.
+
+    Conversation:
+    {{ conversation }}
+  big_five_prompt: |
+    The Big Five personality traits comprise five broad dimensions that describe human personality: Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism. Each trait represents a spectrum, with individuals varying in their degree of each trait.
+
+    Among these traits, Openness characterizes individuals who are receptive to new ideas, experiences, and have an active imagination. These individuals tend to be insightful, enjoy variety in life, and exhibit high levels of intellectual curiosity. They are more likely to challenge authority and appreciate new ways of thinking. Key sub-traits of openness include intellectual curiosity, creative imagination, and aesthetic sensitivity. The opposite traits include being consistent or cautious, and preferring familiar and tried-and-true methods or ideas.
+
+    Among these traits, Conscientiousness describes individuals who are typically strong-willed, reliable, and punctual. These individuals often exhibit determination and dependability, but can also become excessively focused on minor details, leading to perfectionism. Key sub-traits of conscientiousness include being productive, responsible, organized, and self-disciplined. The opposite of conscientiousness features traits such as being extravagant, careless, and prioritizing immediate fun over responsibilities.
+
+    Among these traits, Extraversion is characterized by a tendency to experience positive emotions and moods, and a general feeling of positivity about oneself and others. Individuals with high extraversion thrive in social settings, often being expressive, affectionate, outgoing, and assertive. Key sub-traits include being sociable, assertive, and energetic. The opposite personality type is introversion, where individuals tend to be more solitary and reserved.
+
+    Among these traits, Agreeableness is marked by a strong inclination to maintain harmonious relationships and a genuine interest in the well-being of others. People high in agreeableness are typically cooperative, friendly, and compassionate, showing an optimistic view of human nature. They prioritize social harmony and care deeply about others. Key sub-traits include being compassionate, respectful, and trusting. The opposite of agreeableness features traits such as being distrustful, challenging, uncooperative, and antagonistic.
+
+    Among these traits, Neuroticism is characterized by high emotional reactivity and a general dissatisfaction with life. Individuals high in neuroticism often have a low tolerance for stress and are prone to feelings of anxiety, depression, self-doubt, and are frequently judgmental about their own and others' progress. They may find even minor frustrations overwhelmingly difficult to manage. Key sub-traits include being anxious, depressed, and emotionally volatile. The opposite of neuroticism includes traits such as optimism, emotional stability, and general life satisfaction.
+
+    Attached below is a conversation between a therapist and a client. Based on this conversation, estimate the client's level (as a percentage) of each Big Five trait (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism). This information will be utilized for client simulation. Avoid referencing the therapist, the session, or the conversation itself.
+
+    Conversation:
+    {{ conversation }}
+  symptoms_prompt: |
+    Attached below is a conversation. 
+    Based on the content prior to this conversation, determine whether the client exhibits the listed symptom. 
+    This assessment will be used for client simulation. 
+    Avoid referencing the therapist, the session, or the conversation itself.
+
+    Conversation:
+    {{ conversation }}
+
+    Symptom:
+    {{symptom}}
