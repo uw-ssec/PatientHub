@@ -25,13 +25,13 @@ LAB_BASE_URL=http://115.182.62.174:18888/v1
 Run the following script for simulation (with default configs)
 
 ```bash
-uv run python -m src.scripts.simulate
+uv run python -m examples.simulate
 ```
 
 In addition, you can run the following script for customized simulations
 
 ```bash
-uv run python -m src.scripts.simulate client=[client] therapist=[therapist] evaluator=evaluator evaluator.eval_type=[eval_type]
+uv run python -m examples.simulate client=[client] therapist=[therapist] evaluator=evaluator evaluator.eval_type=[eval_type]
 ```
 
 ## 3. Supported Agents
@@ -69,11 +69,11 @@ uv run python -m src.scripts.simulate client=[client] therapist=[therapist] eval
 You can run the following command to create the necessary files for a new agent:
 
 ```bash
-uv run python -m src.scripts.create agent_type=[client|therapist] agent_name=<agent_name>
+uv run python -m examples.create gen_agent_type=[client|therapist] gen_agent_name=<agent_name>
 ```
 
 For example
 
 ```bash
-uv run python -m src.scripts.create agent_type=client agent_name=test
+uv run python -m examples.create gen_agent_type=client gen_agent_name=test
 ```
