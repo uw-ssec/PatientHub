@@ -1,12 +1,9 @@
 import re
 import random
-from dataclasses import dataclass
-from typing import Dict, List
 from src.base import ChatAgent
-from pydantic import BaseModel, Field
-
 from omegaconf import DictConfig
-from langchain_core.messages import AIMessage, HumanMessage
+from dataclasses import dataclass
+from pydantic import BaseModel, Field
 
 
 @dataclass
@@ -17,7 +14,7 @@ class ElizaTherapistConfig:
     lang: str = "en"
 
 
-PATTERNS: List[tuple[str, List[str]]] = [
+PATTERNS = [
     (
         r"hello|hi|hey",
         [
@@ -128,7 +125,7 @@ PATTERNS: List[tuple[str, List[str]]] = [
     ),
 ]
 
-FALLBACK_RESPONSES: List[str] = [
+FALLBACK_RESPONSES = [
     "Please tell me more.",
     "Let's change focus a bit... Tell me about your family.",
     "Can you elaborate on that?",
@@ -137,7 +134,7 @@ FALLBACK_RESPONSES: List[str] = [
     "Very interesting.",
 ]
 
-REFLECTIONS: Dict[str, str] = {
+REFLECTIONS = {
     "i": "you",
     "me": "you",
     "my": "your",
