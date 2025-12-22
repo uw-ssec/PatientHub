@@ -1,5 +1,0 @@
-defaults:
-  - _self_
-  - generator: agent_files
-gen_agent_type: client
-gen_agent_name: test
