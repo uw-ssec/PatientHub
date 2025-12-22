@@ -13,10 +13,10 @@ def get_chat_model(configs):
             return configs.get(name, default)
         return getattr(configs, name, default)
 
-    api_type = get("api_type")
+    model_type = get("model_type")
     model_name = get("model_name")
 
-    if api_type == "local":
+    if model_type == "local":
         hf_pipe = HuggingFacePipeline.from_model_id(
             model_id=model_name,
             task="text-generation",
@@ -31,7 +31,7 @@ def get_chat_model(configs):
         return init_chat_model(
             model_provider="huggingface", model=model_name, llm=hf_pipe
         )
-    if api_type == "huggingface":
+    if model_type == "huggingface":
         return ChatHuggingFace.from_model_id(
             model_id=model_name,
             task="text-generation",
@@ -43,12 +43,12 @@ def get_chat_model(configs):
                 "return_full_text": False,
             },
         )
-    if api_type == "LAB":
+    if model_type == "LAB":
         return init_chat_model(
             model=model_name,
             model_provider="openai",
-            base_url=os.environ.get(f"{api_type}_BASE_URL"),
-            api_key=os.environ.get(f"{api_type}_API_KEY"),
+            base_url=os.environ.get(f"{model_type}_BASE_URL"),
+            api_key=os.environ.get(f"{model_type}_API_KEY"),
             temperature=get("temperature"),
             max_tokens=get("max_tokens"),
             max_retries=get("max_retries"),
@@ -62,9 +62,9 @@ def get_reranker_model(configs):
             return configs.get(name, default)
         return getattr(configs, name, default)
 
-    api_type = cfg("api_type")
+    model_type = cfg("model_type")
     model_name = cfg("model_name")
-    if api_type not in ("huggingface", "local") or not model_name:
+    if model_type not in ("huggingface", "local") or not model_name:
         return None, None, None
 
     try:

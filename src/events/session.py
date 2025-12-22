@@ -1,11 +1,9 @@
 from src.utils import save_json
-from dotenv import load_dotenv
-from src.agents import InferenceAgent
+from src.base import ChatAgent
 from typing import TypedDict, List, Dict, Any, Optional
 from langgraph.graph import StateGraph, START, END
 from colorama import Fore, Style, init
 
-load_dotenv(".env")
 init(autoreset=True)
 
 
@@ -19,15 +17,16 @@ class TherapySessionState(TypedDict):
 class TherapySession:
     def __init__(
         self,
-        client: InferenceAgent,
-        therapist: InferenceAgent,
-        evaluator: InferenceAgent,
         configs: Dict[str, Any],
+        client: ChatAgent,
+        therapist: ChatAgent,
+        evaluator: ChatAgent = None,
     ):
+        self.configs = configs
+
         self.client = client
         self.therapist = therapist
         self.evaluator = evaluator
-        self.configs = configs
 
         self.num_turns = 0
         self.graph = self.build_graph()
