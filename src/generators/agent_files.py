@@ -23,7 +23,6 @@ class AgentFilesGenerator:
         self.paths = {
             "_init_": f"src/{self.agent_type}s/__init__.py",
             "agent": f"src/{self.agent_type}s/{self.agent_name}.py",
-            "config": f"configs/{self.agent_type}/{self.agent_name}.yaml",
             "prompt": f"data/prompts/{self.agent_type}/{self.agent_name}.yaml",
         }
 
@@ -54,41 +53,39 @@ class AgentFilesGenerator:
             )
 
     # Add implementation to __init__.py:
+    def add_to_import(self, prev_line, current_line) -> str:
+        import_str = f"from .{self.agent_name} import {self.agent_class_name}, {self.agent_class_name}Config\n"
+        if prev_line.startswith("from .") and current_line.strip() == "":
+            return import_str + "\n" + current_line, True
+        else:
+            return current_line, False
+
+    def add_to_registry(self, prev_line, current_line) -> str:
+        client_str = f'    "{self.agent_name}": {self.agent_class_name},\n'
+        client_cfg_str = f'    "{self.agent_name}": {self.agent_class_name}Config,\n'
+
+        if current_line.strip() == "}":
+            if "Config" in prev_line.strip():
+                return client_cfg_str + current_line
+            else:
+                return client_str + current_line
+        else:
+            return current_line
+
     def add_to_init(self) -> None:
         prev_line = ""
-        is_imported = False
+        imported_client = False
         lines = open(self.paths["_init_"], "r", encoding="utf-8").readlines()
         with open(self.paths["_init_"], "w", encoding="utf-8") as f:
             for line in lines:
-                if not is_imported:
-                    if prev_line.startswith("from .") and line.strip() == "":
-                        f.write(
-                            f"from .{self.agent_name} import {self.agent_class_name}\n"
-                        )
-                        is_imported = True
-                elif line.strip() == "}":
-                    f.write(f'    "{self.agent_name}": {self.agent_class_name},\n')
-                elif line.strip() == "]":
-                    f.write(f'    "{self.agent_class_name}",\n')
+                if not imported_client:
+                    line, imported_client = self.add_to_import(prev_line, line)
+                else:
+                    line = self.add_to_registry(prev_line, line)
+
                 f.write(line)
                 prev_line = line
         print(f"> Updated {self.paths['_init_']} to include {self.agent_class_name}.")
-
-    # Create configuration file
-    def generate_config_file(self) -> None:
-        if not os.path.exists(self.paths["config"]):
-            config_content = self.prompts["config"].render(
-                agent_name=self.agent_name, agent_type=self.agent_type
-            )
-            with open(self.paths["config"], "w", encoding="utf-8") as f:
-                f.write(config_content)
-            print(
-                f"> Created {self.agent_type} configuration at: {self.paths['config']}"
-            )
-        else:
-            print(
-                f"> {self.agent_type} configuration already exists at: {self.paths['config']}"
-            )
 
     # Create prompt template file
     def generate_prompt_file(self) -> None:
@@ -106,6 +103,5 @@ class AgentFilesGenerator:
 
     def generate_files(self) -> None:
         self.generate_agent_file()
-        self.generate_config_file()
         self.generate_prompt_file()
         print("> File creation process completed.")

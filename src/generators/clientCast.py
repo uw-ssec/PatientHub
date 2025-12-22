@@ -14,8 +14,10 @@ class ClientCastGeneratorConfig(APIModelConfig):
     """Configuration for ClientCast generator."""
 
     agent_type: str = "clientCast"
-    input_dir: str = ""
-    output_dir: str = ""
+    input_dir: str = "data/resources/ClientCast_human_data.json"
+    symptoms_dir: str = "data/resources/ClientCast_symptoms.json"
+    output_dir: str = "data/characters/ClientCast.json"
+    data_idx: int = 0
 
 
 class BasicProfile(BaseModel):
@@ -265,7 +267,7 @@ class ClientCastCharacter(BaseModel):
 class ClientCastGenerator(ChatAgent):
     def __init__(self, configs: DictConfig):
         self.configs = configs.generator
-        self.chat_model = get_chat_model(configs)
+        self.chat_model = get_chat_model(self.configs)
         self.data = self.load_data()
         self.symptoms = load_json(self.configs.symptoms_dir)
         self.prompts = load_prompts(

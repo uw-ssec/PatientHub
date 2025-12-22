@@ -3,12 +3,30 @@ en:
     from typing import Dict, List
     from pydantic import BaseModel, Field
 
-    from src.agents import InferenceAgent
+    from src.base import ChatAgent
+    from src.configs import APIModelConfig
     from src.utils import load_prompts, load_json, get_chat_model
 
     from omegaconf import DictConfig
     from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
+    class {{class_name}}Config(APIModelConfig):
+        """
+        Configuration for the {{agent_type}} agent.
+        This class defines the configuration parameters for the agent.
+        """
+        agent_type: str = Field(
+            default="{{agent_name}}",
+            description="The type of the agent, e.g., 'client' or 'therapist'.",
+        )
+        data_path: str = Field(
+            default="data/characters/{{agent_type}}s.json",
+            description="Path to the JSON file containing character data.",
+        )
+        data_idx: int = Field(
+            default=0,
+            description="Index of the character in the JSON file to use.",
+        )
 
     # TODO: Define the response format
     class Response(BaseModel):
@@ -17,7 +35,7 @@ en:
         )
 
 
-    class {{class_name}}(InferenceAgent):
+    class {{class_name}}(ChatAgent):
         def __init__(self, configs: DictConfig):
             self.configs = configs
 
@@ -53,19 +71,11 @@ en:
         def reset(self):
             self.messages = []
             self.{{other_agent_type}} = None
-  config: |
-    agent_type: {{agent_name}}
-    data_path: data/characters/{{agent_type}}s.json
-    data_idx: 0
-    api_type: LAB
-    model_name: gpt-4o
-    temperature: 0.7
-    max_tokens: 8192
-    max_retries: 3
-    lang: en
   prompt: |
-    en: |
-      <insert prompt text here>
-    zh: |
-      <在这里输入提示文本>
+    en: 
+      system: |
+        <insert prompt text here>
+    zh: 
+      system: |
+        <在这里输入提示文本>
 

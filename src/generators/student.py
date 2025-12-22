@@ -14,8 +14,10 @@ class StudentClientGeneratorConfig(APIModelConfig):
     """Configuration for Student Client generator."""
 
     agent_type: str = "student"
-    input_dir: str = ""
-    output_dir: str = ""
+    input_dir: str = "data/situations/thu_topics.json"
+    output_dir: str = "data/characters/thu/thu_testing.json"
+    data_idx: int = 0
+    mode: str = "topic"
 
 
 class Demographics(BaseModel):

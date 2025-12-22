@@ -14,7 +14,7 @@ class PsycheGeneratorConfig(APIModelConfig):
 
     agent_type: str = "psyche"
     input_dir: str = "data/resources/psyche_character.json"
-    output_dir: str = "data/characters/Psyche.json"
+    output_dir: str = "data/characters/Psyche MFC.json"
 
 
 class IdentifyingData(BaseModel):
