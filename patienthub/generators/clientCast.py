@@ -14,8 +14,8 @@ class ClientCastGeneratorConfig(APIModelConfig):
     """Configuration for ClientCast generator."""
 
     agent_type: str = "clientCast"
-    input_dir: str = "data/resources/ClientCast_human_data.json"
-    symptoms_dir: str = "data/resources/ClientCast_symptoms.json"
+    input_dir: str = "data/resources/ClientCast/human_data.json"
+    symptoms_dir: str = "data/resources/ClientCast/symptoms.json"
     output_dir: str = "data/characters/ClientCast.json"
     data_idx: int = 0
 

@@ -19,8 +19,8 @@ class ConsistentMIClientConfig(APIModelConfig):
 
     agent_type: str = "consistentMI"
     data_path: str = "data/characters/ConsistentMI.json"
-    topics_path: str = "data/resources/ConsistentMI_topics.json"
-    topic_graph_path: str = "data/resources/ConsistentMI_topic_graph.json"
+    topics_path: str = "data/resources/ConsistentMI/topics.json"
+    topic_graph_path: str = "data/resources/ConsistentMI/topic_graph.json"
     data_idx: int = 0
     chat_model: Any = None
     model_retriever: Any = None
