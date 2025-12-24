@@ -23,7 +23,7 @@ GENERATOR_CONFIG_REGISTRY = {
 
 
 def get_generator(configs: DictConfig):
-    agent_type = configs.generator.agent_type
+    agent_type = configs.agent_type
     print(f"Loading {agent_type} generator...")
     if agent_type in GENERATORS:
         return GENERATORS[agent_type](configs=configs)

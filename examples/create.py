@@ -37,8 +37,6 @@ class CreateConfig:
 
     defaults: List[Any] = field(default_factory=lambda: DEFAULTS)
     generator: Any = MISSING
-    gen_agent_type: str = "client"
-    gen_agent_name: str = "test"
 
 
 register_configs("create", CreateConfig)
@@ -46,12 +44,7 @@ register_configs("create", CreateConfig)
 
 @hydra.main(version_base=None, config_name="create")
 def main(configs: DictConfig) -> None:
-    print(configs)
-    if configs.gen_agent_type not in ["client", "therapist"]:
-        raise ValueError(
-            "Can only generate files for 'client' or 'therapist' agents for now..."
-        )
-    file_creator = get_generator(configs=configs)
+    file_creator = get_generator(configs=configs.generator)
     file_creator.generate_files()
 
 

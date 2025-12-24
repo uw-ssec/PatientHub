@@ -10,10 +10,14 @@ class AgentFilesGeneratorConfig:
     """Configuration for AgentFiles generator."""
 
     agent_type: str = "agent_files"
+    gen_agent_type: str = "client"
+    gen_agent_name: str = "test"
 
 
 class AgentFilesGenerator:
     def __init__(self, configs: DictConfig):
+        self.configs = configs
+
         self.agent_type = configs.gen_agent_type
         self.agent_name = configs.gen_agent_name
         self.agent_class_name = self.get_class_name()
@@ -102,6 +106,10 @@ class AgentFilesGenerator:
             )
 
     def generate_files(self) -> None:
+        if self.configs.gen_agent_type not in ["client", "therapist"]:
+            raise ValueError(
+                "Can only generate files for 'client' or 'therapist' agents for now..."
+            )
         self.generate_agent_file()
         self.generate_prompt_file()
         print("> File creation process completed.")
