@@ -33,8 +33,8 @@ class EvaluateConfig:
 
     defaults: List[Any] = field(default_factory=lambda: DEFAULTS)
     evaluator: Any = MISSING
-    input_dir: str = "data/sessions/patientPsi/session_1.json"
-    output_dir: str = "data/evaluations/patientPsi/session_1_rating_eval.json"
+    input_dir: str = "data/sessions/patientPsi/session_1_jb.json"
+    output_dir: str = "data/evaluations/patientPsi/session_temp_rating.json"
     lang: str = "en"
 
 

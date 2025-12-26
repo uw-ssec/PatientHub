@@ -4,9 +4,9 @@ from typing import Any, Dict, List, Type
 from langchain_core.messages import SystemMessage
 from pydantic import BaseModel, Field, create_model
 
+from .dimensions import Dimension, get_dimensions
 from patienthub.base import EvaluatorAgent
 from patienthub.configs import APIModelConfig
-from patienthub.evaluators import Dimension, get_dimensions
 from patienthub.utils import load_prompts, get_chat_model
 
 
@@ -17,7 +17,7 @@ class RatingEvaluatorConfig(APIModelConfig):
     target: str = "client"
     eval_type: str = "rating"
     dimensions: List[str] = field(default_factory=lambda: ["consistency"])
-    granularity: str = "session"  # "turn" or "session"
+    granularity: str = "session"  # "turn", "turn_by_turn" or "session"
 
 
 @dataclass
@@ -38,6 +38,9 @@ class RatingEvaluator(EvaluatorAgent):
             dimension.name: self.build_schema(dimension)
             for dimension in self.dimensions
         }
+
+        self.target = configs.target.lower()
+        self.granularity = configs.granularity
 
     def build_schema(self, dimension: Dimension) -> Type[BaseModel]:
         """
@@ -60,56 +63,52 @@ class RatingEvaluator(EvaluatorAgent):
         model = self.model.with_structured_output(response_format)
         return model.invoke([SystemMessage(content=prompt)])
 
-    def evaluate_dimension(
-        self, dimension: Dimension, profile=None, conv_history=None
-    ) -> BaseModel:
-        sys_prompt = self.prompts["sys_prompt"].render(
-            data={"profile": profile, "conv_history": conv_history}
+    def flatten_conv(self, conv_history: List[Dict]) -> str:
+        return "\n".join(
+            [f"{msg['role'].lower()}: {msg['content']}" for msg in conv_history]
         )
-        schema = self.dimension_schemas[dimension.name]
-        res = self.generate(sys_prompt, response_format=schema)
 
-        return res
-
-    def evaluate_turn(self):
-        target_role = self.configs.target
-        profile = self.data.get("profile", {})
-        conv_history = self.data.get("messages", [])
-
+    def evaluate_dimensions(self, data: Dict[str, Any]) -> Dict[str, Any]:
         results = {}
         for dimension in self.dimensions:
-            results[dimension.name] = {}
-            for i, msg in enumerate(conv_history):
-                if msg.get("role") == target_role:
-                    conv_history_slice = conv_history[: i + 1]
-                    result = self.evaluate_turn(
-                        dimension, profile=profile, conv_history=conv_history_slice
-                    )
-                    results[dimension.name][f"turn_{i}"] = result.model_dump()
-        return results
-
-    def evaluate_session(self):
-        results = {}
-        profile = self.data.get("profile", {})
-        conv_history = self.data.get("messages", [])
-        for dimension in self.dimensions:
-            res = self.evaluate_dimension(
-                dimension, profile=profile, conv_history=conv_history
-            )
+            schema = self.dimension_schemas[dimension.name]
+            sys_prompt = self.prompts["sys_prompt"].render(data=data)
+            res = self.generate(sys_prompt, response_format=schema)
             results[dimension.name] = res.model_dump()
+
         return results
 
     def evaluate(self, data) -> Dict[str, Any]:
+        profile = data.get("profile", {})
+        conv_history = data.get("messages", [])
+        if len(conv_history) == 0:
+            return {}
 
-        self.data = data
-
+        granularity = self.configs.granularity
+        data = {
+            "profile": profile,
+            "target": self.target,
+            "granularity": granularity,
+            "conv_history": conv_history,
+            "last_response": "",
+        }
         results = {}
-        if self.configs.granularity == "session":
-            results = self.evaluate_session()
+        if granularity == "session":
+            data["conv_history"] = self.flatten_conv(conv_history)
+            results = self.evaluate_dimensions(data)
+        elif granularity == "turn":
+            data["conv_history"] = self.flatten_conv(conv_history[:-1])
+            data["last_response"] = conv_history[-1]["content"]
+            results = self.evaluate_dimensions(data)
+        elif granularity == "turn_by_turn":
+            data["granularity"] = "turn"
+            for i, turn in enumerate(conv_history):
+                role = turn.get("role").lower()
 
-        elif self.configs.granularity == "turn":
-            results = self.evaluate_turn()
-
-        results["data"] = data
+                if role == self.target:
+                    data["conv_history"] = self.flatten_conv(conv_history[:i])
+                    data["last_response"] = turn.get("content", "")
+                    res = self.evaluate_dimensions(data)
+                    results[f"turn_{i}"] = res
 
         return results

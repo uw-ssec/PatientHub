@@ -1,13 +1,15 @@
-from .dimensions import Aspect, Dimension, get_dimensions
 from .rating import RatingEvaluator, RatingEvaluatorConfig
+from .inspect import InspectEvaluator, InspectEvaluatorConfig
 
 from omegaconf import DictConfig
 
 EVALUATOR_REGISTRY = {
     "rating": RatingEvaluator,
+    "inspect": InspectEvaluator,
 }
 EVALUATOR_CONFIG_REGISTRY = {
     "rating": RatingEvaluatorConfig,
+    "inspect": InspectEvaluatorConfig,
 }
 
 

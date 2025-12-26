@@ -1,75 +1,58 @@
-from dataclasses import dataclass
-from typing import Dict, List
-from pydantic import BaseModel, Field
-
-from patienthub.base import ChatAgent
-from patienthub.configs import APIModelConfig
-from patienthub.utils import load_prompts, get_chat_model
-
-from omegaconf import DictConfig
+from typing import List
+from .base import Dimension, Aspect
+from dataclasses import dataclass, field
 
 
 @dataclass
-class CBTEvaluatorConfig(APIModelConfig):
-    """Configuration for CBT Evaluator."""
-
-    agent_type: str = "therapist"
-    eval_type: str = "cbt"
-    temperature: float = 0.4
-    input_dir: str = ""
-    output_dir: str = ""
-
-
-class DimensionFeedback(BaseModel):
-    strengths: List[str] = Field(
-        description="A list of specific strengths demonstrated by the therapist in this dimension (2-3 items)",
-    )
-    areas_for_improvement: List[str] = Field(
-        description="A list of specific areas for improvement for the therapist in this dimension (2-3 items)",
+class Identification(Aspect):
+    name: str = "identification"
+    description: str = "The therapist's ability to identify core beliefs"
+    guidelines: str = (
+        "Look for instances where the therapist accurately identifies the client's cognitive distortions and emotional responses."
     )
 
 
-class CBTDimensions(BaseModel):
-    identification_of_core_beliefs: DimensionFeedback = Field(
-        description="Evaluation of the therapist's ability to identify core beliefs",
-    )
-    socratic_questioning: DimensionFeedback = Field(
-        description="Evaluation of the therapist's use of Socratic questioning",
-    )
-    actionable_homework: DimensionFeedback = Field(
-        description="Evaluation of the therapist's collaboration on actionable homework",
-    )
-    cognitive_restructuring: DimensionFeedback = Field(
-        description="Evaluation of the therapist's use of cognitive restructuring techniques",
+@dataclass
+class SocraticQuestioning(Aspect):
+    name: str = "socratic_questioning"
+    description: str = "Effectiveness of the therapist's Socratic questioning"
+    guidelines: str = (
+        "Assess how well the therapist uses Socratic questioning to guide the client towards self-discovery and cognitive restructuring."
     )
 
 
-class CBTFeedback(BaseModel):
-    overall_score: int = Field(
-        description="Overall score for the therapist's CBT skills in this session",
-    )
-    summary: str = Field(
-        description="A brief summary of the therapist's performance (you should reference what the therapist said/do in the session that makes you give this rating)",
-    )
-    dimension_feedback: CBTDimensions = Field(
-        description="Detailed scores for each CBT dimension"
+@dataclass
+class HomeworkAssignment(Aspect):
+    name: str = "homework_assignment"
+    description: str = "Appropriateness of homework assignments given by the therapist"
+    guidelines: str = (
+        "Evaluate whether the homework assignments are relevant to the client's issues and promote skill development."
     )
 
 
-class CBTEvaluator(ChatAgent):
-    def __init__(self, configs: DictConfig):
-        self.chat_model = get_chat_model(configs)
-        self.prompt = load_prompts(
-            role="evaluator/therapist", agent_type="cbt", lang=configs.lang
-        )["prompt"]
+@dataclass
+class CognitiveRestructuring(Aspect):
+    name: str = "cognitive_restructuring"
+    description: str = (
+        "Effectiveness of cognitive restructuring techniques used by the therapist"
+    )
+    guidelines: str = (
+        "Look for how effectively the therapist helps the client challenge and change maladaptive thought patterns."
+    )
 
-    def generate(self, messages: List[Dict]):
-        messages = [f"{msg['role']}: {msg['content']}" for msg in messages]
-        chat_model = self.chat_model.with_structured_output(CBTFeedback)
-        self.prompt = self.prompt.render(dialogue_history="\n".join(messages))
-        res = chat_model.invoke(self.prompt)
 
-        return res
-
-    def reset(self):
-        pass
+@dataclass
+class CBT(Dimension):
+    name: str = "cbt"
+    description: str = (
+        "Evaluates the therapist's Cognitive Behavioral Therapy (CBT) skills"
+    )
+    target: str = "therapist"
+    aspects: List[Aspect] = field(
+        default_factory=lambda: [
+            Identification(),
+            SocraticQuestioning(),
+            HomeworkAssignment(),
+            CognitiveRestructuring(),
+        ]
+    )
