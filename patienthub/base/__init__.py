@@ -1,5 +1,3 @@
-from .chat import ChatAgent
-from .inference import InferenceAgent
-from .evaluate import EvaluatorAgent
+from .agents import TrainableAgent, InferenceAgent, ChatAgent, EvaluatorAgent
 
 __all__ = ["ChatAgent", "InferenceAgent", "EvaluatorAgent"]
