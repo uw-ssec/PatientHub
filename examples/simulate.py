@@ -31,8 +31,9 @@ from patienthub.configs import register_configs
 
 DEFAULTS = [
     "_self_",
-    {"client": "annaAgent"},
+    {"client": "talkDep"},
     {"therapist": "user"},
+    # {"evaluator": "inspect"},
 ]
 
 
@@ -76,7 +77,7 @@ def simulate(configs: DictConfig) -> None:
 
     # Load evaluator (if any)
     evaluator = None
-    if configs.evaluator is not None:
+    if configs.evaluator:
         configs.evaluator.lang = lang
         evaluator = get_evaluator(configs=configs.evaluator)
 

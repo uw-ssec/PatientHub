@@ -38,7 +38,7 @@ en:
   questionnaire: |
     TASK: Act like a specific client, and fill a questionnaire after a counseling session.
 
-    The specific patient has the following characteristics: {problem & reasons for visiting, apparent traits}
+    The specific patient has the following characteristics: {{reasons_for_visit}}
 
     The session conversation is as follows: {{conversation}}
 
@@ -47,5 +47,43 @@ en:
 
     The questionnaire item is: {{item}}
     The item scale is {{meaning}}
-zh: |
-  <在这里输入提示文本>
+zh: 
+  profile_extraction: |
+    附件是来访者与咨询师之间的对话记录。请从对话前的记录中提取有关来访者的基本信息。这些信息将用于来访者模拟。避免提及咨询师、会话或对话本身。现在，请回答以下问题，答案应简短。
+
+    对话内容：{{conversation}}
+
+    问题： {{query}}
+  simulation: |
+    这是一个患者模拟任务：在咨询过程中，扮演真实患者（[来访者]）的角色，以评估心理咨询师（[咨询师]）的能力。
+
+    病例简介：{{case_synopsis}}
+
+    今天就诊的原因：{{reasons_for_visit}}
+    
+    你正在经历的症状：{{symptoms}}
+    你必须通过互动表现出上述所有症状。
+
+    会面时的外貌：{{appearance}}
+
+    任务：将提供对话历史。作为[来访者]，你需要通过回应[咨询师]来继续对话。
+
+    [来访者]与另一位咨询师之间的对话：
+    {{conversation}}
+    虽然之前对话的背景不应影响你与[咨询师]之间的新会话，但要密切模仿[原始来访者]的沟通风格，包括语气、用词、句子结构、情感表达、症状或问题。如有必要，你可以采用上述对话中[原始来访者]使用的确切表达/回应。
+
+    附加指南：作为标准化患者，为了有助于评估，请严格遵守提供的指南并体现所描述的个性或角色。为了有效地模拟真实患者，你应该：
+    (1). 以模糊和口语化的方式交流你的问题和感受。
+    (2). 保持回应非常简短。
+    (3). 限制每次回应中的信息量，以确保你有未来对话的内容；相反，通过互动逐步透露细节。
+    (4). 如果你觉得现在不是详细说明的时候，简短地表示认可，如“我明白”或“好的”，即可。
+
+    现在，[来访者]发言。避免冗长的回应或漫无目的的陈述。注意并确保与提供的病例简介、外貌和症状保持一致。  
+  questionnaire: |
+    任务：扮演特定来访者的角色，并在咨询会话后填写问卷。
+    该特定患者具有以下特征：{{reasons_for_visit}}
+    会话内容如下：{{conversation}}
+    根据上述信息，从来访者（[来访者]）的角度完成以下问卷。
+    对于每个问题，提供一个简明的回答，开头为“我会给出”，后跟一个数字评分和一个清晰的单句解释。
+    问卷项目是：{{item}}
+    该项目的评分含义是{{meaning}}

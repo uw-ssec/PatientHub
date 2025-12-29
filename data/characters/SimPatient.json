@@ -6,7 +6,7 @@
         "occupation": "software engineer",
         "mbti": "INTJ-A"
     },
-    "cognitive_model_values": {
+    "cognitive_model": {
         "patient_control": 3,
         "patient_efficacy": 4,
         "patient_awareness": 7,

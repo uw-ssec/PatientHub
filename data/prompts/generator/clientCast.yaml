@@ -19,7 +19,7 @@ en:
 
     Attached below is a conversation between a therapist and a client. Based on this conversation, estimate the client's level (as a percentage) of each Big Five trait (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism). This information will be utilized for client simulation. Avoid referencing the therapist, the session, or the conversation itself.
 
-    Conversation:
+    Conversation History:
     {{ conversation }}
   symptoms_prompt: |
     Attached below is a conversation. 
@@ -31,4 +31,35 @@ en:
     {{ conversation }}
 
     Symptom:
+    {{symptom}}
+zh:
+  basic_profile_prompt: |
+    附件是来访者与咨询师之间的对话记录。请从对话前的记录中提取有关来访者的基本信息。这些信息将用于来访者模拟。避免提及咨询师、会话或对话本身。现在，请回答以下问题，答案应简短。
+
+    对话内容：
+    {{ conversation }}
+  big_five_prompt: |
+    大五人格特质包括五个广泛的维度，用于描述人类的人格：开放性、尽责性、外向性、宜人性和神经质。每个特质代表一个光谱，个体在每个特质上的程度各不相同。
+
+    在这些特质中，开放性描述了那些对新思想、新体验持开放态度并具有丰富想象力的个体。这些人通常具有洞察力，喜欢生活中的多样性，并表现出高度的智力好奇心。他们更有可能挑战权威，欣赏新的思维方式。开放性的关键子特质包括智力好奇心、创造性想象力和审美敏感性。相反的特质包括一致性或谨慎，偏好熟悉和经过验证的方法或想法。
+
+    在这些特质中，尽责性描述了那些通常意志坚定、可靠且守时的个体。这些人往往表现出决心和可靠性，但也可能过于关注细节，导致完美主义。尽责性的关键子特质包括高效、负责任、有组织和自律。尽责性的相反特质包括奢侈、粗心大意以及优先考虑即时乐趣而非责任。
+
+    在这些特质中，外向性以倾向于体验积极情绪和情绪为特征，对自己和他人持有积极的整体看法。高度外向的人在社交环境中茁壮成长，通常表现得富有表现力、亲切、外向和自信。外向性的关键子特质包括善于社交、自信和精力充沛。相反的人格类型是内向型，这类人往往更孤独和内敛。
+
+    在这些特质中，宜人性以强烈倾向于维护和谐关系并真诚关心他人福祉为特征。高度宜人的人通常合作、友好且富有同情心，对人性持乐观态度。他们优先考虑社会和谐，深切关心他人。
+
+    在这些特质中，神经质以高度的情绪反应性和对生活普遍不满为特征。高度神经质的人通常对压力的耐受性较低，容易产生焦虑、抑郁、自我怀疑，并经常对自己和他人的进展进行评判。他们可能会发现即使是微小的挫折也难以应对。神经质的关键子特质包括焦虑、抑郁和情绪波动。神经质的相反特质包括乐观、情绪稳定和对生活的整体满意度。
+
+    附件是咨询师与来访者之间的对话记录。请根据对话内容，评估来访者在每个大五人格特质（开放性、尽责性、外向性、宜人性、神经质）上的水平（以百分比表示）。这些信息将用于来访者模拟。避免提及咨询师、会话或对话本身。
+
+    对话历史:
+    {{ conversation }}
+  symptoms_prompt: |
+    附件是一次对话记录。请根据对话前的内容，判断来访者是否表现出所列症状。这一评估将用于来访者模拟。避免提及咨询师、会话或对话本身。
+
+    对话内容：
+    {{ conversation }}
+
+    症状：
     {{symptom}}

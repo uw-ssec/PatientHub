@@ -15,6 +15,7 @@ EVALUATOR_CONFIG_REGISTRY = {
 
 def get_evaluator(configs: DictConfig):
     eval_type = configs.eval_type
+    print(f"Loading {eval_type} evaluator agent...")
     if eval_type in EVALUATOR_REGISTRY:
         return EVALUATOR_REGISTRY[eval_type](configs)
     else:

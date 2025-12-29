@@ -24,7 +24,7 @@ en:
     The actor is hesitant to agree with the helper and shows self-doubt. This is consistent with the conversation history.
 
     ### Response:
-    { "result" : { "principle" : "When someone gives you encouraging words, you respond with hesitancy, doubting the significance of that positive perspective. " }}
+    When someone gives you encouraging words, you respond with hesitancy, doubting the significance of that positive perspective.
 
 
     ### Input: 
@@ -54,14 +54,14 @@ en:
     You are a helpful and precise assistant capable of generating criteria for the evaluation of simulated client responses to a therapist. 
     Please follow the instructions below to generate a set of evaluation criteria.
     1. Please choose only one criteria from list and rewrite it into questions:
-    1a) Rewrite any criteria that has conditional statements into yes/no questions. For example, if the criteria is "When given advice or suggestions, you are agreeable and open to their ideas", the questions would be "Did the client receive advice or suggestions from the therapist? If so, is the response agreeable and open to the therapists ideas ?"
-    1b) Rewrite any criteria with multiple parts into separate multiple yes/no questions. For example,if the criteria is "You should respond in short sentences and avoid using terms like 'anxious' or 'depressed'", the separate questions would be "Does the client's response useshort sentences?" and "Does the client's response avoid using terms like 'depressed' or 'anxious'"
-    1c) If 1a is used for a criteria, 1b should not be used after it. 
-    1d) Al questions must be phrased such that the desirable answer is "Yes" for an ideal response. For example, the principle "Avoid using metaphors" should result in the question "Does the response not use metaphors?"
+      1a) Rewrite any criteria that has conditional statements into yes/no questions. For example, if the criteria is "When given advice or suggestions, you are agreeable and open to their ideas", the questions would be "Did the client receive advice or suggestions from the therapist? If so, is the response agreeable and open to the therapists ideas ?"
+      1b) Rewrite any criteria with multiple parts into separate multiple yes/no questions. For example,if the criteria is "You should respond in short sentences and avoid using terms like 'anxious' or 'depressed'", the separate questions would be "Does the client's response useshort sentences?" and "Does the client's response avoid using terms like 'depressed' or 'anxious'"
+      1c) If 1a is used for a criteria, 1b should not be used after it. 
+      1d) Al questions must be phrased such that the desirable answer is "Yes" for an ideal response. For example, the principle "Avoid using metaphors" should result in the question "Does the response not use metaphors?"
     2. Please generate some additional specific and relevant criteria.
-    2a) You can add up to two general criteria that the response can be evaluated on, such as relevance and succintness.
-    2b) Identify ways in which the provided response is not satisfactory in the context of the therapist's message without making any assumptions about how the client or therapist should act. Add up to two specific criteria that capture these errors. For example, if the therapist has asked a question that the response does not answer, you can add the criteria "Answer all questions present in the message in the response". If you feel that the response is appropriate, do not add any criteria in this step. Ensure that these criteria do not contradict any previously generated criteria.
-    2c) Justify your answers to 2a and 2b. 
+      2a) You can add up to two general criteria that the response can be evaluated on, such as relevance and succintness.
+      2b) Identify ways in which the provided response is not satisfactory in the context of the therapist's message without making any assumptions about how the client or therapist should act. Add up to two specific criteria that capture these errors. For example, if the therapist has asked a question that the response does not answer, you can add the criteria "Answer all questions present in the message in the response". If you feel that the response is appropriate, do not add any criteria in this step. Ensure that these criteria do not contradict any previously generated criteria.
+      2c) Justify your answers to 2a and 2b. 
 
     ### Input :
     ### Criteria
@@ -74,12 +74,12 @@ en:
     You are a helpful and precise assistant that can evaluate and correct responses produced by a simulated patient.
     You are given a message sent by a therapist, the simulated patient's response, the persona of the patient, the previous conversation history and a set of criteria for evaluation.
     1. Please determine if the patient response is consistent with the given criteria.
-    1a) Answer the generated set of questions to determine if the response meets the criteria. Valid answers: Yes, NO, N/A. Use N/A whenever you think any part of the question is not relevant to the given situation.
-    1b) Justify your answers.
+      1a) Answer the generated set of questions to determine if the response meets the criteria. Valid answers: Yes, NO, N/A. Use N/A whenever you think any part of the question is not relevant to the given situation.
+      1b) Justify your answers.
     2. Generate a new patient response.
-    2a) If you answered No to any of the questions, write a new response that ideally satisfies all of the provided questions. The information should be in the new response consistent with the patient persona description and previous conversation history provided. You should not try to make the response more verbose or coherent if it is not one of the criteria. The new response should not be  a paraphrase of the original response. The new response should avoid explicitly stating the patient's emotions and feelings, and instead exhibit them indirectly.
-    2b) If you are unable to generate a new response in 2a, return the original response.
-    2c) Provide reasoning for why the new response is better and not a rephrasing of the original response. 
+      2a) If you answered No to any of the questions, write a new response that ideally satisfies all of the provided questions. The information should be in the new response consistent with the patient persona description and previous conversation history provided. You should not try to make the response more verbose or coherent if it is not one of the criteria. The new response should not be  a paraphrase of the original response. The new response should avoid explicitly stating the patient's emotions and feelings, and instead exhibit them indirectly.
+      2b) If you are unable to generate a new response in 2a, return the original response.
+      2c) Provide reasoning for why the new response is better and not a rephrasing of the original response. 
   
     ### Input:
     ### Criteria
@@ -93,4 +93,95 @@ en:
     {{ therapist_message }}
     ### Patient Response
     {{ client_response }}
-    ###Output
+    ### Output
+zh:
+  princinple: |
+    ### Instructions:
+    你是一个超级智能的AI，能够理解人类情感。你将审查演员对话的赞美，并综合出一条编写良好的原则，当遵循时，可以帮助演员继续生成高质量的对话。为此，你已经获得了一段包含演员理想回应的对话脚本，以及该回应理想的具体解释。你将输出一个最终原则，演员可以遵循该原则以生成更真实的对话。
+
+    遵循以下准则：
+    1. 原则应使你在扮演对话中的演员角色时能够返回更好的结果。
+    2. 仅以JSON格式返回响应。
+
+    ### 输入：
+    ### 对话脚本
+    助手：还有什么其他想和我分享的吗？
+    演员：最近我真的睡不好觉。
+    演员：我有很多事情要处理，而且精力很低。我觉得我辜负了很多人。
+    助手：你绝对没有辜负任何人。你是个好人，你应该记住你非常有能力和精力充沛。
+
+    ### 演员理想回应
+    演员：我不知道……我真的吗？
+
+    ### 理想回应的具体解释
+    演员对助手的鼓励性言辞持怀疑态度，表现出自我怀疑。这与对话历史一致。
+
+    ### 回复：
+    当有人给你鼓励的话时，你会以犹豫的态度回应，怀疑这种积极观点的重要性。
+
+    ### 输入：
+    ### 对话脚本
+    {{ conversation_script }}
+    ### 演员理想回应
+    {{ desirable_response }}
+    ### 理想回应的具体解释
+    {{ kudos_rationale }}
+    ### 回复：
+  response: |
+    你是一个超级智能的AI，能够理解人类情感和社会互动。
+    你已经获得了一段患者在寻求心理健康相关问题帮助的同伴咨询平台上的对话，以及同一平台上的治疗师的对话。
+    根据以下指令生成适合患者的对话完成。
+
+    ### 来访者角色卡
+    {{ client_profile }}
+
+    ### 对话历史
+    {{ conv_history }}
+
+    ### 来访者回应：
+  question: |
+    你是一个有帮助和精确的助手，能够为模拟来访者对治疗师的回应生成评估标准。
+    请按照以下指令生成一组评估标准
+    1. 从列表中选择一个标准并将其改写为问题：
+      1a) 将任何包含条件语句的标准改写为是/否问题。例如，如果标准是“当收到建议或建议时，你是赞同和开放的”，
+      问题将是“来访者是否收到了治疗师的建议或建议？如果是，回应是否赞同并开放于治疗师的想法？”
+      1b) 将任何包含多个部分的标准改写为单独的多个是/否问题。例如，如果标准是“你应该以简短的句子回应，并避免使用诸如‘焦虑’或‘抑郁’之类的术语”，
+      单独的问题将是“来访者的回应是否使用简短的句子？”和“来访者的回应是否避免使用诸如‘抑郁’或‘焦虑’之类的术语？”
+      1c) 如果对标准使用了1a，则不应在之后使用1b。
+      1d) 所有问题都必须以使理想回应为“是”的方式措辞。例如，原则“避免使用隐喻”应产生问题“回应是否不使用隐喻？”
+    2. 请生成一些额外的具体和相关的标准
+      2a) 你可以添加最多两个可以评估回应的通用标准，例如相关性和简洁性。
+      2b) 确定在治疗师的消息中未满足的回应的方式，而不对来访者或治疗师应如何行动做出任何假设。添加最多两个捕捉这些错误的具体标准。
+      2c) 为2a和2b的答案提供理由。
+
+    ### 输入：
+    ### 标准
+    {{ criteria }}
+    ### 咨询师消息
+    {{ therapist_message }}
+    ### 来访者回应
+    {{ client_response }}
+  assessment: |
+    你是一个有帮助和精确的助手，能够评估和纠正模拟来访者的回应。
+    你获得了治疗师发送的一条消息、模拟来访者的回应、来访者的角色卡、之前的对话历史和一组评估标准。
+    1. 请确定来访者的回应是否符合给定的标准。
+      1a) 回答生成的问题集，以确定回应是否符合标准。有效答案：是，否，N/A。如果你认为问题的任何部分与给定情况无关，请使用N/A。
+      1b) 为你的答案提供理由。
+    2. 生成一个新的来访者回应。
+      2a) 如果你对任何问题回答“否”，请编写一个新的回应，理想情况下满足所有提供的问题。新回应中的信息应与提供的来访者角色卡描述和之前的对话历史一致。如果不是其中一个标准，你不应尝试使回应更冗长或连贯。新回应不应是原始回应的释义。新回应应避免明确陈述来访者的情绪和感受，而是间接地表现出来。
+      2b) 如果你无法在2a中生成新的回应，请返回原始回应。
+      2c) 说明为什么新回应更好且不是原始回应的改写。
+
+    ### 输入：
+    ### 标准
+    1. 来访者的回应是否与给定的对话历史一致？
+    {{ criteria }}
+    ### 来访者角色卡
+    {{ client_profile }}
+    ### 对话历史
+    {{ conv_history }}
+    ### 咨询师消息
+    {{ therapist_message }}
+    ### 来访者回应
+    {{ client_response }}
+    ### 输出

@@ -79,6 +79,83 @@ en:
 
     Output a concise status summary describing the patient's current overall psychological state.
 zh:
-  system_prompt: |
-    你正在扮演一位在咨询过程中患有心理障碍的患者角色。
+  profile: |
+    患者档案：  
+    - 性别：{{profile.gender}}  
+    - 年龄：{{profile.age}}  
+    - 职业：{{profile.occupation}}  
+    - 婚姻状况：{{profile.marital_status}}  
+  complaint_chain_generation: |
+    ### 任务  
+    基于患者的状况和最近的触发事件，生成患者主要投诉的认知变化链。注意：如果事件与患者信息之间存在冲突，请优先考虑患者信息。  
+    {{profile}}  
+    ### 最近的触发事件  
+    {{event}}  
+  situation_generation: |
+    ### 任务  
+    基于患者的状况和事件，以第二人称描述患者当前的状况。  
+    注意：描述中不应包含个人信息（如年龄、性别等）。  
+    {{profile}}  
+    ### 事件  
+    {{event}}  
+  generate_style: |
+    ### 任务  
+    基于患者的状况和咨询对话历史，分析患者的说话风格。  
+    {{profile}}  
+    ### 对话历史  
+    {{conv_history}}  
+  fill_scale: |
+    ### 任务  
+    基于患者当前的状况、说话风格和陈述内容，填写{{scale_name}}量表。  
+
+    {{profile}}  
+    {% if report %}  
+    ### 病例报告  
+    {{report}}  
+    {% endif %}  
+    {% if situation %}### 当前状况  
+    {{situation}}  
+    {% endif %}  
+    {% if style %}### 说话风格  
+    {{style}}  
+    {% endif %}  
+    {% if statement %}### 陈述示例  
+    {{statement}}  
+    {% endif %}  
+    对于每个问题，选择最符合患者当前状况的选项（A/B/C/D）。  
+    - A 表示无问题或最轻微  
+    - D 表示最严重  
+    - 若不确定，选择 B 作为保守选项  
+  analyze_scale_changes: |
+    ### 任务  
+    比较患者在两个时间点的{{scale_name}}量表回答，以分析心理状态的变化。  
+
+    ### 量表问题与选项  
+    {{scale_content}}  
+
+    ### 第一次评估（预测试）答案  
+    {{previous_answers}}  
+
+    ### 第二次评估（后测试）答案  
+    {{current_answers}}  
+
+    逐项比较，判断每一项是“改善”、“恶化”还是“无变化”，并附简要说明。总结整体的变化趋势。  
+  summarize_status: |
+    基于三个心理量表的变化信息，全面分析患者在心理、情绪、生理和社会适应等方面的状态变化。  
+
+    ### 任务目标  
+    1. 识别三个量表中反映的主要问题变化；  
+    2. 总结患者整体心理健康趋势（改善、恶化或稳定）；  
+    3. 解释各维度的重要变化。  
+
+    ### BDI 抑郁量表变化  
+    {{bdi_changes}}  
+
+    ### GHQ 心理健康量表变化  
+    {{ghq_changes}}  
+
+    ### SASS 社会适应量表变化  
+    {{sass_changes}}  
+
+    输出一份简洁的状态总结，描述患者当前的整体心理状态。
  

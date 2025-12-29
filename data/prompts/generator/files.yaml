@@ -22,7 +22,7 @@ en:
         data_idx: int = 0
 
     # TODO: Define the response format
-    class {{class_name}}Response(BaseModel):
+    class Response(BaseModel):
         content: str = Field(
             description="The content of your generated response in this turn",
         )
@@ -42,16 +42,16 @@ en:
             )
             # TODO: Initialize the system prompt
             self.messages = [
-                SystemMessage(content="<insert system prompt here>")
+                SystemMessage(content=self.prompts["system_prompt"].render(data=self.data))
             ]
+
+        def set_{{other_agent_type}}(self, {{other_agent_type}}, prev_sessions: List[Dict[str, str] | None] = []):
+            self.{{other_agent_type}} = {{other_agent_type}}.get("name", "{{other_agent_type}}")
 
         def generate(self, messages: List[str], response_format: BaseModel):
             chat_model = self.chat_model.with_structured_output(response_format)
             res = chat_model.invoke(messages)
             return res
-
-        def set_{{other_agent_type}}(self, {{other_agent_type}}, prev_sessions: List[Dict[str, str] | None] = []):
-            self.{{other_agent_type}} = {{other_agent_type}}.get("name", "{{other_agent_type}}")
 
         def generate_response(self, msg: str):
             self.messages.append(HumanMessage(content=msg))

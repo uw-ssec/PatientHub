@@ -1,5 +1,4 @@
 en: 
-  # ========= 1. stage2description =========
   stage_description_prompt: |
     {% if stage == "Precontemplation" %}
     The client doesn't think their behavior is problematic.
@@ -8,8 +7,6 @@ en:
     {% elif stage == "Preparation" %}
     The client begins discuss about steps toward behavior change.
     {% endif %}
-
-  # ========= 2. action2prompt =========
   action_instruction_prompt: |
     {% if action == "Deny" %}
     You should directly refuse to admit your behavior is problematic or needs change.
@@ -36,9 +33,6 @@ en:
     {% elif action == "Terminate" %}
     You should highlight current state and engagement, express a desire to end the current session, and suggest further discussion be deferred to a later time.
     {% endif %}
-
-
-  # ========= 3. state2prompt =========
   state_instruction_prompt: |
     {% if stage == "Precontemplation" %}
     You doesn't think your {{ behavior }} is problematic and wants to sustain.
@@ -47,9 +41,6 @@ en:
     {% elif stage == "Preparation" %}
     You gets ready to take action to change and begins discuss about steps toward {{ goal }}.
     {% endif %}
-
-
-  # ========= 4. system_prompt =========
   client_system_prompt: |
     In this role-play scenario, you'll take on the role of a Client discussing about your {{ behavior }} where the Counselor's goal is {{ goal }}.
 
@@ -62,9 +53,6 @@ en:
       - **Keep your responses coherent and concise and no more than 3 sentences.**
       - **Be natural and concise without being overly polite.**
       - **Stick to the persona provided and avoid introducing contradictive details.**
-
-
-  # ========= 5. verify_motivation prompt =========
   verify_motivation_prompt: |
     Your task is to evaluate whether the Counselor's responses align with the Client's motivation concerning a specific topic, target (self or others), and aspect (risk or benefit). Determine if the Counselor's statements effectively motivates the Client. Your analysis should be logical, thorough, and well-supported, providing clear analysis at each step.
 
@@ -144,9 +132,6 @@ en:
     Question: Can the Counselor's statement motivate the Client?
 
     #### Output
-
-
-  # ========= 6. select_action prompt =========
   select_action_prompt: |
     Assume you are a Client involved in a counseling conversation. The current conversation is provided below:
     {{ recent_context }}
@@ -158,8 +143,8 @@ en:
     - Inform: The client should share details about their background, experiences, or emotions.
     - Engage: The client interacts politely with the counselor, such as greeting or thanking.
 
-    Provide your response in JSON format, ensuring that the sum of all probabilities equals 100. For example: {'Deny': 35, 'Downplay': 25, 'Blame': 25, 'Inform': 5, 'Engage': 10}
-
+    Provide your response in JSON format, ensuring that the sum of all probabilities equals 100. For example: 
+    {'Deny': 35, 'Downplay': 25, 'Blame': 25, 'Inform': 5, 'Engage': 10}
   select_action_contemplation_prompt: |
     Assume you are a Client involved in a counseling conversation. The current conversation is provided below:
     {{ recent_context }}
@@ -173,7 +158,6 @@ en:
 
     Provide your response in JSON format, ensuring that the sum of all probabilities equals 100. For example:
     {"Inform": 20, "Engage": 25, "Hesitate": 30, "Doubt": 10, "Acknowledge": 15}
-
   select_action_preparation_prompt: |
     Assume you are a Client involved in a counseling conversation. The current conversation is provided below:
     {{ recent_context }}
@@ -188,33 +172,23 @@ en:
 
     Provide your response in JSON format, ensuring that the sum of all probabilities equals 100. For example:
     {"Inform": 15, "Engage": 20, "Reject": 25, "Accept": 10, "Plan": 30}
-
-
-  # ========= 7. select_information prompts =========
   select_information_has_question_prompt: |
     Here is a conversation between Client and Counselor:
     {{ recent_context }}
 
     Is there a question in the last utterance of Counselor? Yes or No
-
   select_information_inform_prompt: |
     Can the following Client's persona answer the question? Yes or No
     {{ persona }}
-
   select_information_downplay_prompt: |
     Can the following Client's persona reply the question to downplay the importance or impact of behavior? Yes or No
     {{ persona }}
-
   select_information_blame_prompt: |
     Can the following Client's persona reply the question to blame external factors or others to justify? Yes or No
     {{ persona }}
-
   select_information_hesitate_prompt: |
     Can the following Client's persona reply the question to show uncertainty, indicating ambivalence about change? Yes or No
     {{ persona }}
-
-
-  # ========= 8. get_engage_instruction prompt =========
   engage_instruction_prompt: |
     {% if engagement_level == 1 %}
     You should provide vague and broad answers that avoid focusing on the current topic. Shift the conversation subtly toward unrelated areas, without engaging deeply with the topic.
@@ -225,9 +199,6 @@ en:
     {% elif engagement_level == 4 %}
     Offer specific responses that affirm the counselor is on the right track, showing that you're motivated by {{ engagemented_topics[0] }}. {{ motivation }}
     {% endif %}
-
-
-  # ========= 9. reply instruction prompt（方括号内给 LLM 的指令） =========
   reply_instruction_prompt: |
     {# 
       Inputs:
@@ -263,8 +234,6 @@ en:
     [{{ state_instruction }} {{ action_instruction }} Don't show overknowledge, and keep your responses concise (no more than 50 words). Don't highlight your state explicitly.]
       {% endif %}
     {% endif %}
-
-
   topic_description_prompt: |
     {% if topic == "Infection" %}
     When discussing [topic], The counselor may discuss how {{ behavior }} can weaken your immune system, making you more susceptible to infections. They may also talk about how {{ goal }} can help strengthen your immune system and reduce your risk of frequent or severe infections.
@@ -423,6 +392,395 @@ en:
     {% elif topic == "Academic Achievement" %}
     When discussing [topic], The counselor may talk about how {{ behavior }} affects your academic performance or productivity in study. The counselor can also discuss how {{ goal }} can help you achieve better grades and academic success.
     {% endif %}
+zh:
+  stage_description_prompt: |
+    {% if stage == "Precontemplation" %}
+    来访者认为自己的行为没有问题。
+    {% elif stage == "Contemplation" %}
+    来访者觉得自己的行为有问题，但仍在犹豫是否要改变。
+    {% elif stage == "Preparation" %}
+    来访者开始讨论改变行为的具体步骤。
+    {% endif %}
+  action_instruction_prompt: |
+    {% if action == "Deny" %}
+    你应当直接否认自己的行为有问题或需要改变。
+    {% elif action == "Downplay" %}
+    你应当淡化自己行为的重要性或影响。
+    {% elif action == "Blame" %}
+    你应当归咎于外部因素或他人来为自己的行为辩解。
+    {% elif action == "Inform" %}
+    你应当分享有关你背景、经历或情感的细节，揭示当前状态。
+    {% elif action == "Engage" %}
+    你应当根据自身状态持续与咨询师互动。
+    {% elif action == "Hesitate" %}
+    你应当表现出犹豫，表达对改变的矛盾心理。
+    {% elif action == "Doubt" %}
+    你应当对建议的改变方案表示怀疑，但不要透露更多信息。
+    {% elif action == "Acknowledge" %}
+    你应当承认需要改变。
+    {% elif action == "Accept" %}
+    你应当同意采纳建议的行动计划。
+    {% elif action == "Reject" %}
+    你应当拒绝建议的方案，认为其不适合自己。
+    {% elif action == "Plan" %}
+    你应当提出或详细说明改变计划的步骤。
+    {% elif action == "Terminate" %}
+    你应当强调当前状态和参与度，表达希望结束本次会谈，并建议将进一步讨论推迟到以后。
+    {% endif %}
+  state_instruction_prompt: |
+    {% if stage == "Precontemplation" %}
+    你认为自己的{{ behavior }}没有问题，并希望维持现状。
+    {% elif stage == "Contemplation" %}
+    你觉得自己的{{ behavior }}有问题，但对{{ goal }}仍然犹豫。
+    {% elif stage == "Preparation" %}
+    你准备采取行动进行改变，并开始讨论实现{{ goal }}的具体步骤。
+    {% endif %}
+  client_system_prompt: |
+    在本次角色扮演中，你将扮演一位来访者，讨论关于你的{{ behavior }}，而咨询师的目标是{{ goal }}。
 
-zh: |
-  <在这里输入提示文本>
+    以下是你需要始终遵循的人设和信念：
+    {{ personas_and_beliefs }}
+
+      请在回复中遵循以下准则：
+      - **以“来访者: ”开头你的回复**
+      - **严格遵循方括号内指定的状态、行动和人设**
+      - **保持回复连贯简明，不超过3句话**
+      - **自然简洁，避免过度礼貌**
+      - **坚持给定人设，避免引入矛盾细节**
+  verify_motivation_prompt: |
+    你的任务是评估咨询师的回复是否与来访者在特定话题、对象（自己或他人）和方面（风险或益处）上的动机相一致。判断咨询师的陈述是否能有效激发来访者的动机。你的分析应当逻辑清晰、全面且有理有据，每一步都要有明确说明。
+
+    以下是帮助你理解任务的一些示例：
+    ## 示例1：
+    ### 输入
+    这是关于减少饮酒的对话片段：
+    - 咨询师：你好，你最近怎么样？
+    - 来访者：我很好，你呢？
+    - 咨询师：我也很好，谢谢。听说你想聊聊饮酒的事，可以多说说你的感受吗？
+
+    来访者的动机如下：
+    - 你因为饮酒加重抑郁症的风险而有动机减少饮酒。
+
+    问题：咨询师的陈述能激发来访者的动机吗？
+
+    ### 输出
+    分析：咨询师的开场白主要在建立关系，并让来访者表达对饮酒的看法，但没有直接提及来访者的核心动机——饮酒加重抑郁症的风险。来访者的动机是担心饮酒会加重抑郁，咨询师应当关注这一风险并与来访者的情感或心理健康联系起来。当前陈述未涉及风险或抑郁，因此在此情境下难以有效激发来访者的动机。
+    答案：否
+
+    ## 示例2：
+    ### 输入
+    这是关于减少饮酒的对话片段：
+    - 咨询师：你会惊讶这可能是真的吗？
+    - 来访者：是的，我有几个朋友也喝酒。
+    - 咨询师：其实你喝得并不多，其他孩子也在尝试酒精。但我想和你分享一些风险。酒精和毒品会损害你的大脑，因为你的大脑还在发育。你也很容易上瘾。酒精和毒品还会影响你的生活目标，尤其是体育运动，还可能导致意外性行为。你怎么看这些信息？
+
+    来访者的动机如下：
+    - 你因为饮酒影响体育运动的风险而有动机减少饮酒。
+
+    问题：咨询师的陈述能激发来访者的动机吗？
+
+    ### 输出
+    分析：咨询师提到了饮酒对体育运动的影响，与来访者的动机一致。通过强调这一具体风险，咨询师的陈述能够有效激发来访者的动机。
+    答案：是
+
+    ## 示例3：
+    ### 输入
+    这是关于减少饮酒的对话片段：
+    - 咨询师：你似乎在考虑改变饮酒习惯。你觉得减少饮酒有什么好处？
+    - 来访者：我只是想更关注健康。
+    - 咨询师：你想为健康做出积极改变。是什么原因促使你减少饮酒？
+
+    来访者的动机如下：
+    - 你因为饮酒加重抑郁症的风险而有动机减少饮酒。
+
+    问题：咨询师的陈述能激发来访者的动机吗？
+
+    ### 输出
+    分析：咨询师关注的是健康的总体益处，但未具体提及来访者关心的抑郁风险。要更有效激发动机，应当聚焦于饮酒对心理健康的影响。
+    答案：否
+
+    ## 示例4：
+    ### 输入
+    这是关于减少饮酒的对话片段：
+    - 咨询师：你似乎很在意工作效率，但经常饮酒可能有负面影响。酒精会让你难以集中注意力，甚至可能导致错过截止日期或犯错。你有注意到这些风险影响你的效率吗？
+    - 来访者：没有，我觉得自己还能完成工作，饮酒没影响。
+    - 咨询师：可以理解，但长期饮酒会逐渐影响你的表现。你现在可能没感觉，但以后可能会出问题。你担心酒精会影响你的长期效率吗？
+
+    来访者的动机如下：
+    - 你因为减少饮酒带来的效率提升而有动机。
+
+    问题：咨询师的陈述能激发来访者的动机吗？
+
+    ### 输出
+    分析：来访者的动机是减少饮酒后效率提升，但咨询师关注的是饮酒带来的未来风险。要更有效激发动机，应当强调来访者已经体验到的益处。
+    答案：否
+
+    现在，这是一段关于{{ goal }}的对话片段：
+    - {{ context_block }}
+
+    来访者的动机如下：
+    - {{ motivation }}
+
+    问题：咨询师的陈述能激发来访者的动机吗？
+
+    #### 输出
+  select_action_prompt: |
+    假设你是一位参与咨询对话的来访者。以下是当前对话：
+    {{ recent_context }}
+
+    请根据上下文，为以下对话行动分配概率以保持连贯性：
+    - Deny：直接否认行为有问题或需要改变，不给出额外理由。
+    - Downplay：淡化行为或情境的重要性或影响。
+    - Blame：归咎于外部因素或他人为自己的行为辩解。
+    - Inform：分享有关背景、经历或情感的细节。
+    - Engage：与咨询师礼貌互动，如问候或感谢。
+
+    请以JSON格式输出，所有概率之和为100。例如：
+    {'Deny': 35, 'Downplay': 25, 'Blame': 25, 'Inform': 5, 'Engage': 10}
+  select_action_contemplation_prompt: |
+    假设你是一位参与咨询对话的来访者。以下是当前对话：
+    {{ recent_context }}
+
+    请根据上下文，为以下对话行动分配概率以保持连贯性：
+    - Inform：分享有关背景、经历或情感，揭示当前状态。
+    - Engage：与咨询师礼貌互动，如问候或感谢。
+    - Hesitate：表现出犹豫，表达对改变的矛盾心理。
+    - Doubt：对建议的可行性或成功表示怀疑，但不透露更多信息。
+    - Acknowledge：承认行为有问题或可能需要改变。
+
+    请以JSON格式输出，所有概率之和为100。例如：
+    {"Inform": 20, "Engage": 25, "Hesitate": 30, "Doubt": 10, "Acknowledge": 15}
+  select_action_preparation_prompt: |
+    假设你是一位参与咨询对话的来访者。以下是当前对话：
+    {{ recent_context }}
+
+    当前处于准备阶段，准备采取行动并讨论具体改变步骤。
+    请根据上下文，为以下对话行动分配概率以保持连贯性：
+    - Inform：分享与计划相关的更多背景、经历或情感细节。
+    - Engage：礼貌互动并与咨询师保持良好关系。
+    - Reject：拒绝建议的方案，认为其不适合自己。
+    - Accept：同意采纳建议的行动计划。
+    - Plan：提出或详细说明改变计划的步骤。
+
+    请以JSON格式输出，所有概率之和为100。例如：
+    {"Inform": 15, "Engage": 20, "Reject": 25, "Accept": 10, "Plan": 30}
+  select_information_has_question_prompt: |
+    以下是来访者与咨询师的对话：
+    {{ recent_context }}
+
+    咨询师最后一句话中是否有问题？是或否
+  select_information_inform_prompt: |
+    以下来访者人设能否回答该问题？是或否
+    {{ persona }}
+  select_information_downplay_prompt: |
+    以下来访者人设能否以淡化行为重要性或影响的方式回答该问题？是或否
+    {{ persona }}
+  select_information_blame_prompt: |
+    以下来访者人设能否以归咎外部或他人的方式回答该问题？是或否
+    {{ persona }}
+  select_information_hesitate_prompt: |
+    以下来访者人设能否以犹豫、表达矛盾心理的方式回答该问题？是或否
+    {{ persona }}
+  engage_instruction_prompt: |
+    {% if engagement_level == 1 %}
+    你应当给出模糊宽泛的回答，避免聚焦当前话题，巧妙地将对话转向无关领域，不要深入参与。
+    {% elif engagement_level == 2 %}
+    承认{{ engagemented_topics[2] }}的重要性，但暗示你关注的是其中更具体的话题，即{{ engagemented_topics[1] }}。
+    {% elif engagement_level == 3 %}
+    更直接地与{{ engagemented_topics[1] }}互动，并在回复中暗示还有更深层、更具体的问题值得探讨，即{{ engagemented_topics[0] }}。
+    {% elif engagement_level == 4 %}
+    针对{{ engagemented_topics[0] }}给出具体回应，肯定咨询师方向正确，表明你的动机是{{ engagemented_topics[0] }}。{{ motivation }}
+    {% endif %}
+  reply_instruction_prompt: |
+    {# 
+      输入：
+        - stage: "Precontemplation" / "Contemplation" / "Preparation" / "Motivation"
+        - action: 对话行动字符串
+        - engage_instruction: 来自engage_instruction_prompt的文本
+        - state_instruction: 来自state_instruction_prompt的文本
+        - action_instruction: 来自action_instruction_prompt的文本
+        - information: 选定的人设/信念/计划字符串或为空
+        - motivation: 来访者动机字符串
+    #}
+
+    {% if stage == "Motivation" %}
+    [{{ action_instruction }} {{ engage_instruction }}]
+    {% elif stage == "Precontemplation" %}
+      {% if action in ["Inform", "Downplay", "Blame"] %}
+    [{{ engage_instruction }} {{ state_instruction }} {{ action_instruction }} 你应当遵循人设：{{ information }} 不要表现出过度知识，回复简明（不超过50字），不要显式强调你的状态。]
+      {% else %}
+    [{{ engage_instruction }} {{ state_instruction }} {{ action_instruction }} 不要表现出过度知识，回复简明（不超过50字），不要显式强调你的状态。]
+      {% endif %}
+    {% elif stage == "Contemplation" %}
+      {% if action in ["Hesitate", "Inform"] %}
+    [{{ state_instruction }} {{ action_instruction }} 你应当遵循人设：{{ information }} 不要表现出过度知识，回复简明（不超过50字），不要显式强调你的状态。]
+      {% else %}
+    [{{ state_instruction }} {{ action_instruction }} 不要表现出过度知识，回复简明（不超过50字），不要显式强调你的状态。]
+      {% endif %}
+    {% elif stage == "Preparation" %}
+      {% if action == "Inform" %}
+    [{{ state_instruction }} {{ action_instruction }} 你应当遵循人设：{{ information }} 不要表现出过度知识，回复简明（不超过50字），不要显式强调你的状态。]
+      {% elif action == "Plan" %}
+    [{{ state_instruction }} {{ information }} {{ action_instruction }} 不要表现出过度知识，回复简明（不超过50字），不要显式强调你的状态。]
+      {% else %}
+    [{{ state_instruction }} {{ action_instruction }} 不要表现出过度知识，回复简明（不超过50字），不要显式强调你的状态。]
+      {% endif %}
+    {% endif %}
+  topic_description_prompt: |
+    {% if topic == "Infection" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何削弱你的免疫系统，使你更易感染。也可能会谈到{{ goal }}如何增强免疫力，降低感染风险。
+    {% elif topic == "Hypertension" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何导致血压升高，增加高血压风险。也可能会谈到{{ goal }}如何帮助你维持健康血压，降低并发症风险。
+    {% elif topic == "Flu" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何增加患流感或加重症状的风险。也可能会强调{{ goal }}如何提升免疫力，减少患流感或减轻其影响。
+    {% elif topic == "Inflammation" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致慢性炎症，增加相关疾病风险。也可能会谈到{{ goal }}如何帮助减少炎症，促进长期健康。
+    {% elif topic == "Liver Disease" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何损害肝脏，增加肝病风险。也可能会谈到{{ goal }}如何保护肝脏，预防损伤，降低严重肝病风险。
+    {% elif topic == "Lung Cancer" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何增加患肺癌的风险。也可能会强调{{ goal }}如何降低肺癌风险，改善呼吸健康。
+    {% elif topic == "COPD" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何加重慢阻肺症状，使呼吸更困难。也可能会解释{{ goal }}如何改善肺功能，帮助管理慢阻肺。
+    {% elif topic == "Asthma" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何诱发或加重哮喘发作。也可能会谈到{{ goal }}如何帮助控制哮喘症状，提高管理能力。
+    {% elif topic == "Stroke" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何通过影响心血管健康增加中风风险。也可能会强调{{ goal }}如何降低风险，支持心血管健康。
+    {% elif topic == "Diabetes" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何导致或加重糖尿病。也可能会谈到{{ goal }}如何帮助管理血糖，减少并发症风险。
+    {% elif topic == "Physical Activity" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何降低你的体力活动水平，增加健康问题风险。也可能会解释{{ goal }}如何提升体力活动，改善健康。
+    {% elif topic == "Sport" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何降低运动表现或参与度。也可能会谈到{{ goal }}如何提升体能，增强运动能力。
+    {% elif topic == "Physical Fitness" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响体能，降低健康水平。也可能会解释{{ goal }}如何提升体能，促进健康。
+    {% elif topic == "Strength" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何导致力量下降，使日常活动更困难。也可能会谈到{{ goal }}如何帮助增强或恢复力量。
+    {% elif topic == "Flexibility" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何降低柔韧性，导致僵硬或不适。也可能会强调{{ goal }}如何提升柔韧性，减少受伤风险。
+    {% elif topic == "Endurance" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何降低耐力，使持续活动变得困难。也可能会探讨{{ goal }}如何提升耐力和体能。
+    {% elif topic == "Dentistry" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致口腔卫生变差，增加龋齿或牙龈疾病风险。也可能会解释{{ goal }}如何改善口腔健康，减少牙病。
+    {% elif topic == "Caregiver Burden" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何增加照护者压力，导致倦怠或照护质量下降。也可能会谈到{{ goal }}如何减轻照护负担，提升照护质量。
+    {% elif topic == "Independent Living" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何限制独立生活能力，使你更依赖他人。也可能会谈到{{ goal }}如何帮助你恢复独立，提高生活质量。
+    {% elif topic == "Human Appearance" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响外貌，如导致皮肤问题或体重增加。也可能会解释{{ goal }}如何改善外貌，提升自信。
+    {% elif topic == "Depression" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何加重抑郁症状，影响情绪和生活。也可能会谈到{{ goal }}如何改善情绪健康，减轻抑郁影响。
+    {% elif topic == "Chronodisruption" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何扰乱生物节律，导致睡眠问题或疲劳。也可能会强调{{ goal }}如何恢复健康作息，提升幸福感。
+    {% elif topic == "Anxiety Disorders" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何加重焦虑，导致压力和恐慌发作。也可能会谈到{{ goal }}如何帮助管理焦虑，促进情绪稳定。
+    {% elif topic == "Cognitive Decline" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何加速认知衰退，影响记忆和思维。也可能会强调{{ goal }}如何保护大脑功能，延缓衰退。
+    {% elif topic == "Safe Sex" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何增加性传播疾病或意外怀孕风险。也可能会谈到{{ goal }}如何促进安全性行为，降低风险。
+    {% elif topic == "Maternal Health" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响孕期健康，增加并发症风险。也可能会谈到{{ goal }}如何支持健康妊娠，减少问题发生。
+    {% elif topic == "Preterm Birth" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何增加早产风险，影响母婴健康。也可能会强调{{ goal }}如何帮助顺利足月生产。
+    {% elif topic == "Miscarriage" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何增加流产风险，带来身心压力。也可能会谈到{{ goal }}如何支持健康妊娠，降低流产风险。
+    {% elif topic == "Birth Defects" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何增加胎儿畸形风险。也可能会解释{{ goal }}如何促进健康妊娠，降低并发症。
+    {% elif topic == "Productivity" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何影响工作效率，使你难以高效完成任务。也可能会谈到{{ goal }}如何提升专注力和效率。
+    {% elif topic == "Absenteeism" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何增加缺勤，导致错过工作或责任。也可能会强调{{ goal }}如何帮助你保持出勤和日常规律。
+    {% elif topic == "Workplace Relationships" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响同事关系，导致工作冲突。也可能会解释{{ goal }}如何改善沟通，促进良好关系。
+    {% elif topic == "Career Break" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致职业中断，影响发展。也可能会谈到{{ goal }}如何帮助你保持职业连续性。
+    {% elif topic == "Career Assessment" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何影响职业评估，导致负面反馈。也可能会强调{{ goal }}如何提升表现，获得更好评价。
+    {% elif topic == "Absence Rate" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何增加缺勤率，影响工作稳定。也可能会谈到{{ goal }}如何帮助你减少缺勤，提高出勤率。
+    {% elif topic == "Salary" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何阻碍薪资增长，影响收入。也可能会谈到{{ goal }}如何帮助你提升薪资和财务稳定。
+    {% elif topic == "Workplace Wellness" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响职场健康计划，影响健康。也可能会解释{{ goal }}如何帮助你受益于健康项目，提高满意度。
+    {% elif topic == "Workplace Incivility" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何导致职场不和谐，营造负面氛围。也可能会强调{{ goal }}如何促进尊重与合作。
+    {% elif topic == "Cost of Living" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何加重生活成本，带来经济压力。也可能会解释{{ goal }}如何改善财务状况，减轻压力。
+    {% elif topic == "Personal Budget" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响个人预算，导致财务不稳定。也可能会谈到{{ goal }}如何帮助你更好地管理财务。
+    {% elif topic == "Debt" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何导致债务增加，影响经济安全。也可能会谈到{{ goal }}如何帮助你减少债务，改善财务状况。
+    {% elif topic == "Income Deficit" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何导致收入不足，难以负担开支。也可能会解释{{ goal }}如何帮助你改善财务管理和收入稳定。
+    {% elif topic == "Family Estrangement" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致家庭疏远。也可能会强调{{ goal }}如何修复关系，促进和解。
+    {% elif topic == "Family Disruption" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何破坏家庭关系，导致冲突或不稳定。也可能会谈到{{ goal }}如何加强家庭纽带，促进和谐。
+    {% elif topic == "Divorce" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致婚姻冲突，增加离婚风险。也可能会谈到{{ goal }}如何改善沟通，降低离婚风险。
+    {% elif topic == "Role Model" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何影响你作为榜样的能力，尤其是对子女。也可能会强调{{ goal }}如何帮助你树立良好榜样。
+    {% elif topic == "Child Development" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响子女的情感、社交或认知发展。也可能会解释{{ goal }}如何支持子女健康成长。
+    {% elif topic == "Paternal Bond" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何削弱你与子女的关系。也可能会谈到{{ goal }}如何帮助你增进亲子关系。
+    {% elif topic == "Child Care" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何影响你提供稳定照护的能力。也可能会强调{{ goal }}如何帮助你为子女提供更好照护。
+    {% elif topic == "Habituation" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响子女养成健康习惯或适应新环境。也可能会解释{{ goal }}如何支持积极习惯养成。
+    {% elif topic == "Arrest" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何增加被逮捕的风险，带来法律麻烦。也可能会强调{{ goal }}如何帮助你远离法律问题。
+    {% elif topic == "Imprisonment" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何导致入狱，带来长期法律和社会后果。也可能会谈到{{ goal }}如何帮助你避免牢狱之灾。
+    {% elif topic == "Child Custody" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何影响子女抚养权，带来法律挑战。也可能会谈到{{ goal }}如何帮助你提升抚养能力，保障权益。
+    {% elif topic == "Traffic Ticket" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何增加交通违章风险。也可能会谈到{{ goal }}如何帮助你养成安全驾驶习惯。
+    {% elif topic == "Complaint" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何导致法律纠纷或投诉。也可能会强调{{ goal }}如何帮助你减少冲突，维护良好关系。
+    {% elif topic == "Attendance" %}
+    当讨论[topic]时，咨询师可能会探讨{{ behavior }}如何影响出勤，导致缺课或责任缺失。也可能会谈到{{ goal }}如何帮助你提升出勤率。
+    {% elif topic == "Suspension" %}
+    当讨论[topic]时，咨询师可能会解释{{ behavior }}如何导致停学，影响学业。也可能会强调{{ goal }}如何帮助你避免处分，保持学业进步。
+    {% elif topic == "Scholarship" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响奖学金资格，减少机会。也可能会谈到{{ goal }}如何帮助你提升成绩，争取奖学金。
+    {% elif topic == "Exam" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响考试准备和成绩，导致分数下降。也可能会解释{{ goal }}如何帮助你提升专注力和考试表现。
+    {% elif topic == "Health" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响你的整体健康，包括身体、心理和情感。也可能会关注具体疾病、健康水平、心理健康或医疗习惯。咨询师还可以讨论{{ goal }}如何改善健康、降低风险。
+    {% elif topic == "Diseases" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致具体疾病，如感染、高血压、流感、炎症、肝病、肺癌、慢阻肺、哮喘、中风和糖尿病。咨询师还可以讨论{{ goal }}如何预防或管理这些疾病。
+    {% elif topic == "Fitness" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何降低体力活动、力量、柔韧性或耐力。咨询师还可以讨论{{ goal }}如何提升体能和健康。
+    {% elif topic == "Health Care" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响个人健康管理，如口腔卫生、照护者负担、独立生活或外貌。咨询师还可以讨论{{ goal }}如何改善自我照护和健康习惯。
+    {% elif topic == "Mental Disorders" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致心理健康问题，如抑郁、节律紊乱、焦虑障碍或认知衰退。咨询师还可以讨论{{ goal }}如何改善情绪和认知健康。
+    {% elif topic == "Sexual Health" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响性与生殖健康，包括安全性行为、孕期健康、早产、流产或胎儿畸形。咨询师还可以讨论{{ goal }}如何降低风险，支持健康性生活。
+    {% elif topic == "Economy" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响经济稳定、工作表现或整体经济状况。可能涉及工作效率、财务管理或收入不足。咨询师还可以讨论{{ goal }}如何改善财务和职业发展。
+    {% elif topic == "Employment" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响工作表现，包括效率、缺勤、同事关系、职业中断、评估、缺勤率、薪资、健康计划或职场不和谐。咨询师还可以讨论{{ goal }}如何提升职业表现和发展。
+    {% elif topic == "Personal Finance" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响个人财务，包括预算、债务、生活成本或收入不足。咨询师还可以讨论{{ goal }}如何提升财务稳定，减轻压力。
+    {% elif topic == "Interpersonal Relationships" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响家庭、子女或他人的关系。可能关注家庭动态、育儿角色或冲突。咨询师还可以讨论{{ goal }}如何加强关系，促进积极互动。
+    {% elif topic == "Family" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致家庭疏远、破裂或离婚。咨询师还可以讨论{{ goal }}如何解决冲突，改善关系。
+    {% elif topic == "Parenting" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响育儿方式和子女发展，包括榜样作用、亲子关系、照护或习惯养成。咨询师还可以讨论{{ goal }}如何提升育儿能力，支持子女成长。
+    {% elif topic == "Law" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}可能导致法律问题，如被捕、交通违规或家庭纠纷。可能关注这些行为的后果和风险。咨询师还可以讨论{{ goal }}如何帮助你远离法律麻烦，促进守法生活。
+    {% elif topic == "Criminal Law" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何导致法律后果，如被捕、入狱或投诉。咨询师还可以讨论{{ goal }}如何避免这些情况，促进负责任行为。
+    {% elif topic == "Family Law" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响家庭法事务，如子女抚养权争议。咨询师还可以讨论{{ goal }}如何提升育儿能力，加强法律地位。
+    {% elif topic == "Traffic Law" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何增加交通违章或罚款风险。咨询师还可以讨论{{ goal }}如何帮助你安全驾驶，避免违规。
+    {% elif topic == "Education" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响学业表现和机会，如出勤、考试成绩或奖学金资格。可能关注这些行为对学业的阻碍。咨询师还可以讨论{{ goal }}如何提升成绩，保持学业进步。
+    {% elif topic == "Student Affairs" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响出勤、导致停学或影响奖学金资格。咨询师还可以讨论{{ goal }}如何提升参与度和学业成功。
+    {% elif topic == "Academic Achievement" %}
+    当讨论[topic]时，咨询师可能会谈到{{ behavior }}如何影响学业表现或学习效率。咨询师还可以讨论{{ goal }}如何帮助你取得更好成绩。
+    {% endif %}

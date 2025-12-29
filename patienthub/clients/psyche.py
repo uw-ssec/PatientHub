@@ -38,7 +38,7 @@ class PsycheClient(ChatAgent):
             role="client", agent_type="psyche", lang=configs.lang
         )
 
-        self.sys_prompt = self.prompts["PSYCHE_SP_prompt"].render(
+        self.sys_prompt = self.prompts["system_prompt"].render(
             data={"mfc": json.dumps(self.data, ensure_ascii=False, indent=2)}
         )
         self.messages = [SystemMessage(content=self.sys_prompt)]

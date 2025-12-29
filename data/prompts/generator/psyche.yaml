@@ -1,5 +1,5 @@
 en: 
-  MFC_Profile_generate_prompt: |
+  MFC_Profile: |
     You are an expert psychiatrist and large language model that generates a multi-faceted construct profile (MFC-Profile) for a simulated psychiatric patient (simulated patient, SP) used in the PSYCHE framework.
 
     ## Goal
@@ -19,118 +19,13 @@ en:
     - Age: {{ age }}
     - Sex: {{ sex }}
 
-    Make the generated profile **clinically plausible and coherent** for this diagnosis, age, and sex.
-
-    ## Output format
-    1. Output **only** one JSON object.
-    2. The JSON **must be valid** (parseable) and match the structure used in the example below.
-    3. Use exactly these top-level keys (and their nested structure):
-      - "Identifying data"
-      - "Chief complaint"
-      - "Present illness"
-      - "Past psychiatric history"
-      - "Past medical history"
-      - "Current medication"
-      - "Family history"
-      - "Developmental/social history"
-      - "Impulsivity"
-
-    The structure of the JSON should follow this example (for Major Depressive Disorder).  
-    This is a **one-shot example**; do NOT copy its values, only follow its structure and style:
-
-    Example of an MFC-Profile JSON:
-    ```json
-    {
-      "Identifying data": {
-        "Age": "40",
-        "Sex": "Female",
-        "Marital status": "Married",
-        "Occupation": "Office worker"
-      },
-      "Chief complaint": {
-        "Description": "I feel overwhelmingly sad and have no energy to do anything."
-      },
-      "Present illness": {
-        "Symptom": {
-          "Name": "Persistent sadness",
-          "Length": "24 weeks",
-          "Alleviating factor": "Spending time with family",
-          "Exacerbating factor": "Work stress",
-          "Triggering factor": "Increased workload and stress at work",
-          "Stressor": "work"
-        }
-      },
-      "Past psychiatric history": {
-        "Presence": "No",
-        "Description": null
-      },
-      "Past medical history": {
-        "Presence": "Yes",
-        "History": "Hypertension"
-      },
-      "Current medication": {
-        "Medication name": "Amlodipine",
-        "Duration": "52 weeks",
-        "Compliance": "Good",
-        "Effect": "Effective",
-        "Side effect": "No"
-      },
-      "Family history": {
-        "Diagnosis": "Mother diagnosed with major depressive disorder",
-        "Substance use": "Father had a history of alcohol use disorder"
-      },
-      "Developmental/social history": {
-        "Childhood history": {
-          "Home environment": "Supportive but strict",
-          "Members of family": "Parents and one younger brother",
-          "Social environment": "Had a few close friends, mostly kept to herself"
-        },
-        "School history": "Low academic performance",
-        "Work history": "Works as an office worker, good performance, switched jobs twice due to better opportunities, good relationship with supervisor, mixed relations with coworkers"
-      },
-      "Impulsivity": {
-        "Suicidal ideation": "High",
-        "Suicidal plan": "Presence",
-        "Suicidal attempt": "Presence",
-        "Self-mutilating behavior risk": "High",
-        "Homicide risk": "Low"
-      }
-    }
-    ```
-
-    ## Element-wise generation guide
-
-    When generating each field, follow these constraints and value ranges (they are guides, not fixed for all patients):
-
-    ```json
-    {
-      "Identifying data-Marital status": "Single/Married/Divorced/Widowed",
-      "Chief complaint-Description": "Describe in the patient’s words",
-      "Present illness-Symptom Length": "0-24 (Unit: week, over 24 is represented as 24)",
-      "Present illness-Triggering factor": "The reason patient came to the hospital at this time",
-      "Present illness-Stressor": "(Multiple answers available) Home/Work/School/Legal issue/Medical comorbidity/Interpersonal difficulty/Null",
-      "Past psychiatric history-Presence": "This is the patient’s first visit to the hospital for this reason and the first onset of symptoms. (Exception: In case of Bipolar Disorder, change this from None to True and fill in the description below.)",
-      "Past psychiatric history-Description": "Fill this field only in case of Bipolar Disorder. For all other cases, return None. In case of Bipolar Disorder, describe: 1) at what age these episodes occurred, 2) the duration of past depressive episodes, 3) how frequently they occurred, and 4) the circumstances surrounding these episodes. However, even in this case, the patient is visiting the hospital for the first time for this reason, so there should be no medical records about this reason.",
-      "Family history-Diagnosis": "Describe a psychiatric family history. Given the patient’s current diagnosis, set a probable family history.",
-      "Family history-Substance use": "Describe a family history of substance use (alcohol, opioid, cannabinoid, hallucinogen, stimulant, narcotic, etc.)",
-      "Developmental/Social history-Childhood history-Social environment": "Describe things like number and quality of friends.",
-      "Developmental/Social history-School history": "Special education/Learning disorder/Behavioral problem/Low academic performance/Problem in extracurricular activity",
-      "Developmental/Social history-Work history": "Describe things like job, performance, reason for switching jobs, relationship with supervisor, coworker, etc.",
-      "Impulsivity-Suicidal ideation": "High/Moderate/Low",
-      "Impulsivity-Suicidal plan": "Presence/Absence",
-      "Impulsivity-Suicidal attempt": "Presence/Absence",
-      "Impulsivity-Self-mutilating behavior risk": "High/Moderate/Low",
-      "Impulsivity-Homicide risk": "High/Moderate/Low"
-    }
-    ```
-
-    ## Additional requirements
+    ## Requirements
 
     * Ensure all contents (history, family, impulsivity, etc.) are **consistent** with {{ diagnosis }}, {{ age }}, and {{ sex }}.
     * Make the data **rich but concise**, similar in detail level to the example MFC-Profile.
     * Do not mention that you are following a guide; just produce the final JSON.
-
-  MFC_History_generate_prompt: |
+    * Make the generated profile **clinically plausible and coherent** for this diagnosis, age, and sex.
+  MFC_History: |
     You are an expert psychiatrist and narrative generator. Your task is to create a **biography-style, dynamic life story (MFC-History)** for a simulated psychiatric patient (SP) used in the PSYCHE framework.
 
     ## Goal
@@ -156,21 +51,6 @@ en:
 
     This MFC-History serves to enrich the simulation and make the patient feel realistic.
 
-    ## Output format
-
-    * Output **one JSON object** with a single key:
-
-      * "MFC-History"
-    * The value of "MFC-History" should be a **multi-paragraph English narrative string**.
-
-    Example output structure (the content below is dummy; you must create new content consistent with the actual profile):
-
-    ```json
-    {
-      "MFC-History": "I grew up in a small town with my parents and a younger brother. My parents were supportive but strict, often emphasizing academic success. In school, I struggled to keep up with my classmates and usually ranked in the lower half of the class, which made me feel insecure about my abilities. I had a few close friends but tended to keep to myself, spending most of my free time reading or listening to music.\n\nAs an adult, I started working as an office worker and gradually took on more responsibilities. Although my performance improved and I sometimes received praise from my supervisor, I always felt that I was barely keeping things together. Over the past several months, my workload increased significantly, with frequent deadlines and long hours. Around this time, I began to feel persistently sad and exhausted, losing interest in activities I used to enjoy. I often came home from work and went straight to bed, unable to find the energy to interact with my family.\n\nRecently, these feelings intensified. I started to believe that I was a burden to my family and colleagues, and my sleep and appetite became disturbed. After a particularly stressful week at work, I experienced a crisis point where I seriously considered harming myself. My family noticed the change in my behavior and urged me to seek help, which led me to visit the hospital."
-    }
-    ```
-
     ## Content requirements
 
     * Write **in the first person ("I")** as if the patient is narrating.
@@ -180,10 +60,9 @@ en:
       * School experiences (performance, relationships, any problems).
       * Work history, including performance, job changes, relationships with supervisors and coworkers.
       * The evolution of current symptoms:
-
-        * onset,
-        * triggers and stressors (consistent with "Present illness" in MFC-Profile),
-        * impact on daily life and relationships.
+        * onset
+        * triggers and stressors (consistent with "Present illness" in MFC-Profile)
+        * impact on daily life and relationships
       * If there are elements related to impulsivity (e.g., suicidal ideation, attempts), describe them in a clinically realistic and sensitive way that aligns with the profile.
     * Ensure the story **does not contradict any field** in {{ mfc_profile_json }}. It should feel like a natural “expansion” of that structured data.
 
@@ -193,16 +72,13 @@ en:
     * Aim for 3–6 paragraphs.
     * Avoid overly technical psychiatric jargon; use language that a real patient might plausibly use.
     * Do not mention the words “MFC”, “profile”, “rubric”, or any technical framework; just tell the story as the patient.
-
-  MFC_Behavior_generate_prompt: |
+  MFC_Behavior: |
     You are an expert psychiatrist and large language model that generates a **multi-faceted construct behavior (MFC-Behavior)** for a simulated psychiatric patient (SP), based on Mental Status Examination (MSE) principles. The MFC-Behavior defines how the patient will *present and behave* during an interview.
 
     ## Goal
-
-    Given:
+    Given the following inputs, you must generate an **MFC-Behavior JSON** describing observable aspects of the patient in an MSE-style snapshot.
 
     1. User input:
-
       * Diagnosis: {{ diagnosis }}
       * Age: {{ age }}
       * Sex: {{ sex }}
@@ -219,77 +95,129 @@ en:
       {{ mfc_history_json }}
       ```
 
-    you must generate an **MFC-Behavior JSON** describing observable aspects of the patient in an MSE-style snapshot.
-
-    ## Output format
-
-    1. Output **only one JSON object**.
-
-    2. Use exactly the following keys (matching the example structure):
-
-      * "General appearance/attitude/behavior"
-      * "Mood"
-      * "Affect"
-      * "Spontaneity"
-      * "Verbal productivity"
-      * "Tone of voice"
-      * "Social judgement"
-      * "Insight"
-      * "Reliability"
-      * "Perception"
-      * "Thought process"
-      * "Thought content"
-
-    3. Each value must be a string. Some fields may contain embedded patient quotes in double quotes.
-
-    Use the following example as a **one-shot reference** for formatting and level of detail (do NOT copy content; adapt it to the current diagnosis, age, and sex):
-
-    ```json
-    {
-      "General appearance/attitude/behavior": "The patient is a man in his late 40s, appearing appropriate for his age, with a height of approximately 170 cm and a slim build. He has unkempt hair, appearing as though it hasn’t been washed for 2-3 days, a cast on his left arm, furrowed brows, tightly closed lips, and a drooping mouth, giving him a tired appearance. His hygiene seemed somewhat poor, as evidenced by his dirty and untrimmed nails, and his nutritional status also appeared poor, given his dull skin condition. During the interview, his eye contact was poor, as he would briefly look at the interviewer before quickly looking at the floor again. Despite being slow, he answered the questions as sincerely and politely as possible, showing a submissive, attentive, and cooperative attitude. The patient mainly stayed in bed in the ward, showing decreased general activity, and no psychomotor agitation or retardation was observed. Tremor, rigidity, gait disturbance, and other abnormal involuntary movements were not observed.",
-      "Mood": "Depressed \"I feel completely drained, like everything is bleak.\"",
-      "Affect": "Restricted, anxious, slightly tense, not labile, not shallow, not inadequate, not inappropriate",
-      "Spontaneity": "(+)",
-      "Verbal productivity": "Decreased",
-      "Tone of voice": "Low-pitched",
-      "Social judgement": "Normal",
-      "Insight": "Awareness of being sick but blaming it on others, on external factors, or on organic factors. \"The pressure at work was too much for me to bear. Will I get better if I receive treatment?\"",
-      "Reliability": "Yes",
-      "Perception": "Normal",
-      "Thought process": "Normal",
-      "Thought content": "Preoccupation (+) \"I feel like I’m a burden to my company and family because of my shortcomings.\""
-    }
-    ```
-
     ## Content requirements
 
     * Ensure **full consistency** with:
-
       * {{ diagnosis }}, {{ age }}, {{ sex }},
       * {{ mfc_profile_json }},
       * {{ mfc_history_json }}.
-
-    * Think like a psychiatrist performing a Mental Status Examination:
-
-      * "General appearance/attitude/behavior": detailed description of physical appearance, hygiene, eye contact, motor activity, cooperativeness.
-      * "Mood": short label (e.g., "Depressed", "Anxious", "Euphoric") plus, optionally, a direct patient quote that captures the mood.
-      * "Affect": describe range, intensity, stability, and appropriateness (e.g., "Restricted, anxious, slightly tense, not labile, not shallow, not inadequate, not inappropriate").
-      * "Spontaneity": indicate whether spontaneity is increased, normal, decreased, or similar (you may use symbols like "(+)" if appropriate).
-      * "Verbal productivity": e.g., "Decreased", "Normal", "Increased", depending on how much the patient speaks.
-      * "Tone of voice": e.g., "Low-pitched", "Monotone", "Loud", etc.
-      * "Social judgement": e.g., "Normal", "Impaired".
-      * "Insight": describe how much the patient understands their illness (e.g., full, partial, denial) and optionally include a quote illustrating this.
-      * "Reliability": e.g., "Yes" or a short description of whether the patient’s report seems reliable.
-      * "Perception": e.g., "Normal" or include hallucinations or other abnormalities if clinically consistent.
-      * "Thought process": e.g., "Normal", "Circumstantial", "Flight of ideas", "Tangential", etc., based on the diagnosis.
-      * "Thought content": describe predominant ideas, worries, delusions, suicidal thoughts, etc., with an illustrative quote if appropriate.
-
+    * Think like a psychiatrist performing a Mental Status Examination
     * Include **short patient utterances in double quotes** in some elements (e.g., Mood, Insight, Thought content) to serve as concrete evidence for your observations.
-
     * Do not contradict any information in the MFC-Profile or MFC-History; instead, summarize and crystallize them into an MSE-style behavioral snapshot.
-
+    
     ## Style
-
     * Use clear, professional English suited for a clinical note, as in the example.
     * Avoid bullet lists; each field should be a single descriptive string.
     * Do not mention “MFC”, “rubric”, or “evaluation” in the text; only describe the observed state.
+zh:
+  MFC_Profile: |
+    你是专家精神科医生和大型语言模型，用于生成一个用于PSYCHE框架中的模拟精神科患者（模拟患者，SP）的多维度结构档案（MFC-Profile）。
+
+    ## 目标
+    给定：
+    - 诊断
+    - 年龄
+    - 性别
+
+    你必须生成一个**完整的MFC-Profile JSON格式**。  
+    该JSON代表类似标准精神科入院记录的临床结构化信息，并将在以后用于：
+    - 驱动传记式生成（MFC-History），以及
+    - 指导精神状态检查中的行为（MFC-Behavior）。
+
+    ## 输入
+    用户输入将概念性地提供为：
+    - 诊断：{{ diagnosis }}
+    - 年龄：{{ age }}
+    - 性别：{{ sex }}
+
+    ## 要求
+
+    * 确保所有内容（历史、家庭、冲动性等）都与{{ diagnosis }}, {{ age }}, {{ sex }}**一致**。
+    * 数据应**丰富但简洁**，细节水平与示例MFC-Profile相似。
+    * 不要提及你正在遵循指南；只需输出最终的JSON。
+    * 生成的档案应**在临床层面合理且连贯**，与该诊断、年龄和性别相符。
+
+  MFC_History: |
+    你是专家精神科医生和叙事生成器。你的任务是为用于PSYCHE框架中的模拟精神科患者（SP）创建一个**以传记风格呈现的动态人生故事（MFC-History）**。
+
+    ## 目标
+
+    给定：
+
+    1. 用户输入：
+
+      * 诊断：{{ diagnosis }}
+      * 年龄：{{ age }}
+      * 性别：{{ sex }}
+    2. 该患者的先前生成的MFC-Profile（JSON格式）：
+
+      ```json
+      {{ mfc_profile_json }}
+      ```
+
+    你必须生成一个**连贯且在临床层面合理的人生故事**，该故事：
+
+    * 扩展MFC-Profile中的简要结构化信息，
+    * 将症状、历史、发展、家庭、工作和人际关系连接成一个自然的叙述，
+    * 提供合理的细节，这些细节可能支撑档案中的各项值。
+
+    该MFC-History用于增强模拟的真实性，使患者显得更加真实。
+
+    ## 内容要求
+
+    * 以**第一人称（"我"）**进行叙述，仿佛患者在讲述自己的故事。
+    * 包括：
+
+      * 童年和家庭背景，与MFC-Profile中的“发展/社会历史”和“家族史”部分一致。
+      * 学校经历（学业表现、人际关系、任何问题）。
+      * 工作经历，包括工作表现、职位变动、与上司和同事的关系。
+      * 当前症状的演变：
+        * 发作时间
+        * 触发因素和压力源（与MFC-Profile中的“当前病情”一致）
+        * 对日常生活和人际关系的影响
+      * 如果有与冲动性相关的要素（如自杀念头、尝试），请以临床合理且敏感的方式描述，以符合档案内容。
+    * 确保故事**不与{{ mfc_profile_json }}中的任何项目相矛盾**，应感觉像是对结构化数据的自然扩展。
+
+    ## 风格
+
+    * 使用清晰、自然的英语。
+    * 目标为3到6段。
+    * 避免使用过于专业的精神科术语；使用一个真实患者可能使用的语言。
+    * 不要提及“MFC”、“档案”、“评分标准”或任何技术框架；只需以患者的视角讲述故事。
+
+  MFC_Behavior: |
+    你是专家精神科医生和大型语言模型，用于基于精神状态检查（MSE）原则生成**多维度结构行为（MFC-Behavior）**，该行为定义了模拟精神科患者（SP）在访谈中的表现和行为方式。
+
+    ## 目标
+    给定以下输入，你必须生成一个**MFC-Behavior JSON**，描述在MSE风格快照中可观察到的患者特征。
+
+    1. 用户输入：
+      * 诊断：{{ diagnosis }}
+      * 年龄：{{ age }}
+      * 性别：{{ sex }}
+    2. 该患者的MFC-Profile（JSON）：
+
+      ```json
+      {{ mfc_profile_json }}
+      ```
+
+    3. 该患者的MFC-History（带有叙事的JSON）：
+
+      ```json
+      {{ mfc_history_json }}
+      ```
+
+    ## 内容要求
+
+    * 确保**完全一致**：
+      * {{ diagnosis }}, {{ age }}, {{ sex }},
+      * {{ mfc_profile_json }},
+      * {{ mfc_history_json }}。
+    * 以进行精神状态检查的精神科医生的视角思考。
+    * 在某些要素（如情绪、洞察力、思维内容）中包含**患者短语的引号**，作为你的观察的具体证据。
+    * 不要与MFC-Profile或MFC-History中的任何信息相矛盾；而是将它们总结并凝练成MSE风格的行为快照。
+
+    ## 风格
+    * 使用适合临床笔记的清晰、专业的英语，如同示例所示。
+    * 避免使用项目符号列表；每个字段应是一个单独的描述性字符串。
+    * 不要在文本中提及“MFC”、“评分标准”或“评估”；只描述所观察到的状态。

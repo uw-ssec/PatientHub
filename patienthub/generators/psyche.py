@@ -1,3 +1,4 @@
+from typing import Literal
 from dataclasses import dataclass
 from omegaconf import DictConfig
 from pydantic import BaseModel, Field, ConfigDict
@@ -30,7 +31,7 @@ class IdentifyingData(BaseModel):
         description="Patient's sex.",
         example="Female",
     )
-    marital_status: str = Field(
+    marital_status: Literal["Single", "Married", "Divorced", "Widowed"] = Field(
         ...,
         alias="Marital status",
         description="Patient's marital status.",
@@ -60,11 +61,13 @@ class PresentIllnessSymptom(BaseModel):
         description="Primary symptom name.",
         example="Persistent sadness",
     )
-    length: str = Field(
+    length: int = Field(
         ...,
         alias="Length",
-        description="Duration of the symptom (e.g., '24 weeks').",
-        example="24 weeks",
+        ge=0,
+        le=24,
+        description="Duration of the symptom (unit: week).",
+        example=24,
     )
     alleviating_factor: str = Field(
         ...,
@@ -84,10 +87,18 @@ class PresentIllnessSymptom(BaseModel):
         description="Triggering factor that led the patient to seek help now.",
         example="Increased workload and stress at work",
     )
-    stressor: str = Field(
+    stressor: Literal[
+        "work",
+        "home",
+        "school",
+        "legal issue",
+        "medical comorbidity",
+        "interpersonal difficulty",
+        "none",
+    ] = Field(
         ...,
         alias="Stressor",
-        description="Primary stressor domain (e.g., work, home, school).",
+        description="Primary stressor domain",
         example="work",
     )
 
@@ -226,31 +237,31 @@ class DevelopmentalSocialHistory(BaseModel):
 
 
 class Impulsivity(BaseModel):
-    suicidal_ideation: str = Field(
+    suicidal_ideation: Literal["High", "Moderate", "Low"] = Field(
         ...,
         alias="Suicidal ideation",
         description="Level of suicidal ideation (High/Moderate/Low).",
         example="High",
     )
-    suicidal_plan: str = Field(
+    suicidal_plan: Literal["Presence", "Absence"] = Field(
         ...,
         alias="Suicidal plan",
         description="Presence or absence of suicidal plan.",
         example="Presence",
     )
-    suicidal_attempt: str = Field(
+    suicidal_attempt: Literal["Presence", "Absence"] = Field(
         ...,
         alias="Suicidal attempt",
         description="History of suicidal attempts (Presence/Absence).",
         example="Presence",
     )
-    self_mutilating_behavior_risk: str = Field(
+    self_mutilating_behavior_risk: Literal["High", "Moderate", "Low"] = Field(
         ...,
         alias="Self-mutilating behavior risk",
         description="Risk level for self-mutilating behavior.",
         example="High",
     )
-    homicide_risk: str = Field(
+    homicide_risk: Literal["High", "Moderate", "Low"] = Field(
         ...,
         alias="Homicide risk",
         description="Risk level for homicidal behavior.",
@@ -313,7 +324,7 @@ class MFCHistory(BaseModel):
         description=(
             "Biography-style dynamic life story in the patient's first-person voice."
         ),
-        example="I grew up in a small town with my parents...",
+        example="I grew up in a small town with my parents and a younger brother. My parents were supportive but strict, often emphasizing academic success. In school, I struggled to keep up with my classmates and usually ranked in the lower half of the class, which made me feel insecure about my abilities. I had a few close friends but tended to keep to myself, spending most of my free time reading or listening to music.\n\nAs an adult, I started working as an office worker and gradually took on more responsibilities. Although my performance improved and I sometimes received praise from my supervisor, I always felt that I was barely keeping things together. Over the past several months, my workload increased significantly, with frequent deadlines and long hours. Around this time, I began to feel persistently sad and exhausted, losing interest in activities I used to enjoy. I often came home from work and went straight to bed, unable to find the energy to interact with my family.\n\nRecently, these feelings intensified. I started to believe that I was a burden to my family and colleagues, and my sleep and appetite became disturbed. After a particularly stressful week at work, I experienced a crisis point where I seriously considered harming myself. My family noticed the change in my behavior and urged me to seek help, which led me to visit the hospital.",
     )
 
 
@@ -321,30 +332,29 @@ class MFCBehavior(BaseModel):
     general_appearance_attitude_behavior: str = Field(
         ...,
         alias="General appearance/attitude/behavior",
-        description="Detailed description of appearance, attitude, and behavior.",
+        description="Detailed description of physical appearance, hygiene, eye contact, motor activity, cooperativeness.",
         example="The patient is a woman in her early 40s, appearing slightly older...",
     )
     mood: str = Field(
         ...,
         alias="Mood",
-        description="Mood label plus optional quote.",
+        description="short label (e.g., 'Depressed', 'Anxious', 'Euphoric') plus, optionally, a direct patient quote that captures the mood.",
         example='Depressed "I feel completely drained, like everything is bleak."',
     )
     affect: str = Field(
         ...,
         alias="Affect",
-        description="Description of affect: range, intensity, stability, appropriateness.",
+        description="Ddescribe range, intensity, stability, and appropriateness (e.g., 'Restricted, anxious, slightly tense, not labile, not shallow, not inadequate, not inappropriate').",
     )
     spontaneity: str = Field(
         ...,
         alias="Spontaneity",
-        description="Level of spontaneity (e.g., Decreased/Normal/Increased or symbols like (+)).",
-        example="(+)",
+        description='indicate whether spontaneity is increased, normal, decreased, or similar (you may use symbols like "(+)" if appropriate).',
     )
-    verbal_productivity: str = Field(
+    verbal_productivity: Literal["Decreased", "Normal", "Increased"] = Field(
         ...,
         alias="Verbal productivity",
-        description="Amount of speech (e.g., Decreased/Normal/Increased).",
+        description="Amount of speech",
         example="Decreased",
     )
     tone_of_voice: str = Field(
@@ -362,18 +372,18 @@ class MFCBehavior(BaseModel):
     insight: str = Field(
         ...,
         alias="Insight",
-        description="Insight into illness, optionally with a quote.",
+        description="describe how much the patient understands their illness (e.g., full, partial, denial) and optionally include a quote illustrating this.",
     )
     reliability: str = Field(
         ...,
         alias="Reliability",
-        description="Reliability of the patient's report.",
+        description='"Yes" or a short description of whether the patient’s report seems reliable',
         example="Yes",
     )
     perception: str = Field(
         ...,
         alias="Perception",
-        description="Perception (e.g., Normal or hallucinations, etc.).",
+        description='"Normal" or include hallucinations or other abnormalities if clinically consistent.',
         example="Normal",
     )
     thought_process: str = Field(
@@ -385,10 +395,7 @@ class MFCBehavior(BaseModel):
     thought_content: str = Field(
         ...,
         alias="Thought content",
-        description=(
-            "Predominant thought content (worries, delusions, suicidality), "
-            "optionally with a quote."
-        ),
+        description="Describe predominant ideas, worries, delusions, suicidal thoughts, etc., with an illustrative quote if appropriate.",
         example='Preoccupation (+) "I feel like I’m a burden to my company and family."',
     )
 
@@ -420,7 +427,7 @@ class PsycheGenerator(ChatAgent):
 
     def generate_mfc_profile(self):
 
-        prompt = self.prompts["MFC_Profile_generate_prompt"].render(
+        prompt = self.prompts["MFC_Profile"].render(
             diagnosis=self.data["diagnosis"],
             age=self.data["age"],
             sex=self.data["sex"],
@@ -429,7 +436,7 @@ class PsycheGenerator(ChatAgent):
 
     def generate_mfc_history(self):
         profile_json = self.mfc_profile.model_dump_json(by_alias=True)
-        prompt = self.prompts["MFC_History_generate_prompt"].render(
+        prompt = self.prompts["MFC_History"].render(
             diagnosis=self.data["diagnosis"],
             age=self.data["age"],
             sex=self.data["sex"],
@@ -440,7 +447,7 @@ class PsycheGenerator(ChatAgent):
     def generate_mfc_behavior(self):
         profile_json = self.mfc_profile.model_dump_json(by_alias=True)
         history_json = self.mfc_history.model_dump_json(by_alias=True)
-        prompt = self.prompts["MFC_Behavior_generate_prompt"].render(
+        prompt = self.prompts["MFC_Behavior"].render(
             diagnosis=self.data["diagnosis"],
             age=self.data["age"],
             sex=self.data["sex"],
