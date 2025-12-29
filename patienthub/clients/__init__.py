@@ -12,7 +12,6 @@ from .annaAgent import AnnaAgentClient, AnnaAgentClientConfig
 from .talkDep import TalkDepClient, TalkDepClientConfig
 
 
-
 from omegaconf import DictConfig
 
 # Registry of client implementations
@@ -48,7 +47,8 @@ CLIENT_CONFIG_REGISTRY = {
 }
 
 
-def get_client(configs: DictConfig):
+def get_client(configs: DictConfig, lang: str = "en"):
+    configs.lang = lang
     agent_type = configs.agent_type
     print(f"Loading {agent_type} client agent...")
     if agent_type in CLIENT_REGISTRY:

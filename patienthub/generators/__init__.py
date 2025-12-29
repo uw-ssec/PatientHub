@@ -25,7 +25,8 @@ GENERATOR_CONFIG_REGISTRY = {
 }
 
 
-def get_generator(configs: DictConfig):
+def get_generator(configs: DictConfig, lang: str = "en"):
+    configs.lang = lang
     agent_type = configs.agent_type
     print(f"Loading {agent_type} generator...")
     if agent_type in GENERATORS:

@@ -13,7 +13,8 @@ EVALUATOR_CONFIG_REGISTRY = {
 }
 
 
-def get_evaluator(configs: DictConfig):
+def get_evaluator(configs: DictConfig, lang: str = "en"):
+    configs.lang = lang
     eval_type = configs.eval_type
     print(f"Loading {eval_type} evaluator agent...")
     if eval_type in EVALUATOR_REGISTRY:

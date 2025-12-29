@@ -22,7 +22,8 @@ THERAPIST_CONFIG_REGISTRY = {
 }
 
 
-def get_therapist(configs: DictConfig):
+def get_therapist(configs: DictConfig, lang: str = "en"):
+    configs.lang = lang
     agent_type = configs.agent_type
     print(f"Loading {agent_type} therapist agent...")
     if agent_type in THERAPIST_REGISTRY:

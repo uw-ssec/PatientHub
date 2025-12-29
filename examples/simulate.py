@@ -67,19 +67,17 @@ register_configs("simulate", SimulateConfig)
 @hydra.main(version_base=None, config_name="simulate")
 def simulate(configs: DictConfig) -> None:
     lang = configs.lang
+
     # Load client
-    configs.client.lang = lang
-    client = get_client(configs=configs.client)
+    client = get_client(configs=configs.client, lang=lang)
 
     # Load therapist
-    configs.therapist.lang = lang
-    therapist = get_therapist(configs=configs.therapist)
+    therapist = get_therapist(configs=configs.therapist, lang=lang)
 
     # Load evaluator (if any)
     evaluator = None
     if configs.evaluator:
-        configs.evaluator.lang = lang
-        evaluator = get_evaluator(configs=configs.evaluator)
+        evaluator = get_evaluator(configs=configs.evaluator, lang=lang)
 
     # Create therapy session
     session = TherapySession(
@@ -94,10 +92,10 @@ def simulate(configs: DictConfig) -> None:
         session_handler = CallbackHandler()
         lg_config["callbacks"] = [session_handler]
 
-    session.graph.invoke(
-        input={},
-        config=lg_config,
-    )
+    # session.graph.invoke(
+    #     input={},
+    #     config=lg_config,
+    # )
 
 
 if __name__ == "__main__":
