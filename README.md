@@ -49,6 +49,7 @@ uv run python -m examples.simulate client=[client] therapist=[therapist] evaluat
 | [PSYCHE: A Multi-faceted Patient Simulation Framework for Evaluation of Psychiatric Assessment Conversational Agents](https://arxiv.org/pdf/2501.01594)                | ArXiv               | General (Psychiatric Assessment)   | [`psyche`](./patienthub/clients/psyche.py)             |
 | [PATIENT-Ψ: Using Large Language Models to Simulate Patients for Training Mental Health Professionals](https://aclanthology.org/2024.emnlp-main.711/)                  | EMNLP 2024 (Main)   | General (CBT)                      | [`patientPsi`](./patienthub/clients/patientPsi.py)     |
 | [Roleplay-doh: Enabling Domain-Experts to Create LLM-simulated Patients via Eliciting and Adhering to Principles](https://aclanthology.org/2024.emnlp-main.591/)       | EMNLP 2024 (Main)   | General (Counseling)               | [`roleplayDoh`](./patienthub/clients/roleplayDoh.py)   |
+| [Automatic Interactive Evaluation for Large Language Models with State Aware Patient Simulator](https://arxiv.org/pdf/2403.08495)       | ArXiv               | General (Clinical Diagnosis)               | [`SAPS`](./patienthub/clients/SAPS.py)   |
 
 #### Therapists
 
@@ -69,13 +70,13 @@ uv run python -m examples.simulate client=[client] therapist=[therapist] evaluat
 You can run the following command to create the necessary files for a new agent:
 
 ```bash
-uv run python -m examples.create gen_agent_type=[client|therapist] gen_agent_name=<agent_name>
+uv run python -m examples.create generator.gen_agent_type=[client|therapist] generator.gen_agent_name=<agent_name>
 ```
 
 For example
 
 ```bash
-uv run python -m examples.create gen_agent_type=client gen_agent_name=test
+uv run python -m examples.create generator.gen_agent_type=client generator.gen_agent_name=test
 ```
 
 ## Project Structure
