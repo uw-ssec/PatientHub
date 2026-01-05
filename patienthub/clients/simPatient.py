@@ -69,7 +69,7 @@ class SimPatientClient(ChatAgent):
 
         self.chat_model = get_chat_model(configs)
         self.prompts = load_prompts(
-            role="client", agent_type="SimPatient", lang=configs.lang
+            role="client", agent_type="simPatient", lang=configs.lang
         )
 
         self.messages: List[Any] = []
