@@ -6,14 +6,14 @@
 
 ### 1. Setting up the environment
 
-Set up and activate the virtual environment (after installling [uv](https://docs.astral.sh/uv/getting-started/installation/))
+Set up and activate the virtual environment (after installing [uv](https://docs.astral.sh/uv/getting-started/installation/))
 
 ```bash
 uv sync
 source .venv/bin/activate
 ```
 
-Create a file named `.env` and fill it with the following values
+Create a file named `.env` and fill it with the following values:
 
 ```bash
 LAB_API_KEY=<your API key>
@@ -28,7 +28,7 @@ Run the following script for simulation (with default configs)
 uv run python -m examples.simulate
 ```
 
-In addition, you can run the following script for customized simulations
+You can also run the following script to run customized simulations.
 
 ```bash
 uv run python -m examples.simulate client=[client] therapist=[therapist] evaluator=evaluator evaluator.eval_type=[eval_type]
@@ -40,6 +40,7 @@ uv run python -m examples.simulate client=[client] therapist=[therapist] evaluat
 
 | Source / Description                                                                                                                                                   | Venue               | Focus                              | Agent                                                  |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------- | ------------------------------------------------------ |
+| [Automatic Interactive Evaluation for Large Language Models with State Aware Patient Simulator](https://arxiv.org/pdf/2403.08495)       | ArXiv               | General (Clinical Diagnosis)               | [`SAPS`](./patienthub/clients/SAPS.py)   |
 | [Consistent Client Simulation for Motivational Interviewing-based Counseling](https://aclanthology.org/2025.acl-long.1021/)                                            | ACL 2025 (Main)     | General (MI)                       | [`consistentMI`](./patienthub/clients/consistentMI.py) |
 | [Eeyore: Realistic Depression Simulation via Expert-in-the-Loop Supervised and Preference Optimization](https://aclanthology.org/2025.findings-acl.707/)               | ACL 2025 (Findings) | Depression (Screening/General)     | [`eeyore`](./patienthub/clients/eeyore.py)             |
 | [AnnaAgent: Dynamic Evolution Agent System with Multi-Session Memory for Realistic Seeker Simulation](https://aclanthology.org/2025.findings-acl.1192/)                | ACL 2025 (Findings) | General (Multi-session Counseling) | [`annaAgent`](./patienthub/clients/annaAgent.py)       |
@@ -49,12 +50,11 @@ uv run python -m examples.simulate client=[client] therapist=[therapist] evaluat
 | [PSYCHE: A Multi-faceted Patient Simulation Framework for Evaluation of Psychiatric Assessment Conversational Agents](https://arxiv.org/pdf/2501.01594)                | ArXiv               | General (Psychiatric Assessment)   | [`psyche`](./patienthub/clients/psyche.py)             |
 | [PATIENT-Ψ: Using Large Language Models to Simulate Patients for Training Mental Health Professionals](https://aclanthology.org/2024.emnlp-main.711/)                  | EMNLP 2024 (Main)   | General (CBT)                      | [`patientPsi`](./patienthub/clients/patientPsi.py)     |
 | [Roleplay-doh: Enabling Domain-Experts to Create LLM-simulated Patients via Eliciting and Adhering to Principles](https://aclanthology.org/2024.emnlp-main.591/)       | EMNLP 2024 (Main)   | General (Counseling)               | [`roleplayDoh`](./patienthub/clients/roleplayDoh.py)   |
-| [Automatic Interactive Evaluation for Large Language Models with State Aware Patient Simulator](https://arxiv.org/pdf/2403.08495)       | ArXiv               | General (Clinical Diagnosis)               | [`SAPS`](./patienthub/clients/SAPS.py)   |
 
 #### Therapists
 
 - `basic` → custom therapist for testing purposes
-- `eliza` → simple implementation of the eliza chatbot
+- `eliza` → simple implementation of the Eliza chatbot
 - `user `→ user role-playing as a therapist
 
 #### Evaluators
