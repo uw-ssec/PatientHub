@@ -57,11 +57,18 @@ def load_yaml(path: str):
         return {}
 
 
+def process_prompts(data):
+    if isinstance(data, str):
+        return Template(data)
+    elif isinstance(data, dict):
+        return {k: process_prompts(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [process_prompts(item) for item in data]
+
+
 def load_prompts(role: str, agent_type: str, lang: str = "en"):
     path = f"data/prompts/{role}/{agent_type}.yaml"
-    prompts = {}
     data = load_yaml(path)[lang]
-    for k, v in data.items():
-        if isinstance(v, str):
-            prompts[k] = Template(v)
+    prompts = process_prompts(data)
+
     return prompts

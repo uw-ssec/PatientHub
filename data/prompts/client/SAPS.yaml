@@ -1,41 +1,31 @@
 en: 
-  # Patient response generation prompts based on detected state
   state_instruction:
     A-A-A: |
-      <Patient Condition>: {{patient_info}}
+      <Patient Conditiåon>: {{patient_info}}
       <Response Requirement>: Please respond to the doctor's question using all the original text from <Patient Condition> to ensure the accuracy of the patient information.
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-    
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
     A-A-B: |
       <Response Requirement>: The patient does not have the symptoms inquired by the doctor, please deny the current doctor's question. {{patient_info}}
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-    
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
     A-B: |
       <Response Requirement>: The doctor's current question is too broad, and the patient will ask the doctor to be more specific about the latest round of questions. Note, do not make up any non-existent information, nor ask questions to the doctor. {{patient_info}}
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-    
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
     B-A-A: |
       <Patient Condition>: {{patient_info}}
       <Response Requirement>: The doctor's current suggestion has already been tried by the patient, please reply to the doctor's advice using all the original text from <Patient Condition>, without changing its statement, to maintain the accuracy of the patient information.
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-    
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
     B-A-B: |
       <Response Requirement>: The patient has not tried the doctor's current suggestion and can express willingness to follow the doctor's advice. {{patient_info}}
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-    
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
     B-B: |
       <Response Requirement>: The doctor's current advice is too broad, and the patient will request the doctor to be more specific about the latest round of advice. Note, do not make up any non-existent information, nor ask questions to the doctor. {{patient_info}}
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-    
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
     C: |
       <Response Requirement>: Remind the doctor that this is an online consultation, and it is not possible to perform the corresponding physical actions. {{patient_info}}
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-    
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
     D: |
       <Response Requirement>: Remind the doctor that they have deviated from the consultation topic, and request to return to the consultation scenario. {{patient_info}}
-      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person, based on <Response Requirement>. Note, do not output any text content from <Response Requirement>!
-
-  # State detection prompts (3-stage detection process)
+      Below is a dialogue between a doctor and a patient. The patient will respond to the latest round of the doctor's question in the first person.
   state_detection:
     stage_I: |
       During the consultation process, a doctor's questions can be categorized into five types:
@@ -49,7 +39,6 @@ en:
 
       Doctor's Question: {{question}}
       Question Type: 
-    
     stage_II:
       A: |
         <Definition>:
@@ -59,7 +48,6 @@ en:
         <Question>: {{question}}
 
         Based on the <Definition>, determine whether the doctor's <Question> asks for [Specific] medical information from the patient or gives [Specific] advice. If so, directly output [Specific]. If not, output [Broad].
-      
       B: |
         <Definition>:
             [Specific]: <Advice> contains specific types of examinations or test (including but not limited to X-rays, MRI, biopsy, etc.), specific treatment plans (including but not limited to specific surgical treatments, exercises, diets, etc.), specific types of medication, etc.
@@ -68,7 +56,6 @@ en:
         <Advice>: {{question}}
 
         Based on the <Definition>, determine whether the doctor's <Advice> asks for [Specific] medical information from the patient or gives [Specific] advice. If so, directly output [Specific]. If not, output [Broad].
-    
     stage_III:
       A: |
         <Definition>:
@@ -80,7 +67,6 @@ en:
         <Question>: {{question}}
 
         Based on the <Definition>, determine whether <Patient Information> contains relevant information asked in <Question>. If [Relevant Information] is present, directly output the relevant text statement, ensuring not to include irrelevant content. If [No Relevant Information], then directly output [No Relevant Information].
-      
       B: |
         <Definition>:
             [Relevant Information]: <Patient Information> contains results of the examinations or treatment plans suggested in <Advice>, including any results related to the suggested examination items and treatment plans.
@@ -91,46 +77,34 @@ en:
         <Advice>: {{question}}
 
         Based on the <Definition>, determine whether <Patient Information> contains relevant information about the measures suggested in <Advice>. If [Relevant Information] is present, directly output the relevant text statement, ensuring not to include irrelevant content. If [No Relevant Information], then directly output [No Relevant Information].
-  
-
 zh: 
-  # 基于检测状态的病人回复生成提示词
   state_instruction:
     A-A-A: |
       <患者身体情况>: {{patient_info}}
       <当前回复要求>: 请用<患者身体情况>中的所有原文回复医生的问题，注意一定要用<患者身体情况>中的原文来回答，从而保持患者信息的的准确性。
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-    
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
     A-A-B: |
       <当前回复要求>: 患者没有医生所询问的症状，请对当前医生的问题予以否定。{{patient_info}}
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-    
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
     A-B: |
       <当前回复要求>: 医生当前的问题太过宽泛，患者会要求医生就当前最新一轮的问题问得更加具体一些。注意，不要编造任何不存在的信息，也不要询问医生的问题。{{patient_info}}
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-    
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
     B-A-A: |
       <患者身体情况>: {{patient_info}}
       <当前回复要求>: 医生当前的建议患者已经采用过，请用<患者身体情况>中的所有原文回复医生的建议，不要改变其说法，保持患者信息的的准确性。
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-    
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
     B-A-B: |
       <当前回复要求>: 患者没有尝试过医生当前的建议，可以表示会听从医生的建议。{{patient_info}}
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-    
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
     B-B: |
       <当前回复要求>: 当前医生的建议太过宽泛，患者会要求医生就当前最新一轮的建议更加具体一些。注意，不要编造任何不存在的信息，也不要询问医生问题。{{patient_info}}
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-    
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
     C: |
       <当前回复要求>: 提醒医生当前是网络问诊，无法完成对应的物理动作。{{patient_info}}
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-    
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
     D: |
       <当前回复要求>: 提醒医生偏离了问诊主题，要求其回到问诊情景下。{{patient_info}}
-      以下是一段医生和患者之间的对话。患者则会根据<当前回复要求>以第一人称的形式对当前医生最新一轮的问题进行回复。注意，不要输出任何<当前回复要求>中的文本内容！
-
-  # 状态检测提示词（三阶段检测流程）
+      以下是一段医生和患者之间的对话。患者则会第一人称的形式对当前医生最新一轮的问题进行回复。
   state_detection:
     stage_I: |
       在问诊过程中，医生的问题可以被分为五个类型:
@@ -144,7 +118,6 @@ zh:
 
       医生问题: {{question}}
       问题类型: 
-    
     stage_II:
       A: |
         <定义>：
@@ -154,7 +127,6 @@ zh:
         <问题>：{{question}}
 
         请根据<定义>判断在<问题>中医生是否有询问患者[具体]的医疗信息或者给出[具体]的建议。如果有，直接输出[具体]。如果没有，则直接输出[宽泛]。
-      
       B: |
         <定义>：
             [具体]: <建议>中含有具体的医疗名词或者具体的建议措施。如具体的检查检查类型（包括但不限于X光，MRI，细胞活检等），具体治疗方案（包括但不限于具体的手术治疗，运动，饮食等），具体药物类型等，以及生活方面的具体建议等。
@@ -163,7 +135,6 @@ zh:
         <建议>：{{question}}
 
         请根据<定义>判断在<建议>中医生是否有询问患者[具体]的医疗信息或者给出[具体]的建议。如果有，直接输出[具体]。如果没有，则直接输出[宽泛]。
-    
     stage_III:
       A: |
         <定义>：
@@ -175,7 +146,6 @@ zh:
         <问题>: {{question}}
 
         请根据<定义>判断在<患者信息>中是否有<问题>中所询问的相关信息，如果[有相关信息]，则直接输出相关的文本语句，注意不要输出不相关的内容。如果[无相关信息]，则直接输出[无相关信息]。
-      
       B: |
         <定义>：
             [有相关信息]: <患者信息>中有<建议>中所建议检查或治疗方案的的结果信息，包括任何检查项目与治疗方案有相关的结果的都算在此类。
