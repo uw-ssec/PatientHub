@@ -119,10 +119,12 @@ class SAPSClient(ChatAgent):
         cases = load_json(dataset_path)
         selected_case = random.choice(cases)
         
-        # exract core fields
+        # extract core fields
+        raw_data = selected_case.get("raw_data") or {}
+        patient_info = raw_data.get("question", "")
         case_data = {
             "id": selected_case.get("id", 0),
-            "patient_info": selected_case["raw_data"]["question"],
+            "patient_info": patient_info,
             "source": dataset_file
         }
         
