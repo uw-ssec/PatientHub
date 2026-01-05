@@ -40,7 +40,7 @@ uv run python -m examples.simulate client=[client] therapist=[therapist] evaluat
 
 | Source / Description                                                                                                                                                   | Venue               | Focus                              | Agent                                                  |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ---------------------------------- | ------------------------------------------------------ |
-| [Automatic Interactive Evaluation for Large Language Models with State Aware Patient Simulator](https://arxiv.org/pdf/2403.08495)       | ArXiv               | General (Clinical Diagnosis)               | [`SAPS`](./patienthub/clients/SAPS.py)   |
+| [Automatic Interactive Evaluation for Large Language Models with State Aware Patient Simulator](https://arxiv.org/pdf/2403.08495)                                      | ArXiv               | General (Clinical Diagnosis)       | [`saps`](./patienthub/clients/saps.py)                 |
 | [Consistent Client Simulation for Motivational Interviewing-based Counseling](https://aclanthology.org/2025.acl-long.1021/)                                            | ACL 2025 (Main)     | General (MI)                       | [`consistentMI`](./patienthub/clients/consistentMI.py) |
 | [Eeyore: Realistic Depression Simulation via Expert-in-the-Loop Supervised and Preference Optimization](https://aclanthology.org/2025.findings-acl.707/)               | ACL 2025 (Findings) | Depression (Screening/General)     | [`eeyore`](./patienthub/clients/eeyore.py)             |
 | [AnnaAgent: Dynamic Evolution Agent System with Multi-Session Memory for Realistic Seeker Simulation](https://aclanthology.org/2025.findings-acl.1192/)                | ACL 2025 (Findings) | General (Multi-session Counseling) | [`annaAgent`](./patienthub/clients/annaAgent.py)       |
@@ -98,5 +98,5 @@ data/
 ├── characters/     # Character profiles (JSON)
 ├── prompts/        # Prompt templates (YAML)
 ├── sessions/       # Session logs
-└── resources/            # Source datasets
+└── resources/      # Source datasets
 ```
