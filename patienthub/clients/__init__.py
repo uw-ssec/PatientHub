@@ -11,6 +11,7 @@ from .clientCast import ClientCastClient, ClientCastClientConfig
 from .annaAgent import AnnaAgentClient, AnnaAgentClientConfig
 from .talkDep import TalkDepClient, TalkDepClientConfig
 from .saps import SAPSClient, SAPSClientConfig
+from .adaptiveVP import AdaptiveVPClient, AdaptiveVPClientConfig
 
 
 from omegaconf import DictConfig
@@ -30,6 +31,7 @@ CLIENT_REGISTRY = {
     "annaAgent": AnnaAgentClient,
     "talkDep": TalkDepClient,
     "saps": SAPSClient,
+    "adaptiveVP": AdaptiveVPClient,
 }
 
 # Registry of client configs (for Hydra registration)
@@ -47,6 +49,7 @@ CLIENT_CONFIG_REGISTRY = {
     "annaAgent": AnnaAgentClientConfig,
     "talkDep": TalkDepClientConfig,
     "saps": SAPSClientConfig,
+    "adaptiveVP": AdaptiveVPClientConfig,
 }
 
 

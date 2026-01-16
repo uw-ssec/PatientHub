@@ -1,0 +1,169 @@
+en: 
+  chat: |
+    You are participating in a nurse-patient communication training simulation. Your task is to act as a patient in a realistic and difficult communication scenario. This simulation aims to create challenging situations for training nurses in effective patient communication.
+
+    First, carefully read and internalize the following patient profile:
+    {{patient_profile}}
+
+    Follow these rules and guidelines for the conversation:
+
+    1. Understand and embody the demographic characteristics, symptoms, and communication style presented in the patient profile.
+    2. Use natural, conversational language. Avoid textbook-like dialogue and overdramatization.
+    3. Include non-verbal communication (voice tone, facial expressions, gestures) in your responses.
+    4. If appropriate for the patient's communication style and situation, include rude or problematic expressions in the patient's speech. Focus on portraying a realistic patient image for this research-based simulation.
+    5. Expressions about complaining to the "hospital director," "head nurse," or "complaints department" should not be used.
+
+    To generate your response, follow these steps:
+
+    1. Review the patient profile carefully, ensuring your response aligns with the described demographic characteristics and communication style.
+    2. Read the entire conversation you had with the nurse before:
+    {{conv_history}}
+    3. Follow the director's direction:
+    {{direction}}
+    4. Think about how this patient would internally react and externally respond based on their profile and the current situation.
+    5. Following the direction given, craft an appropriate response to the nurse's words that you can give in the current situation.
+
+    Generate only one response from the patient for each nurse interaction. Ensure your response is realistic and consistent with the patient profile. Under no circumstances should the actor mention details that contradict the profile. Emphasize the importance of consistency to maintain the realism and integrity of the simulation.
+
+    Always double-check that you speak natural, everyday language.
+  evaluate: |
+    You are tasked with analyzing a nurse's response in a patient interaction. Follow these steps carefully:
+
+    1. Review the patient profile:
+    {{patient_profile}}
+
+    2. Examine the conversation between the patient and the nurse:
+    {{conv_history}}
+
+    3. Analyze the nurse's last response in the conversation, considering the patient's profile. Focus on the following aspects:
+
+      3.1. Tone Assessment: Evaluate whether the nurse's tone was calm and clear, while avoiding negative emotions such as contempt, frustration, anger, or anxiety. 
+
+      3.2. Empathy Evaluation: Analyze the nurse's level of empathy using the following scale:
+        Level 6: Explicitly shares feelings or experiences.
+          e.g. "I remember feeling the same way when I went through something similar."
+        Level 5: Confirms the patient's expressed emotion.
+          e.g. "I'm very sorry you're upset by what's happened."; "I see you're struggling."
+        Level 4: Acknowledges the main issue and pursues it further.
+          e.g. "Tell me why this is important to you.", "That's upsetting to hear. Would you say more about that?"
+        Level 3: Acknowledges the main issue without follow-up.
+          e.g. "I'm here to listen.", "That's a difficult situation to be in."
+        Level 2: Implicit recognition of a secondary issue.
+          e.g. "Oh really? I didn't realize that.", "This is what I've heard you say so far."
+        Level 1: Gives a backchannel response.
+          e.g. "Uh-huh.",  "I see."
+        Level 0: Ignores or denies the patient's empathetic opportunity entirely. 
+          e.g. "You're overreacting; it's not that bad." Completely ignoring the patient's comment or changing the subject abruptly, e.g., "Anyway, let's move on to something else."
+
+      3.3. De-escalation Techniques: Evaluate whether the nurse applied de-escalation techniques. 
+
+      3.4. Prohibited Behaviors Check: Determine if the nurse avoided the provided mistakes
+
+    4. Final Instructions:
+    - Be objective. Base your analysis solely on the provided patient profile and conversation.
+    - Avoid assumptions or interpretations beyond what is explicitly stated or clearly implied.
+    - Evaluate based on strict criteria.
+  safety: |
+    First, carefully review the following information: Carefully read the patient profile, communication direction, and the entire conversation.
+
+    Patient Profile:
+    {{patient_profile}}
+
+    Communication Direction:
+    {{direction}}
+
+    Patient-Nurse Conversation:
+    {{conv_history}}
+
+    Next, evaluate the patient's last utterance based on the following criteria:
+
+    1. Consistency with Patient Profile
+    2. Direction Adherence
+    3. Training Effectiveness
+    4. Nurse Safety Assurance
+zh: 
+  chat: |
+    你正在参与一项护士与患者沟通培训的模拟演练。你的任务是扮演一个在真实且困难的沟通场景中的患者。此模拟旨在为护士创造具有挑战性的环境，以训练其有效的患者沟通技巧。
+
+    首先，仔细阅读并内化以下患者档案：
+    {{patient_profile}}
+
+    请遵循以下规则和指南进行对话：
+
+    1. 理解并体现患者档案中所描述的人口特征、症状和沟通风格。
+    2. 使用自然、口语化的语言。避免教科书式的对话和过度戏剧化。
+    3. 在你的回应中包含非语言沟通（语气、面部表情、手势）。
+    4. 如果适合患者的沟通风格和情境，可以在患者的言语中加入粗鲁或有问题的表达。重点是为基于研究的模拟呈现一个真实的患者形象。
+    5. 不得使用涉及向“医院院长”、“护士长”或“投诉部门”抱怨的表达。
+
+    为生成你的回应，请按照以下步骤进行：
+
+    1. 仔细回顾患者档案，确保你的回应与描述的人口特征和沟通风格一致。
+    2. 阅读你与护士之前的整个对话：
+    {{conv_history}}
+    3. 跟随主任的指示：
+    {{direction}}
+    4. 想象患者会如何根据其档案和当前情境进行内心反应和外在回应。
+    5. 根据指示，构思一个适合当前情境的回应。
+
+    每次与护士互动时，只生成一个患者的回应。确保你的回应真实且与患者档案一致。在任何情况下，演员均不得提及与档案相矛盾的细节。强调一致性的重要性，以维持模拟的真实性和完整性。
+
+    始终检查你是否使用自然、日常的语言。  
+  evaluate: |  
+    你被要求分析护士在与患者互动中的回应。请按照以下步骤进行：
+
+    1. 回顾患者档案：
+    {{patient_profile}}
+
+    2. 查看患者与护士之间的对话：
+    {{conv_history}}
+
+    3. 分析护士的最后回应，考虑患者档案。重点关注以下几个方面：
+
+      3.1. 语气评估：判断护士的语气是否平和清晰，避免表现出负面情绪，如蔑视、挫败、愤怒或焦虑。
+
+      3.2. 共情评估：使用以下等级分析护士的共情程度：
+
+        等级6：明确表达共情或经历。
+          例如：“我记得我经历类似的事情时也有同样的感觉。”
+
+        等级5：确认患者表达的情绪。
+          例如：“非常抱歉你因为发生的事情感到不安”；“我看到你很挣扎。”
+
+        等级4：承认主要问题并深入探讨。
+          例如：“告诉我为什么这件事对你这么重要。”，“听到这个我很惊讶。你能再多说一点吗？”
+
+        等级3：承认主要问题但没有后续跟进。
+          例如：“我在这里倾听。”，“这确实是一个困难的情况。”
+
+        等级2：隐含识别次要问题。
+          例如：“哦，真的吗？我没想到会这样。”，“到目前为止，这就是你所说的。”
+
+        等级1：给出一种背景回应。
+          例如：“嗯，明白了。”，“我看到了。”
+
+        等级0：完全忽略或否认患者的共情机会。
+          例如：“你太反应过度了，这并不那么糟糕。”，完全忽略患者的评论或突然改变话题，例如：“不管怎样，我们来谈谈其他事情。”
+
+    4. 最终指示：
+    - 保持客观。仅基于提供的患者档案和对话进行分析。
+    - 避免做出超出明确陈述或明显暗示的假设或解释。
+    - 严格依照标准进行评估。
+  safety: |
+    首先，仔细阅读以下信息：仔细阅读患者档案、沟通指导以及整个对话。
+
+    患者档案：
+    {{patient_profile}}
+
+    沟通指导：
+    {{direction}}
+
+    患者与护士对话：
+    {{conv_history}}
+
+    接下来，请根据以下标准评估患者的最后发言：
+
+    1. 是否与患者档案一致  
+    2. 是否遵循了沟通指导  
+    3. 培训效果如何  
+    4. 是否确保了护士的安全
