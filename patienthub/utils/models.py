@@ -68,7 +68,7 @@ def get_chat_model(configs):
 
     return ChatModel(
         model_name=model_name,
-        base_url=os.environ.get(f"{model_type}_BASE_URL", None),
+        api_base=os.environ.get(f"{model_type}_BASE_URL", None),
         api_key=os.environ.get(f"{model_type}_API_KEY", None),
     )
 

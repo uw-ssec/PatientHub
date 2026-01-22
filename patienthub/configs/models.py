@@ -5,7 +5,7 @@ from dataclasses import dataclass
 class APIModelConfig:
     """Base configuration shared by all agents using API models."""
 
-    model_type: str = "LAB"
+    model_type: str = "OPENAI"
     model_name: str = "gpt-4o"
     temperature: float = 0.7
     max_tokens: int = 8192
@@ -15,9 +15,9 @@ class APIModelConfig:
 
 @dataclass
 class LocalModelConfig:
-    """Base configuration for locally-hosted models."""
+    """Base configuration for local models."""
 
-    model_type: str = "local"
+    model_type: str = "LOCAL"
     model_name: str = ""
     temperature: float = 0.3
     max_tokens: int = 8192
