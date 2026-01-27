@@ -1,26 +1,24 @@
-from .rating import RatingEvaluator, RatingEvaluatorConfig
-from .inspect import InspectEvaluator, InspectEvaluatorConfig
+from .llm_judge import LLMJudgeEvaluator, LLMJudgeEvaluatorConfig
 
 from omegaconf import DictConfig
 
 EVALUATOR_REGISTRY = {
-    "rating": RatingEvaluator,
-    "inspect": InspectEvaluator,
+    "llm_judge": LLMJudgeEvaluator,
 }
 EVALUATOR_CONFIG_REGISTRY = {
-    "rating": RatingEvaluatorConfig,
-    "inspect": InspectEvaluatorConfig,
+    "llm_judge": LLMJudgeEvaluatorConfig,
 }
 
 
 def get_evaluator(configs: DictConfig, lang: str = "en"):
     configs.lang = lang
+    agent_type = configs.agent_type
     eval_type = configs.eval_type
-    print(f"Loading {eval_type} evaluator agent...")
-    if eval_type in EVALUATOR_REGISTRY:
-        return EVALUATOR_REGISTRY[eval_type](configs)
+    print(f"Loading {agent_type} agent for {eval_type} evaluation...")
+    if agent_type in EVALUATOR_REGISTRY:
+        return EVALUATOR_REGISTRY[agent_type](configs=configs)
     else:
-        raise ValueError(f"Evaluation for {eval_type} is not supported")
+        raise ValueError(f"Evaluator agent {agent_type} not found in registry.")
 
 
 def register_evaluator_configs(cs):

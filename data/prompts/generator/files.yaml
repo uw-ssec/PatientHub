@@ -1,74 +1,57 @@
-en: 
-  agent: |
-    from typing import Dict, List
-    from dataclasses import dataclass
-    from pydantic import BaseModel, Field
+en:
+    agent: |
+        from typing import Dict, List
+        from omegaconf import DictConfig
+        from dataclasses import dataclass
 
-    from patienthub.base import ChatAgent
-    from patienthub.configs import APIModelConfig
-    from patienthub.utils import load_prompts, load_json, get_chat_model
+        from patienthub.base import ChatAgent
+        from patienthub.configs import APIModelConfig
+        from patienthub.utils import load_prompts, load_json, get_chat_model
 
-    from omegaconf import DictConfig
-    from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+        @dataclass
+        class {{class_name}}Config(APIModelConfig):
+            """
+            Configuration for the {{class_name}} agent.
+            """
+            agent_type: str = "{{agent_name}}"
+            data_path: str = "data/characters/{{agent_type}}s.json"
+            data_idx: int = 0
 
-    @dataclass
-    class {{class_name}}Config(APIModelConfig):
-        """
-        Configuration for the {{class_name}} agent.
-        """
-        agent_type: str = "{{agent_name}}"
-        data_path: str = "data/characters/{{agent_type}}s.json"
-        data_idx: int = 0
+        class {{class_name}}(ChatAgent):
+            def __init__(self, configs: DictConfig):
+                self.configs = configs
 
-    # TODO: Define the response format
-    class Response(BaseModel):
-        content: str = Field(
-            description="The content of your generated response in this turn",
-        )
+                self.data = load_json(configs.data_path)[configs.data_idx]
+                self.name = self.data.get("name", "{{class_name}}")
 
+                self.chat_model = get_chat_model(configs)
+                # TODO: Define the prompts for the client agent
+                self.prompts = load_prompts(
+                    role="{{agent_type}}", agent_type="{{agent_name}}", lang=configs.lang
+                )
+                self.build_sys_prompt()
 
-    class {{class_name}}(ChatAgent):
-        def __init__(self, configs: DictConfig):
-            self.configs = configs
-
-            self.data = load_json(configs.data_path)[configs.data_idx]
-            self.name = self.data.get("name", "{{agent_type}}")
-
-            self.chat_model = get_chat_model(configs)
-            # TODO: Define the prompts for the client agent
-            self.prompts = load_prompts(
-                role="{{agent_type}}", agent_type="{{agent_name}}", lang=configs.lang
-            )
             # TODO: Initialize the system prompt
-            self.messages = [
-                SystemMessage(content=self.prompts["system_prompt"].render(data=self.data))
-            ]
+            def build_sys_prompt(self):
+                self.messages = [{"role": "system", "content": self.prompts["sys_prompt"].render(data=self.data)}]
 
-        def set_{{other_agent_type}}(self, {{other_agent_type}}, prev_sessions: List[Dict[str, str] | None] = []):
-            self.{{other_agent_type}} = {{other_agent_type}}.get("name", "{{other_agent_type}}")
+            def set_{{other_agent_type}}(self, {{other_agent_type}}, prev_sessions: List[Dict[str, str] | None] = []):
+                self.{{other_agent_type}} = {{other_agent_type}}.get("name", "{{other_agent_type}}")
 
-        def generate(self, messages: List[str], response_format: BaseModel):
-            chat_model = self.chat_model.with_structured_output(response_format)
-            res = chat_model.invoke(messages)
-            return res
+            def generate_response(self, msg: str):
+                self.messages.append({"role": "user", "content": msg})
+                res = self.chat_model.generate(self.messages)
+                self.messages.append({"role": "assistant", "content": res.content})
 
-        def generate_response(self, msg: str):
-            self.messages.append(HumanMessage(content=msg))
-            res = self.generate(self.messages, response_format=Response)
-            self.messages.append(AIMessage(content=res.model_dump_json()))
+                return res
 
-            return res
-
-        def reset(self):
-            self.messages = []
-            self.{{other_agent_type}} = None
-        
-        # TODO: Define any other necessary methods
-  prompt: |
-    en: 
-      system: |
-        <insert prompt text here>
-    zh: 
-      system: |
-        <在这里输入提示文本>
-
+            def reset(self):
+                self.build_sys_prompt()
+                self.{{other_agent_type}} = None
+    prompt: |
+        en: 
+          sys_prompt: |
+            <insert prompt text here>
+        zh: 
+          sys_prompt: |
+            <在这里输入提示文本>

@@ -59,15 +59,6 @@ class EvaluatorAgent(ABC):
     lang: str
 
     @abstractmethod
-    def generate(
-        self,
-        prompt: str,
-        response_format: Optional[Type[BaseModel]] = None,
-    ) -> BaseModel | str:
-        r"""Generates a evaluation based on the input messages."""
-        pass
-
-    @abstractmethod
     def evaluate(self, data: Any, *args) -> None:
         r"""Evaluates the data using the EvaluatorAgent."""
         pass

@@ -23,7 +23,7 @@ from patienthub.evaluators import get_evaluator
 
 DEFAULTS = [
     "_self_",
-    {"evaluator": "rating"},
+    {"evaluator": "llm_judge"},
 ]
 
 
@@ -33,8 +33,8 @@ class EvaluateConfig:
 
     defaults: List[Any] = field(default_factory=lambda: DEFAULTS)
     evaluator: Any = MISSING
-    input_dir: str = "data/sessions/patientPsi/session_1_jb.json"
-    output_dir: str = "data/evaluations/patientPsi/session_temp_rating.json"
+    input_dir: str = "data/sessions/default/badtherapist.json"
+    output_dir: str = "data/evaluations/default/temp_cot.json"
     lang: str = "en"
 
 

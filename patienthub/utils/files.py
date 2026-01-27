@@ -72,3 +72,12 @@ def load_prompts(role: str, agent_type: str, lang: str = "en"):
     prompts = process_prompts(data)
 
     return prompts
+
+
+def load_instructions(path: str):
+    instructions = load_yaml(path)
+    instructions["sys_prompt"] = Template(
+        instructions.get("sys_prompt", "You are a helpful assistant.")
+    )
+
+    return instructions

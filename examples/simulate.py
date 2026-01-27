@@ -32,7 +32,7 @@ from patienthub.configs import register_configs
 
 DEFAULTS = [
     "_self_",
-    {"client": "psyche"},
+    {"client": "test"},
     {"therapist": "user"},
     # {"evaluator": "inspect"},
     {"event": "therapySession"},
