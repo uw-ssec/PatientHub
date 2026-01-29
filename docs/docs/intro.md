@@ -45,16 +45,19 @@ print(response.content)
 
 ## Supported Methods
 
-| Method                                     | Venue             | Focus                     |
+| Method | Venue | Focus |
 | ------------------------------------------ | ----------------- | ------------------------- |
-| [ConsistentMI](/docs/methods/consistentmi) | ACL 2025          | Motivational Interviewing |
-| [Eeyore](/docs/methods/eeyore)             | ACL 2025 Findings | Depression                |
-| [AnnaAgent](/docs/methods/overview)        | ACL 2025 Findings | Multi-session             |
-| [AdaptiveVP](/docs/methods/overview)       | ACL 2025 Findings | Nurse Training            |
-| [PatientPsi](/docs/methods/patientpsi)     | EMNLP 2024        | CBT                       |
-| [RoleplayDoh](/docs/methods/overview)      | EMNLP 2024        | Counseling                |
-| [SimPatient](/docs/methods/overview)       | CHI 2025          | Alcohol Misuse            |
-| [TalkDep](/docs/methods/overview)          | CIKM 2025         | Depression Screening      |
+| [SAPS](/docs/methods/saps) | ArXiv | Clinical Diagnosis |
+| [ConsistentMI](/docs/methods/consistentmi) | ACL 2025 | Motivational Interviewing |
+| [Eeyore](/docs/methods/eeyore) | ACL 2025 Findings | Depression |
+| [AnnaAgent](/docs/methods/annaagent) | ACL 2025 Findings | Multi-session Counseling |
+| [AdaptiveVP](/docs/methods/adaptivevp) | ACL 2025 Findings | Nurse Communication Training |
+| [SimPatient](/docs/methods/simpatient) | CHI 2025 | Alcohol Misuse |
+| [TalkDep](/docs/methods/talkdep) | CIKM 2025 | Depression Screening |
+| [ClientCAST](/docs/methods/clientcast) | Arxiv | Psychotherapy |
+| [PSYCHE](/docs/methods/psyche) | ArXiv | Psychiatric Assessment |
+| [PatientPsi](/docs/methods/patientpsi) | EMNLP 2024 | CBT |
+| [RoleplayDoh](/docs/methods/roleplaydoh) | EMNLP 2024 | Counseling |
 
 ## Getting Started
 

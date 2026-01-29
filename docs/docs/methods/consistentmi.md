@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
 # ConsistentMI
@@ -108,9 +108,9 @@ print(response.content)
 ### State Machine
 
 ```
-┌─────────────────┐     Good MI      ┌──────────────┐
-│ Precontemplation│ ──────────────► │ Contemplation │
-└─────────────────┘                  └──────────────┘
+┌──────────────────┐     Good MI     ┌───────────────┐
+│ Precontemplation │ ──────────────► │ Contemplation │
+└──────────────────┘                 └───────────────┘
         ▲                                   │
         │ Poor MI                    Good MI│
         │                                   ▼

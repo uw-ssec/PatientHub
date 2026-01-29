@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Supported Methods Overview
@@ -10,17 +10,17 @@ PatientHub implements patient simulation methods from leading AI and HCI venues.
 
 | Method                                     | Venue          | Year | Focus Area                | Key Feature                 |
 | ------------------------------------------ | -------------- | ---- | ------------------------- | --------------------------- |
+| [SAPS](/docs/methods/saps)                 | ArXiv          | 2024 | Clinical Diagnosis        | State-aware responses       |
 | [ConsistentMI](/docs/methods/consistentmi) | ACL (Main)     | 2025 | Motivational Interviewing | Stage-of-change transitions |
 | [Eeyore](/docs/methods/eeyore)             | ACL (Findings) | 2025 | Depression                | Expert-validated simulation |
-| AnnaAgent                                  | ACL (Findings) | 2025 | Multi-session             | Dynamic memory evolution    |
-| AdaptiveVP                                 | ACL (Findings) | 2025 | Nurse Training            | Adaptive dialogue           |
+| [AnnaAgent](/docs/methods/annaagent)       | ACL (Findings) | 2025 | Multi-session             | Dynamic memory evolution    |
+| [AdaptiveVP](/docs/methods/adaptivevp)     | ACL (Findings) | 2025 | Nurse Training            | Adaptive dialogue           |
+| [SimPatient](/docs/methods/simpatient)     | CHI            | 2025 | Alcohol Misuse            | Cognitive state updates     |
+| [TalkDep](/docs/methods/talkdep)           | CIKM           | 2025 | Depression Screening      | Clinical grounding          |
+| [ClientCAST](/docs/methods/clientcast)     | ArXiv          | 2024 | Psychotherapy             | Client-centered assessment  |
+| [PSYCHE](/docs/methods/psyche)             | ArXiv          | 2025 | Psychiatric Assessment    | Multi-faceted evaluation    |
 | [PatientPsi](/docs/methods/patientpsi)     | EMNLP (Main)   | 2024 | CBT                       | Cognitive model-based       |
-| RoleplayDoh                                | EMNLP (Main)   | 2024 | Counseling                | Principle-based simulation  |
-| SimPatient                                 | CHI            | 2025 | Alcohol Misuse            | Cognitive state updates     |
-| TalkDep                                    | CIKM           | 2025 | Depression Screening      | Clinical grounding          |
-| SAPS                                       | ArXiv          | 2024 | Clinical Diagnosis        | State-aware responses       |
-| ClientCast                                 | ArXiv          | 2024 | Psychotherapy             | Client-centered assessment  |
-| Psyche                                     | ArXiv          | 2025 | Psychiatric Assessment    | Multi-faceted evaluation    |
+| [RoleplayDoh](/docs/methods/roleplaydoh)   | EMNLP (Main)   | 2024 | Counseling                | Principle-based simulation  |
 
 ## By Focus Area
 

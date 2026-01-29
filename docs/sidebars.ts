@@ -36,9 +36,17 @@ const sidebars = {
       label: 'Supported Methods',
       items: [
         'methods/overview',
-        'methods/patientpsi',
+        'methods/saps',
         'methods/consistentmi',
         'methods/eeyore',
+        'methods/annaagent',
+        'methods/adaptivevp',
+        'methods/simpatient',
+        'methods/talkdep',
+        'methods/clientcast',
+        'methods/psyche',
+        'methods/patientpsi',
+        'methods/roleplaydoh',
       ],
     },
     {
