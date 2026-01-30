@@ -30,16 +30,7 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
-  {
-    title: 'Research Ready',
-    emoji: '📊',
-    description: (
-      <>
-        Built-in evaluation tools for measuring simulation quality, therapist
-        performance, and research reproducibility. Export results in multiple formats.
-      </>
-    ),
-  },
+
   {
     title: 'Highly Extensible',
     emoji: '🔧',
@@ -47,26 +38,6 @@ const FeatureList: FeatureItem[] = [
       <>
         Add new patient agents, therapist types, and evaluators with a clean
         plugin architecture. Full documentation for contributors.
-      </>
-    ),
-  },
-  {
-    title: 'Multi-Modal Support',
-    emoji: '🌐',
-    description: (
-      <>
-        CLI, web interface (Chainlit), and programmatic API. Use the interface
-        that fits your workflow - from quick experiments to full integrations.
-      </>
-    ),
-  },
-  {
-    title: 'LangChain Powered',
-    emoji: '🔗',
-    description: (
-      <>
-        Built on LangChain and LangGraph for robust LLM interactions. Supports
-        multiple model providers including OpenAI, Anthropic, and local models.
       </>
     ),
   },

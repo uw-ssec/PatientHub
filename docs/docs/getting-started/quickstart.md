@@ -47,19 +47,22 @@ uv run python -m examples.simulate \
 | `consistentMI` | Motivational Interviewing with stage transitions |
 | `eeyore`       | Depression simulation                            |
 | `annaAgent`    | Multi-session with memory                        |
+| `adaptiveVP`   | Nurse communication training                     |
 | `simPatient`   | Cognitive model updates                          |
 | `talkDep`      | Depression screening                             |
 | `saps`         | State-aware medical patient                      |
 | `clientCast`   | Psychotherapy assessment                         |
+| `psyche`       | Psychiatric assessment                           |
+| `roleplayDoh`  | Principle-based simulation                       |
 
 ## Available Therapists
 
-| Therapist | Description           |
-| --------- | --------------------- |
-| `user`    | Human input (default) |
-| `CBT`     | AI CBT therapist      |
-| `eliza`   | Classic Eliza chatbot |
-| `basic`   | Simple AI therapist   |
+| Therapist | Description                  |
+| --------- | ---------------------------- |
+| `user`    | Human input (default)        |
+| `CBT`     | AI CBT therapist             |
+| `eliza`   | Classic Eliza chatbot        |
+| `bad`     | Poor therapist (for testing) |
 
 ## Python API
 

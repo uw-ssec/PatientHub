@@ -2,11 +2,19 @@
 sidebar_position: 0
 ---
 
-# Supported Methods Overview
+# Supported Agents Overview
 
-PatientHub implements patient simulation methods from leading AI and HCI venues.
+PatientHub implements various agent types for comprehensive therapy simulation research. This includes client agents (patient simulations) from leading AI and HCI venues, as well as therapist agents, evaluators, NPCs, and generators.
 
-## Method Summary
+## Agent Categories
+
+- **[Clients](./saps.md)** - Patient simulation agents with various disorders and behaviors
+- **[Therapists](./therapists.md)** - Therapeutic intervention agents (CBT, Eliza, etc.)
+- **[Evaluators](./evaluators.md)** - Assessment agents for measuring therapy quality
+- **[NPCs](./npcs.md)** - Supporting characters for complex scenarios
+- **[Generators](./generators.md)** - Tools for creating synthetic client profiles
+
+## Client Agents Summary
 
 | Method                                     | Venue          | Year | Focus Area                | Key Feature                 |
 | ------------------------------------------ | -------------- | ---- | ------------------------- | --------------------------- |
@@ -100,6 +108,10 @@ High Realism
 
 → Use **AnnaAgent** or **SimPatient**
 
+### For Nurse Training
+
+→ Use **AdaptiveVP**
+
 ## Quick Start by Method
 
 ### PatientPsi
@@ -111,13 +123,19 @@ uv run python -m examples.simulate client=patientPsi therapist=CBT
 ### ConsistentMI
 
 ```bash
-uv run python -m examples.simulate client=consistentMI therapist=MI
+uv run python -m examples.simulate client=consistentMI therapist=CBT
 ```
 
 ### Eeyore
 
 ```bash
 uv run python -m examples.simulate client=eeyore therapist=user
+```
+
+### AdaptiveVP (Nurse Training)
+
+```bash
+uv run python -m examples.simulate client=adaptiveVP therapist=user
 ```
 
 ## Adding New Methods

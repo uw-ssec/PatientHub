@@ -105,8 +105,8 @@ export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title="Unified Patient Simulation Framework"
-      description="PatientHub - A unified framework for LLM-based patient simulation in mental health training and research">
+      title="PatientHub"
+      description="A unified framework for LLM-based patient simulation in mental health training and research">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

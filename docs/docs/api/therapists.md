@@ -11,8 +11,6 @@ Therapist agents simulate or interface with therapists in conversations.
 | Agent   | Description                                | Config Class           |
 | ------- | ------------------------------------------ | ---------------------- |
 | `CBT`   | Cognitive Behavioral Therapy therapist     | `CBTTherapistConfig`   |
-| `MI`    | Motivational Interviewing therapist        | `MITherapistConfig`    |
-| `basic` | Simple AI therapist                        | `BasicTherapistConfig` |
 | `eliza` | Classic Eliza chatbot                      | `ElizaTherapistConfig` |
 | `bad`   | Intentionally poor therapist (for testing) | `BadTherapistConfig`   |
 | `user`  | Human input                                | `UserTherapistConfig`  |
@@ -110,43 +108,6 @@ class Response(BaseModel):
     )
 ```
 
-## MI Therapist
-
-The MI (Motivational Interviewing) therapist uses OARS techniques:
-
-- **O**pen questions
-- **A**ffirmations
-- **R**eflections
-- **S**ummaries
-
-```python
-config = OmegaConf.create({
-    'agent_type': 'MI',
-    'model_type': 'LAB',
-    'model_name': 'gpt-4o',
-    'temperature': 0.7,
-    'max_tokens': 1024,
-    'max_retries': 3,
-})
-
-therapist = get_therapist(configs=config, lang='en')
-```
-
-### MI Response Format
-
-```python
-class MIResponse(BaseModel):
-    technique: str = Field(
-        description="MI technique: 'open_question', 'affirmation', 'reflection', or 'summary'"
-    )
-    reasoning: str = Field(
-        description="Brief reasoning for technique choice"
-    )
-    content: str = Field(
-        description="The therapist's response"
-    )
-```
-
 ## User Therapist
 
 For human-in-the-loop simulation:
@@ -179,6 +140,29 @@ therapist = get_therapist(configs=config, lang='en')
 response = therapist.generate_response("I am feeling sad.")
 # "Why do you say you are feeling sad?"
 ```
+
+## Bad Therapist
+
+For testing purposes - generates intentionally poor therapeutic responses:
+
+```python
+config = OmegaConf.create({
+    'agent_type': 'bad',
+    'model_type': 'LAB',
+    'model_name': 'gpt-4o',
+    'temperature': 0.7,
+    'max_tokens': 1024,
+    'max_retries': 3,
+})
+
+therapist = get_therapist(configs=config, lang='en')
+```
+
+This therapist is useful for:
+
+- Testing evaluator sensitivity to poor therapy techniques
+- Creating negative examples for training
+- Benchmarking client response to inappropriate therapy
 
 ## Example: Full Session
 
