@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Batch Processing
+# Batch Processing TODO:
 
 Run multiple simulations for research experiments and benchmarking.
 
@@ -44,7 +44,7 @@ num_runs: 10
 max_turns: 25
 max_workers: 8
 seed: 42
-model_type: LAB
+model_type: OPENAI
 model_name: gpt-4o
 temperature: 0.7
 ```
@@ -177,7 +177,7 @@ For reproducible experiments:
 ```yaml
 # batch_config.yaml
 seed: 42
-model_type: LAB
+model_type: OPENAI
 model_name: gpt-4o
 temperature: 0.0 # Deterministic
 ```

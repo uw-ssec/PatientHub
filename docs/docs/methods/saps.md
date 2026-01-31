@@ -24,6 +24,14 @@ It uses specific Prompts to judge in three stages:
 
 Based on the final state obtained by the State Tracker, SAPS selects the corresponding **state_instruction prompt** to generate the patient response.
 
+## How It Works
+
+1. **Load a Real Case Profile**: Selects a patient case (medical record) as the simulation “ground truth”.
+2. **Track the Doctor’s Intent (State Tracking)**: For each doctor turn, classifies the utterance type and checks whether it is specific enough to answer.
+3. **Retrieve Only Relevant Evidence (Memory Bank)**: When needed, extracts the most relevant fragment(s) from the full medical record; otherwise withholds details to avoid over-disclosure.
+4. **Route to a State-Specific Behavior Prompt**: Chooses a response policy/instruction prompt based on the final state (what to disclose / how to respond).
+5. **Generate Response with Conversation Context**: Produces the patient reply conditioned on the selected instruction and multi-turn history, then updates the dialogue memory for the next turn.
+
 ## Usage
 
 ### CLI
@@ -32,7 +40,7 @@ Based on the final state obtained by the State Tracker, SAPS selects the corresp
 uv run python -m examples.simulate client=saps therapist=user
 ```
 
-### Python TODO:
+### Python
 
 ```python 
 from omegaconf import OmegaConf
@@ -41,7 +49,7 @@ from patienthub.clients import get_client
 config = OmegaConf.create(
     {
         "agent_type": "saps",
-        "model_type": "LAB",
+        "model_type": "OPENAI",
         "model_name": "gpt-4o",
         "temperature": 0.7,
         "max_tokens": 1024,

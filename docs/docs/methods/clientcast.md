@@ -15,10 +15,18 @@ ClientCast creates client simulations for assessing LLM-based therapists. It int
 
 ## Key Features
 
-- **Big Five Personality**: Detailed personality modeling with explanations
-- **Symptom Assessment**: Integration with PHQ-9, GAD-7, and OQ-45 scales
+- **Deep Psychological Profiling**: Models Big Five personality traits alongside critical therapy-relevant traits like resistance and emotional fluctuation.
+- **Symptom Assessment**: Grounded in validated scales (PHQ-9, GAD-7, OQ-45).
 - **Real Conversation Grounding**: Uses human therapy conversation excerpts
-- **Client-Centered Focus**: Designed for therapist assessment rather than training
+- **Client-Centered Focus**: Enables the simulated client to evaluate the therapist
+
+## How It Works
+
+1. **Profile Construction**: Builds case synopsis from basic profile
+2. **Symptom Integration**: Incorporates identified symptoms with severity levels
+3. **Personality Mapping**: Uses Big Five traits to guide response style
+4. **Conversation Grounding**: References real therapy conversation excerpts
+5. **Response Generation**: Produces responses consistent with profile and conversation context
 
 ## Psychological Scales
 
@@ -46,7 +54,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'clientCast',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -139,24 +147,8 @@ print(response.content)
 }
 ```
 
-## How It Works
-
-1. **Profile Construction**: Builds case synopsis from basic profile
-2. **Symptom Integration**: Incorporates identified symptoms with severity levels
-3. **Personality Mapping**: Uses Big Five traits to guide response style
-4. **Conversation Grounding**: References real therapy conversation excerpts
-5. **Response Generation**: Produces responses consistent with profile and conversation context
-
 ## Resources
 
 `data/resources/ClientCast/human_data.json`: Human therapy conversation excerpts for grounding client simulations
 `data/resources/ClientCast/symptoms.json`: Symptom item texts for PHQ-9, GAD-7, and OQ-45 used to identify symptoms in the ClientCast profile
 
-<!-- ## Research Applications
-
-ClientCast is designed for:
-
-- **Therapist Assessment**: Evaluating LLM-based therapist quality
-- **A/B Testing**: Comparing different therapist approaches
-- **Safety Evaluation**: Testing therapist responses to various client presentations
-- **Benchmark Creation**: Building standardized client cases for evaluation -->

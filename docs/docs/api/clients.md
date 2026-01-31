@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Client Agents API
+# Client Agents API TODO:
 
 Client agents simulate patients in therapy conversations.
 
@@ -32,7 +32,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'patientPsi',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -95,7 +95,7 @@ class ChatAgent(ABC):
 | Option        | Type  | Default    | Description                                              |
 | ------------- | ----- | ---------- | -------------------------------------------------------- |
 | `agent_type`  | str   | required   | Client type identifier                                   |
-| `model_type`  | str   | `"LAB"`    | Model provider (`LAB`, `openai`, `huggingface`, `local`) |
+| `model_type`  | str   | `"OPENAI"`    | Model provider (`openai`, `local`) |
 | `model_name`  | str   | `"gpt-4o"` | Model identifier                                         |
 | `temperature` | float | `0.7`      | Sampling temperature (0-1)                               |
 | `max_tokens`  | int   | `1024`     | Max response tokens                                      |
@@ -169,7 +169,7 @@ from patienthub.clients import get_client, CLIENT_REGISTRY
 from omegaconf import OmegaConf
 
 base_config = {
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,

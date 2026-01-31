@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Running Simulations
+# Running Simulations TODO:
 
 PatientHub provides multiple ways to run therapy session simulations.
 
@@ -40,7 +40,7 @@ from patienthub.events import get_event
 # Configure client
 client_config = OmegaConf.create({
     'agent_type': 'patientPsi',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -52,7 +52,7 @@ client_config = OmegaConf.create({
 # Configure therapist
 therapist_config = OmegaConf.create({
     'agent_type': 'CBT',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -93,7 +93,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'consistentMI',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -144,8 +144,8 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'eeyore',
-    'model_type': 'LAB',
-    'model_name': 'gpt-4o',
+    'model_type': 'LOCAL',
+    'model_name': 'hosted_vllm//data3/public_checkpoints/huggingface_models/Eeyore_llama3.1_8B',
     'temperature': 0.7,
     'max_tokens': 1024,
     'max_retries': 3,

@@ -21,9 +21,17 @@ In subsequent generations, the AI simulated patient utilizes these **expert-gene
 - **Applicability Check**: Determine whether a principle is applicable in the current dialogue context
 - **Self-Refine**: After the LLM generates a preliminary response, it uses the questions above for self-evaluation. If the answer to any question is "No," it regenerates the response based on the evaluation results.
 
+## How It Works
+
+1. **Load Persona + Principles**: Loads a patient profile and a library of expert-authored principles that define how the simulated patient should behave.
+2. **Generate a Draft Reply**: Produces an initial client response conditioned on the persona and the current multi-turn conversation context.
+3. **Select a Principle for This Turn**: Chooses one principle to focus on when refining the draft (the current implementation samples one).
+4. **Convert to a Question Checklist**: Decomposes the chosen principle into a small set of simple Yes/No questions (optionally adding extra criteria).
+5. **Self-Assess and Revise**: Evaluates the draft against the checklist and rewrites the response only when violations are detected, then stores the finalized turn for subsequent dialogue.
+
 ## Usage
 
-### CLI TODO:
+### CLI
 
 ```bash
 uv run python -m examples.simulate client=saps therapist=user
@@ -38,7 +46,7 @@ from patienthub.clients import get_client
 config = OmegaConf.create(
     {
         "agent_type": "roleplayDoh",
-        "model_type": "LAB",
+        "model_type": "OPENAI",
         "model_name": "gpt-4o",
         "temperature": 0.7,
         "max_tokens": 1024,

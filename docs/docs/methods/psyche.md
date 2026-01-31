@@ -31,6 +31,13 @@ PSYCHE profiles include three main sections:
 
 - **MFC-Behavior**: Mental Status Examination findings (including mood, tone, thought process...)
 
+## How It Works
+
+1. **MFC Loading**: Loads the complete multi-faceted character profile
+2. **System Prompt Construction**: Combines all profile components into comprehensive context
+3. **Response Generation**: Produces responses consistent with mental status findings(profile)
+4. **Clinical Authenticity**: Maintains behavioral observations (mood, affect, verbal patterns)
+
 ## Usage
 
 ### CLI
@@ -47,7 +54,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'psyche',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -137,13 +144,6 @@ print(response.content)
   }
 }
 ```
-
-## How It Works
-
-1. **MFC Loading**: Loads the complete multi-faceted character profile
-2. **System Prompt Construction**: Combines all profile components into comprehensive context
-3. **Response Generation**: Produces responses consistent with mental status findings(profile)
-4. **Clinical Authenticity**: Maintains behavioral observations (mood, affect, verbal patterns)
 
 <!-- ## Research Applications
 

@@ -21,6 +21,14 @@ SimPatient models patients dealing with alcohol misuse using a cognitive model t
 - **Session Continuity**: Can continue from previous session state and history
 - **Motivational Interviewing Focus**: Designed for MI-based counseling training
 
+## How It Works
+
+1. **Profile Loading**: Loads patient persona and initial cognitive model state
+2. **Session Initialization**: Optionally continues from previous session with updated states
+3. **Response Generation**: Generates responses based on current cognitive model
+4. **State Update**: After each interaction, updates the four cognitive dimensions
+5. **Between-Session Generation**: Creates realistic events for multi-session continuity
+
 ## Cognitive Model
 
 SimPatient tracks four dimensions of patient psychology:
@@ -52,7 +60,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'simPatient',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -111,14 +119,6 @@ a college friend inviting him to a small get-together. He hesitated
 but decided to go, thinking he could handle it. However, once there,
 the sight and smell of alcohol triggered his cravings..."
 ```
-
-## How It Works
-
-1. **Profile Loading**: Loads patient persona and initial cognitive model state
-2. **Session Initialization**: Optionally continues from previous session with updated states
-3. **Response Generation**: Generates responses based on current cognitive model
-4. **State Update**: After each interaction, updates the four cognitive dimensions
-5. **Between-Session Generation**: Creates realistic events for multi-session continuity
 
 ## State Update Example
 

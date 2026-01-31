@@ -21,6 +21,14 @@ AnnaAgent aims to simulate the dynamic evolution of the AI seeker's emotions and
 - **Profile-Based**: Detailed patient profiles with depression/suicide risk levels
 - **Previous Session Integration**: References historical conversations when relevant
 
+## How It Works
+
+1. **Profile Loading**: Loads detailed patient profile with risk levels and symptoms
+2. **Emotion Inference**: Determines emotional state based on therapist input
+3. **Context Check**: Evaluates if historical information is needed for the response
+4. **Complaint Progression**: Tracks progress through the cognitive change chain
+5. **Response Generation**: Produces contextually appropriate responses with emotional consistency
+
 ## Emotion Categories
 
 AnnaAgent uses the GoEmotions taxonomy with weighted emotion transitions:
@@ -48,7 +56,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'annaAgent',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -64,6 +72,8 @@ response = client.generate_response("How have you been since our last session?")
 print(response.content)
 ```
 
+The original implementation described in this paper are based on Qwen2.5-7B-Instruct.
+
 ## Configuration
 
 | Option      | Description            | Default                          |
@@ -76,8 +86,6 @@ print(response.content)
 ```json
 {
   "profile": {
-    "drisk": 3,
-    "srisk": 2,
     "age": "42",
     "gender": "Female",
     "marital_status": "Divorced",
@@ -107,14 +115,6 @@ print(response.content)
   ]
 }
 ```
-
-## How It Works
-
-1. **Profile Loading**: Loads detailed patient profile with risk levels and symptoms
-2. **Emotion Inference**: Determines emotional state based on therapist input
-3. **Context Check**: Evaluates if historical information is needed for the response
-4. **Complaint Progression**: Tracks progress through the cognitive change chain
-5. **Response Generation**: Produces contextually appropriate responses with emotional consistency
 
 ## Resources
 

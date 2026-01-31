@@ -43,8 +43,8 @@ pip install -e .
 Create a `.env` file in the project root:
 
 ```bash
-LAB_API_KEY=<your API key>
-LAB_BASE_URL=http://115.182.62.174:18888/v1
+OPENAI_API_KEY=<your API key>
+OPENAI_BASE_URL=https://api.openai.com
 ```
 
 :::tip Using Other Providers

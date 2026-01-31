@@ -11,12 +11,9 @@ PatientHub uses [Hydra](https://hydra.cc/) for configuration management, making 
 Create a `.env` file in the project root:
 
 ```bash
-# For LAB API (default)
-LAB_API_KEY=your_api_key
-LAB_BASE_URL=http://115.182.62.174:18888/v1
-
-# For OpenAI
+# For OPENAI API (default)
 OPENAI_API_KEY=your_openai_key
+OPENAI_BASE_URL=https://api.openai.com
 
 # For HuggingFace
 HF_TOKEN=your_huggingface_token
@@ -24,11 +21,11 @@ HF_TOKEN=your_huggingface_token
 
 ## Model Configuration
 
-### Using LAB API (Default)
+### Using OPENAI API (Default)
 
 ```python
 config = {
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -79,7 +76,7 @@ config = {
 | Option        | Type  | Default    | Description             |
 | ------------- | ----- | ---------- | ----------------------- |
 | `agent_type`  | str   | required   | Client type identifier  |
-| `model_type`  | str   | `"LAB"`    | Model provider          |
+| `model_type`  | str   | `"OPENAI"`    | Model provider          |
 | `model_name`  | str   | `"gpt-4o"` | Model identifier        |
 | `temperature` | float | `0.7`      | Sampling temperature    |
 | `max_tokens`  | int   | `1024`     | Max response tokens     |
@@ -159,7 +156,7 @@ Create `configs/client/myclient.yaml`:
 
 ```yaml
 agent_type: patientPsi
-model_type: LAB
+model_type: OPENAI
 model_name: gpt-4o
 temperature: 0.5
 max_tokens: 2048

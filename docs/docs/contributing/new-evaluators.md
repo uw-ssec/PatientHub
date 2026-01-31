@@ -299,7 +299,7 @@ Add configuration options:
 ```yaml
 # configs/evaluator/myEvaluator.yaml
 eval_type: myEvaluator
-model_type: LAB
+model_type: OPENAI
 model_name: gpt-4o
 temperature: 0.0 # Deterministic for evaluation
 max_tokens: 1024
@@ -324,7 +324,7 @@ from patienthub.evaluators import get_evaluator
 def evaluator_config():
     return OmegaConf.create({
         'eval_type': 'myEvaluator',
-        'model_type': 'LAB',
+        'model_type': 'OPENAI',
         'model_name': 'gpt-4o-mini',
         'temperature': 0.0,
         'max_tokens': 512,

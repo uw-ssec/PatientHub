@@ -18,6 +18,13 @@ PatientPsi creates realistic patient simulations based on **cognitive behavioral
 - **Conversational Styles**: Defines 6 conversational styles (Plain, Upset, Verbose, Reserved, Tangent, Pleasing)
 - **CBT-Grounded**: Uses CBT profiles as a ground truth to evaluate trainees/therapists' ability.
 
+## How It Works
+
+1. **Profile Loading**: Loads a patient persona with CBT-relevant background (history, beliefs, coping strategies, situation, emotions, automatic thoughts).
+2. **CBT-Grounded Prompt**: Builds a system prompt that uses the CBT cognitive conceptualization to guide responses.
+3. **Style Conditioning**: Applies a configurable conversational style (e.g., upset/verbose/reserved/tangent/pleasing) to shape tone and disclosure patterns.
+4. **Contextual Dialogue**: Keeps multi-turn conversation history so later replies reflect prior turns and gradually reveal deeper concerns.
+
 ## Usage
 
 ### CLI
@@ -34,7 +41,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'patientPsi',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -94,4 +101,3 @@ print(response.content)
     "behavior": "Ignored the invitation and did not respond to the RSVP request. Ignored phone calls from family."
 }
 ```
-

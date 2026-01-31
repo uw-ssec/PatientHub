@@ -17,9 +17,16 @@ AdaptiveVP creates virtual patients for nurse communication training that adapt 
 
 - **Adaptive Responses**: Patient behavior adapts based on nurse's communication quality
 - **Multi-Dimensional Assessment**: Evaluates tone (calm, clear), empathy level (0-6 scale), and de-escalation techniques
-- **Patient Personality Types**: Dependent, Authoritarian, and Aggressive patient profiles
+- **Patient Personality Types**: Overdependent, Overly Authoritative, Aggressive and Uncooperative
 - **Stage Directions**: Dynamic response guidance based on conversation context
 - **Rich Output**: Generates inner monologue, verbal response, and non-verbal cues
+
+## How It Works
+
+1. **Nurse Input Analysis**: Evaluates the nurse's communication on tone, empathy, and de-escalation
+2. **Stage Direction Selection**: Chooses appropriate response direction based on analysis
+3. **Response Generation**: Creates response with inner thoughts, verbal content, and non-verbal cues
+4. **Safety Monitoring**: Reviews the generated response to ensure it remains within professional boundaries, aligns with the patient profile, and adheres to the adaptation direction.
 
 ## Patient Types
 
@@ -28,6 +35,9 @@ AdaptiveVP creates virtual patients for nurse communication training that adapt 
 | Dependent     | Requires constant attention and reassurance  | Frequent calls, anxiety, seeking comfort |
 | Authoritarian | Emphasizes status, demands special treatment | Complaints, threats, dismissive of staff |
 | Aggressive    | Responds with hostility when demands not met | Loud voice, threatening, confrontational |
+|Uncooperative	| Passive-aggressive or refuses to engage in care	| Ignoring staff, feigning sleep, delaying treatment |
+
+The original study validated these profiles within a South Korean nursing context, but the framework is adaptable to other cultural settings.
 
 ## Evaluation Dimensions
 
@@ -70,7 +80,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'adaptiveVP',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -137,9 +147,3 @@ class Response(BaseModel):
     non_verbal: str       # Non-verbal communication/actions
 ```
 
-## How It Works
-
-1. **Nurse Input Analysis**: Evaluates the nurse's communication on tone, empathy, and de-escalation
-2. **Stage Direction Selection**: Chooses appropriate response direction based on analysis
-3. **Response Generation**: Creates response with inner thoughts, verbal content, and non-verbal cues
-4. **Self-Evaluation**: Validates response against profile alignment, direction adherence, and safety

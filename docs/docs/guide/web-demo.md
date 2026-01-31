@@ -42,7 +42,7 @@ from patienthub.clients import get_client, CLIENT_REGISTRY
 
 DEFAULT_CONFIG = {
     "agent_type": "patientPsi",
-    "model_type": "LAB",
+    "model_type": "OPENAI",
     "model_name": "gpt-4o",
     "temperature": 0.7,
     "max_tokens": 1024,

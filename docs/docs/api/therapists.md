@@ -23,7 +23,7 @@ from patienthub.therapists import get_therapist
 
 config = OmegaConf.create({
     'agent_type': 'CBT',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -67,7 +67,7 @@ class ChatAgent(ABC):
 | Option        | Type  | Default    | Description               |
 | ------------- | ----- | ---------- | ------------------------- |
 | `agent_type`  | str   | required   | Therapist type identifier |
-| `model_type`  | str   | `"LAB"`    | Model provider            |
+| `model_type`  | str   | `"OPENAI"`    | Model provider            |
 | `model_name`  | str   | `"gpt-4o"` | Model identifier          |
 | `temperature` | float | `0.7`      | Sampling temperature      |
 | `max_tokens`  | int   | `1024`     | Max response tokens       |
@@ -80,7 +80,7 @@ The CBT therapist uses cognitive behavioral therapy techniques:
 ```python
 config = OmegaConf.create({
     'agent_type': 'CBT',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -148,7 +148,7 @@ For testing purposes - generates intentionally poor therapeutic responses:
 ```python
 config = OmegaConf.create({
     'agent_type': 'bad',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -174,7 +174,7 @@ from patienthub.therapists import get_therapist
 # Set up client
 client_config = OmegaConf.create({
     'agent_type': 'patientPsi',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -186,7 +186,7 @@ client_config = OmegaConf.create({
 # Set up therapist
 therapist_config = OmegaConf.create({
     'agent_type': 'CBT',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,

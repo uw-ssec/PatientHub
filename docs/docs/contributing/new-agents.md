@@ -201,7 +201,7 @@ Add a Hydra config in `data/characters/` or reference via CLI:
 ```yaml
 # Can be used as: client=myAgent
 agent_type: myAgent
-model_type: LAB
+model_type: OPENAI
 model_name: gpt-4o
 temperature: 0.7
 max_tokens: 1024
@@ -226,7 +226,7 @@ from patienthub.clients import get_client
 def agent_config():
     return OmegaConf.create({
         'agent_type': 'myAgent',
-        'model_type': 'LAB',
+        'model_type': 'OPENAI',
         'model_name': 'gpt-4o-mini',
         'temperature': 0.0,  # Deterministic for tests
         'max_tokens': 256,

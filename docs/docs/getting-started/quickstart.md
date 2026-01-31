@@ -75,7 +75,7 @@ from patienthub.clients import get_client
 # Configure the client
 config = OmegaConf.create({
     'agent_type': 'patientPsi',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,

@@ -24,7 +24,7 @@ config = OmegaConf.create({
     'target': 'client',
     'dimensions': ['consistency', 'emotion'],
     'granularity': 'session',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.3,
     'max_tokens': 1024,
@@ -69,7 +69,7 @@ config = OmegaConf.create({
     'target': 'client',           # 'client' or 'therapist'
     'dimensions': ['consistency', 'emotion'],
     'granularity': 'session',     # 'session', 'turn', or 'turn_by_turn'
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.3,           # Lower for more consistent ratings
     'max_tokens': 1024,
@@ -133,7 +133,7 @@ config = OmegaConf.create({
     'target': 'client',
     'dimensions': ['consistency'],
     'granularity': 'turn_by_turn',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.3,
     'max_tokens': 1024,

@@ -19,6 +19,13 @@ TalkDep creates clinically grounded personas for depression screening research. 
 - **BDI-Grounded**: By using pre-defined BDI-II scores as a ground truth to evaluate and quantify the performance of the simulation.
 - **Validated Personas**: Constructed 12 validated depression personas, covering four severity levels: Minimal, Mild, Moderate, and Severe.
 
+## How It Works
+
+1. **Profile Loading**: Loads persona with BDI score and symptom profiles
+2. **System Prompt Construction**: Builds prompt incorporating all persona details
+3. **Conversation Handling**: Maintains conversation history for context
+4. **Response Generation**: Generates responses following linguistic patterns and behavioral constraints
+
 ## Depression Levels
 
 TalkDep personas span the full range of depression severity:
@@ -46,7 +53,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'talkDep',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -130,13 +137,6 @@ print(response.content)
   ]
 }
 ```
-
-## How It Works
-
-1. **Profile Loading**: Loads persona with BDI score and symptom profiles
-2. **System Prompt Construction**: Builds prompt incorporating all persona details
-3. **Conversation Handling**: Maintains conversation history for context
-4. **Response Generation**: Generates responses following linguistic patterns and behavioral constraints
 
 ## Resources
 

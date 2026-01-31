@@ -36,8 +36,8 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'eeyore',
-    'model_type': 'LAB',
-    'model_name': 'gpt-4o',
+    'model_type': 'LOCAL',
+    'model_name': 'hosted_vllm//data3/public_checkpoints/huggingface_models/Eeyore_llama3.1_8B',
     'temperature': 0.7,
     'max_tokens': 1024,
     'max_retries': 3,
@@ -51,6 +51,11 @@ client.set_therapist({'name': 'Clinician'})
 response = client.generate_response("How have you been sleeping lately?")
 print(response.content)
 ```
+> ⚠️ **Hint:**  
+> - Start a local OpenAI-compatible model server (e.g., vLLM) to serve the weights.  
+> - Set `LOCAL_BASE_URL`; PatientHub passes them as `api_base/api_key` to LiteLLM.  
+> - Use `model_type=LOCAL` and set `model_name` to your served model id/name.  
+> - Run: `uv run python -m examples.simulate client=eeyore therapist=user`  
 
 ## Configuration
 

@@ -20,15 +20,21 @@ ConsistentMI simulates clients in motivational interviewing (MI) sessions with c
 - **Stage Transitions**: Natural progression based on therapist's approach
 - **MI-Specific Responses**: Reacts appropriately to OARS techniques
 
-## Stages of Change
+## How It Works
 
-| Stage            | Description            | Typical Behaviors                     |
-| ---------------- | ---------------------- | ------------------------------------- |
-| Precontemplation | Not considering change | Denial, resistance, minimization      |
-| Contemplation    | Aware but ambivalent   | Weighing pros/cons, uncertainty       |
-| Preparation      | Planning to change     | Seeking information, small steps      |
-| Action           | Actively changing      | Implementing changes, seeking support |
-| Maintenance      | Sustaining change      | Preventing relapse, building habits   |
+1. **Load Profile**: Reads the character JSON (personas, beliefs, acceptable plans, motivation topics) and initializes `stage` and `receptivity`.
+2. **Initialize Prompts**: Builds a system prompt that anchors the client’s behavior/goal and injects personas + beliefs for consistency.
+3. **Track Topic Engagement**: Matches the therapist’s latest utterance to a motivation topic, then uses the topic graph distance to update `engagement` and count repeated off-topic turns.
+4. **Verify Motivation (Optional)**: If the therapist addresses the client’s core motivation, the client enters a short `Motivation` state for an acknowledging response.
+5. **Sample a Stage-Consistent Action**: An LLM predicts an action distribution conditioned on recent context and the current stage.
+6. **Select Grounding Detail**: For actions like `Inform/Downplay/Blame/Hesitate/Plan`, the client selects a relevant persona/belief/plan (only when the therapist asks a question) to ground the next reply.
+7. **Generate Reply**: Renders a structured instruction (state + action + engagement + selected info) and calls the chat model to produce the final client utterance.
+
+**Action space in the current implementation:**
+- `Precontemplation`: `Deny`, `Downplay`, `Blame`, `Inform`, `Engage` (or `Terminate` after repeated off-topic turns)
+- `Contemplation`: `Inform`, `Engage`, `Hesitate`, `Doubt`, `Acknowledge`
+- `Preparation`: `Inform`, `Engage`, `Reject`, `Accept`, `Plan`
+- `Motivation`: `Acknowledge` (then proceeds into `Contemplation`)
 
 ## Usage
 
@@ -46,7 +52,7 @@ from patienthub.clients import get_client
 
 config = OmegaConf.create({
     'agent_type': 'consistentMI',
-    'model_type': 'LAB',
+    'model_type': 'OPENAI',
     'model_name': 'gpt-4o',
     'temperature': 0.7,
     'max_tokens': 1024,
@@ -115,32 +121,16 @@ print(response.content)
 }
 ```
 
-## How It Works
+## Stages of Change
 
-### Action Selection
+| Stage            | Description            | Typical Behaviors                     |
+| ---------------- | ---------------------- | ------------------------------------- |
+| Precontemplation | Not considering change | Denial, resistance, minimization      |
+| Contemplation    | Aware but ambivalent   | Weighing pros/cons, uncertainty       |
+| Preparation      | Planning to change     | Seeking information, small steps      |
+| Action           | Actively changing      | Implementing changes, seeking support |
+| Maintenance      | Sustaining change      | Preventing relapse, building habits   |
 
-The client selects actions based on:
-
-1. **Current Stage**: Determines available action types
-2. **Therapist Technique**: Responds to MI-appropriate approaches
-3. **Topic Engagement**: Reacts to how well therapist addresses concerns
-
-### Example Actions by Stage
-
-**Precontemplation:**
-
-- "I don't really see the big deal. Lots of people drink after work."
-- "My ex is the one with the problem, not me."
-
-**Contemplation:**
-
-- "I mean, I guess I have been drinking more than I used to..."
-- "Part of me knows I should cut back, but it's hard."
-
-**Preparation:**
-
-- "I've been thinking about trying to have alcohol-free weekdays."
-- "What do you think about those apps that track drinking?"
 
 ## Example Conversation
 
@@ -177,4 +167,3 @@ uv run python -m examples.evaluate \
 ## Limitations
 
 - Stage transitions may not perfectly match clinical expectations
-
