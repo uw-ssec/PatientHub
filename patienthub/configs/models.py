@@ -6,7 +6,7 @@ class APIModelConfig:
     """Base configuration shared by all agents using API models."""
 
     model_type: str = "OPENAI"
-    model_name: str = "gpt-4o"
+    model_name: str = "gpt-5-mini"
     temperature: float = 0.7
     max_tokens: int = 8192
     max_retries: int = 3
